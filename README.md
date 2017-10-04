@@ -1,12 +1,15 @@
 # Group Project - *Nailed It*
 
-Time spent: **X** hours spent in total
+Nailed It is an application to solve your nail polish problems. Blah blah blah
 
 ## User Stories
 
-The following user stories are completed:
+Core user stories:
 
 - [ ] 
+
+Nice-to-have user stories:
+- [ ]
 
 ## Video Walkthrough
 
