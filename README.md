@@ -6,10 +6,20 @@ Nailed It is an application to solve your nail polish problems. Blah blah blah
 
 Core user stories:
 
-- [ ] 
+- [ ] User can use a color drop tool to select a color.
+- [ ] User can take a still picture of their hand and apply selected
+  nail polish color to nails.
+- [ ] User can scroll through nail polish library and pick a color to
+  apply to nails.
+- [ ] User can browse nearby nail polish salons based on their current
+  location
 
 Nice-to-have user stories:
-- [ ]
+- [ ] User can see nail polish projected on top of nails in real time
+- [ ] User will see additional suggested colors that are similar to the
+  one they selected
+- [ ] User can hit "share" to share the given polish color ontop of
+  their nails with their friends!
 
 ## Video Walkthrough
 
