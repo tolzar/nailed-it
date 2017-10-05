@@ -1,6 +1,6 @@
 # Group Project - *Nailed It*
 
-Nailed It is an application to solve your nail polish problems. Blah blah blah
+Nailed It is an application to solve your nail polish problems. Have you ever struggled to choose a nail polish color? Have you ever questioned your nail polish choice after it's too late? Have you ever just wished that you could see it on your nails before you commit? Ever fallen in love with a color, but not known the name? Have you ever seen a really great color out in the wild, and wondered if there was a nail polish color similar to it? Nailed It is the app you've been waiting for. From Sky Blue's to Dreamy Pinks, Nailed It will allow you to not only find a nail salon near you, but to also try on the latest polish trends to share with friends.
 
 ## User Stories
 
@@ -20,6 +20,8 @@ Nice-to-have user stories:
   one they selected
 - [ ] User can hit "share" to share the given polish color ontop of
   their nails with their friends!
+- [ ] User can take a picture of a piece of clothing to determine a good
+  matching nail color.
 
 ## Video Walkthrough
 
