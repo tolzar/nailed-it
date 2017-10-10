@@ -13,9 +13,15 @@
 		11FB8DB61F8D6DE8000510A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11FB8DB51F8D6DE8000510A8 /* Assets.xcassets */; };
 		11FB8DB91F8D6DE8000510A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FB8DB71F8D6DE8000510A8 /* LaunchScreen.storyboard */; };
 		11FB8DC21F8D7154000510A8 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DC11F8D7154000510A8 /* MenuViewController.swift */; };
+		11FB8DC41F8D7A4F000510A8 /* NearbyShopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DC31F8D7A4F000510A8 /* NearbyShopsViewController.swift */; };
+		11FB8DC71F8D7C33000510A8 /* ShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DC61F8D7C33000510A8 /* ShopCell.swift */; };
+		11FB8DCA1F8D7C68000510A8 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DC91F8D7C68000510A8 /* Shop.swift */; };
+		11FB8DCD1F8D7C91000510A8 /* NearbyShopsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DCC1F8D7C91000510A8 /* NearbyShopsClient.swift */; };
+		E656DBF215E92FBBC9263D34 /* Pods_nailed_it.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC9EEB78115073D7366075BF /* Pods_nailed_it.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0355CD61FDACDBCFDC4944DC /* Pods-nailed-it.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nailed-it.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nailed-it/Pods-nailed-it.debug.xcconfig"; sourceTree = "<group>"; };
 		11FB8DAB1F8D6DE8000510A8 /* nailed-it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nailed-it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FB8DAE1F8D6DE8000510A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FB8DB01F8D6DE8000510A8 /* HamburgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +30,12 @@
 		11FB8DB81F8D6DE8000510A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11FB8DBA1F8D6DE8000510A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11FB8DC11F8D7154000510A8 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		11FB8DC31F8D7A4F000510A8 /* NearbyShopsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyShopsViewController.swift; sourceTree = "<group>"; };
+		11FB8DC61F8D7C33000510A8 /* ShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCell.swift; sourceTree = "<group>"; };
+		11FB8DC91F8D7C68000510A8 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		11FB8DCC1F8D7C91000510A8 /* NearbyShopsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyShopsClient.swift; sourceTree = "<group>"; };
+		CC9EEB78115073D7366075BF /* Pods_nailed_it.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nailed_it.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAA77F8322423B7EE149D8BC /* Pods-nailed-it.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nailed-it.release.xcconfig"; path = "Pods/Target Support Files/Pods-nailed-it/Pods-nailed-it.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E656DBF215E92FBBC9263D34 /* Pods_nailed_it.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +55,8 @@
 			children = (
 				11FB8DAD1F8D6DE8000510A8 /* nailed-it */,
 				11FB8DAC1F8D6DE8000510A8 /* Products */,
+				FC48267C1E65B354620893FC /* Pods */,
+				E286B62DB5356458B34265FC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +71,9 @@
 		11FB8DAD1F8D6DE8000510A8 /* nailed-it */ = {
 			isa = PBXGroup;
 			children = (
+				11FB8DCB1F8D7C7B000510A8 /* API */,
+				11FB8DC81F8D7C4D000510A8 /* Models */,
+				11FB8DC51F8D7C1B000510A8 /* Views */,
 				11FB8DC01F8D6FCF000510A8 /* ViewControllers */,
 				11FB8DAE1F8D6DE8000510A8 /* AppDelegate.swift */,
 				11FB8DB21F8D6DE8000510A8 /* Main.storyboard */,
@@ -71,9 +89,51 @@
 			children = (
 				11FB8DB01F8D6DE8000510A8 /* HamburgerViewController.swift */,
 				11FB8DC11F8D7154000510A8 /* MenuViewController.swift */,
+				11FB8DC31F8D7A4F000510A8 /* NearbyShopsViewController.swift */,
 			);
 			name = ViewControllers;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		11FB8DC51F8D7C1B000510A8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				11FB8DC61F8D7C33000510A8 /* ShopCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		11FB8DC81F8D7C4D000510A8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				11FB8DC91F8D7C68000510A8 /* Shop.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		11FB8DCB1F8D7C7B000510A8 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				11FB8DCC1F8D7C91000510A8 /* NearbyShopsClient.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		E286B62DB5356458B34265FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CC9EEB78115073D7366075BF /* Pods_nailed_it.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FC48267C1E65B354620893FC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0355CD61FDACDBCFDC4944DC /* Pods-nailed-it.debug.xcconfig */,
+				DAA77F8322423B7EE149D8BC /* Pods-nailed-it.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,9 +143,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11FB8DBD1F8D6DE8000510A8 /* Build configuration list for PBXNativeTarget "nailed-it" */;
 			buildPhases = (
+				83BB0509330144CB4075D595 /* [CP] Check Pods Manifest.lock */,
 				11FB8DA71F8D6DE8000510A8 /* Sources */,
 				11FB8DA81F8D6DE8000510A8 /* Frameworks */,
 				11FB8DA91F8D6DE8000510A8 /* Resources */,
+				C37ADE25F79E6890481812BD /* [CP] Embed Pods Frameworks */,
+				AFE99C6DDDD47913CB2EDAE8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -108,7 +171,7 @@
 				TargetAttributes = {
 					11FB8DAA1F8D6DE8000510A8 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -143,6 +206,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		83BB0509330144CB4075D595 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-nailed-it-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AFE99C6DDDD47913CB2EDAE8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nailed-it/Pods-nailed-it-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C37ADE25F79E6890481812BD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-nailed-it/Pods-nailed-it-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/BDBOAuth1Manager/BDBOAuth1Manager.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BDBOAuth1Manager.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nailed-it/Pods-nailed-it-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		11FB8DA71F8D6DE8000510A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -150,7 +269,11 @@
 			files = (
 				11FB8DB11F8D6DE8000510A8 /* HamburgerViewController.swift in Sources */,
 				11FB8DC21F8D7154000510A8 /* MenuViewController.swift in Sources */,
+				11FB8DCD1F8D7C91000510A8 /* NearbyShopsClient.swift in Sources */,
 				11FB8DAF1F8D6DE8000510A8 /* AppDelegate.swift in Sources */,
+				11FB8DCA1F8D7C68000510A8 /* Shop.swift in Sources */,
+				11FB8DC41F8D7A4F000510A8 /* NearbyShopsViewController.swift in Sources */,
+				11FB8DC71F8D7C33000510A8 /* ShopCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,11 +408,14 @@
 		};
 		11FB8DBE1F8D6DE8000510A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0355CD61FDACDBCFDC4944DC /* Pods-nailed-it.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C5D5LEK9E8;
 				INFOPLIST_FILE = "nailed-it/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "tolzar.nailed-it";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -301,11 +427,14 @@
 		};
 		11FB8DBF1F8D6DE8000510A8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAA77F8322423B7EE149D8BC /* Pods-nailed-it.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C5D5LEK9E8;
 				INFOPLIST_FILE = "nailed-it/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "tolzar.nailed-it";
 				PRODUCT_NAME = "$(TARGET_NAME)";
