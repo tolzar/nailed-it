@@ -1,23 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="GeorgiaItalic.ttf">
+            <string>Georgia-Italic</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Menu View Controller-->
+        <scene sceneID="7Gr-ed-l28">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController storyboardIdentifier="MenuViewController" id="EIg-hi-mym" customClass="MenuViewController" customModule="nailed_it" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l6L-YF-UZz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="FmI-ml-eOy">
+                                <rect key="frame" x="25" y="80" width="182" height="437"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="775-2t-nHE">
+                                        <rect key="frame" x="0.0" y="0.0" width="110" height="109.5"/>
+                                        <fontDescription key="fontDescription" name="Georgia-Italic" family="Georgia" pointSize="28"/>
+                                        <state key="normal" title="Try it on">
+                                            <color key="titleColor" red="0.98300868272781372" green="0.66133338212966919" blue="0.6453748345375061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jlm-O7-h9m">
+                                        <rect key="frame" x="0.0" y="109.5" width="154" height="109"/>
+                                        <fontDescription key="fontDescription" name="Georgia-Italic" family="Georgia" pointSize="28"/>
+                                        <state key="normal" title="Color picker">
+                                            <color key="titleColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0r-UN-luG">
+                                        <rect key="frame" x="0.0" y="218.5" width="182" height="109.5"/>
+                                        <fontDescription key="fontDescription" name="Georgia-Italic" family="Georgia" pointSize="28"/>
+                                        <state key="normal" title="Polish Library">
+                                            <color key="titleColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0h-Ot-301">
+                                        <rect key="frame" x="0.0" y="328" width="173" height="109"/>
+                                        <fontDescription key="fontDescription" name="Georgia-Italic" family="Georgia" pointSize="28"/>
+                                        <state key="normal" title="Nearby shops">
+                                            <color key="titleColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96793490648269653" green="0.99260038137435913" blue="0.97598010301589966" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="FmI-ml-eOy" firstAttribute="top" secondItem="ILz-MZ-Oqn" secondAttribute="top" constant="60" id="SZd-hf-ygI"/>
+                            <constraint firstItem="ILz-MZ-Oqn" firstAttribute="bottom" secondItem="FmI-ml-eOy" secondAttribute="bottom" constant="150" id="cCE-pJ-pGD"/>
+                            <constraint firstItem="FmI-ml-eOy" firstAttribute="leading" secondItem="ILz-MZ-Oqn" secondAttribute="leading" constant="25" id="fKM-Nb-c4R"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ILz-MZ-Oqn"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tXL-wB-m9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="33" y="-644"/>
+        </scene>
+        <!--Hamburger View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="HamburgerViewController" customModule="nailed_it" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pNF-YI-h8b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lMI-fy-eo6" userLabel="Menu View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.1148131862" green="0.63301128149999997" blue="0.94878464939999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7LU-bp-gOP" userLabel="Content View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.89187222719192505" green="0.97782605886459351" blue="0.92009657621383667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="aGW-dC-EGa" appends="YES" id="C7u-5a-pgg"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="lMI-fy-eo6" secondAttribute="bottom" id="20M-aL-u28"/>
+                            <constraint firstItem="7LU-bp-gOP" firstAttribute="leading" secondItem="pNF-YI-h8b" secondAttribute="leading" id="4BN-n9-4F4"/>
+                            <constraint firstItem="lMI-fy-eo6" firstAttribute="trailing" secondItem="fWa-kA-H6G" secondAttribute="trailing" id="9Tn-fO-lae"/>
+                            <constraint firstItem="lMI-fy-eo6" firstAttribute="top" secondItem="pNF-YI-h8b" secondAttribute="top" id="9kh-L0-cxz"/>
+                            <constraint firstItem="7LU-bp-gOP" firstAttribute="top" secondItem="pNF-YI-h8b" secondAttribute="top" id="Cal-L1-VAu"/>
+                            <constraint firstItem="lMI-fy-eo6" firstAttribute="bottom" secondItem="fWa-kA-H6G" secondAttribute="bottom" id="ILd-1T-Jc2"/>
+                            <constraint firstItem="lMI-fy-eo6" firstAttribute="top" secondItem="pNF-YI-h8b" secondAttribute="top" id="Jpw-Mb-kPm"/>
+                            <constraint firstItem="lMI-fy-eo6" firstAttribute="leading" secondItem="fWa-kA-H6G" secondAttribute="leading" id="OA3-g7-oda"/>
+                            <constraint firstAttribute="bottom" secondItem="7LU-bp-gOP" secondAttribute="bottom" id="QlU-Nu-uPG"/>
+                            <constraint firstAttribute="trailing" secondItem="lMI-fy-eo6" secondAttribute="trailing" id="U6w-zG-Sya"/>
+                            <constraint firstItem="lMI-fy-eo6" firstAttribute="leading" secondItem="pNF-YI-h8b" secondAttribute="leading" id="WMc-Nf-d8N"/>
+                            <constraint firstItem="lMI-fy-eo6" firstAttribute="trailing" secondItem="fWa-kA-H6G" secondAttribute="trailing" id="dxz-uA-TWh"/>
+                            <constraint firstItem="lMI-fy-eo6" firstAttribute="leading" secondItem="fWa-kA-H6G" secondAttribute="leading" id="sHl-VY-dQn"/>
+                            <constraint firstItem="7LU-bp-gOP" firstAttribute="width" secondItem="pNF-YI-h8b" secondAttribute="width" id="ufD-w6-BVp"/>
+                            <constraint firstItem="lMI-fy-eo6" firstAttribute="top" secondItem="pNF-YI-h8b" secondAttribute="top" id="weO-oR-k0A"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fWa-kA-H6G"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="7LU-bp-gOP" id="7ZZ-oO-WJc"/>
+                        <outlet property="leftMarginConstraint" destination="4BN-n9-4F4" id="Gag-AC-buL"/>
+                        <outlet property="menuView" destination="lMI-fy-eo6" id="JKy-Le-Q7g"/>
+                    </connections>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="aGW-dC-EGa">
+                    <connections>
+                        <action selector="onPanGesture:" destination="BYZ-38-t0r" id="hv5-hr-VK5"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
         </scene>
     </scenes>

@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		11FB8DAF1F8D6DE8000510A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DAE1F8D6DE8000510A8 /* AppDelegate.swift */; };
-		11FB8DB11F8D6DE8000510A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DB01F8D6DE8000510A8 /* ViewController.swift */; };
+		11FB8DB11F8D6DE8000510A8 /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DB01F8D6DE8000510A8 /* HamburgerViewController.swift */; };
 		11FB8DB41F8D6DE8000510A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FB8DB21F8D6DE8000510A8 /* Main.storyboard */; };
 		11FB8DB61F8D6DE8000510A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11FB8DB51F8D6DE8000510A8 /* Assets.xcassets */; };
 		11FB8DB91F8D6DE8000510A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FB8DB71F8D6DE8000510A8 /* LaunchScreen.storyboard */; };
+		11FB8DC21F8D7154000510A8 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DC11F8D7154000510A8 /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		11FB8DAB1F8D6DE8000510A8 /* nailed-it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nailed-it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FB8DAE1F8D6DE8000510A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		11FB8DB01F8D6DE8000510A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		11FB8DB01F8D6DE8000510A8 /* HamburgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
 		11FB8DB31F8D6DE8000510A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		11FB8DB51F8D6DE8000510A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11FB8DB81F8D6DE8000510A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11FB8DBA1F8D6DE8000510A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11FB8DC11F8D7154000510A8 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,24 @@
 		11FB8DAD1F8D6DE8000510A8 /* nailed-it */ = {
 			isa = PBXGroup;
 			children = (
+				11FB8DC01F8D6FCF000510A8 /* ViewControllers */,
 				11FB8DAE1F8D6DE8000510A8 /* AppDelegate.swift */,
-				11FB8DB01F8D6DE8000510A8 /* ViewController.swift */,
 				11FB8DB21F8D6DE8000510A8 /* Main.storyboard */,
 				11FB8DB51F8D6DE8000510A8 /* Assets.xcassets */,
 				11FB8DB71F8D6DE8000510A8 /* LaunchScreen.storyboard */,
 				11FB8DBA1F8D6DE8000510A8 /* Info.plist */,
 			);
 			path = "nailed-it";
+			sourceTree = "<group>";
+		};
+		11FB8DC01F8D6FCF000510A8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				11FB8DB01F8D6DE8000510A8 /* HamburgerViewController.swift */,
+				11FB8DC11F8D7154000510A8 /* MenuViewController.swift */,
+			);
+			name = ViewControllers;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,7 +108,7 @@
 				TargetAttributes = {
 					11FB8DAA1F8D6DE8000510A8 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -136,7 +148,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11FB8DB11F8D6DE8000510A8 /* ViewController.swift in Sources */,
+				11FB8DB11F8D6DE8000510A8 /* HamburgerViewController.swift in Sources */,
+				11FB8DC21F8D7154000510A8 /* MenuViewController.swift in Sources */,
 				11FB8DAF1F8D6DE8000510A8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,11 +287,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "nailed-it/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "liazadoyan.nailed-it";
+				PRODUCT_BUNDLE_IDENTIFIER = "tolzar.nailed-it";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -288,11 +303,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "nailed-it/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "liazadoyan.nailed-it";
+				PRODUCT_BUNDLE_IDENTIFIER = "tolzar.nailed-it";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
