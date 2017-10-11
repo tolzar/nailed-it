@@ -18,6 +18,8 @@
 		11FB8DCA1F8D7C68000510A8 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DC91F8D7C68000510A8 /* Shop.swift */; };
 		11FB8DCD1F8D7C91000510A8 /* NearbyShopsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DCC1F8D7C91000510A8 /* NearbyShopsClient.swift */; };
 		11FB8DCF1F8D956D000510A8 /* ColorDropperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DCE1F8D956D000510A8 /* ColorDropperViewController.swift */; };
+		11FB8DD21F8DAF28000510A8 /* PolishLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DD11F8DAF28000510A8 /* PolishLibraryViewController.swift */; };
+		11FB8DD41F8DAF33000510A8 /* TryItOnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DD31F8DAF33000510A8 /* TryItOnViewController.swift */; };
 		E656DBF215E92FBBC9263D34 /* Pods_nailed_it.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC9EEB78115073D7366075BF /* Pods_nailed_it.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +38,8 @@
 		11FB8DC91F8D7C68000510A8 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		11FB8DCC1F8D7C91000510A8 /* NearbyShopsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyShopsClient.swift; sourceTree = "<group>"; };
 		11FB8DCE1F8D956D000510A8 /* ColorDropperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDropperViewController.swift; sourceTree = "<group>"; };
+		11FB8DD11F8DAF28000510A8 /* PolishLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolishLibraryViewController.swift; sourceTree = "<group>"; };
+		11FB8DD31F8DAF33000510A8 /* TryItOnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryItOnViewController.swift; sourceTree = "<group>"; };
 		CC9EEB78115073D7366075BF /* Pods_nailed_it.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nailed_it.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA77F8322423B7EE149D8BC /* Pods-nailed-it.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nailed-it.release.xcconfig"; path = "Pods/Target Support Files/Pods-nailed-it/Pods-nailed-it.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +97,8 @@
 				11FB8DC11F8D7154000510A8 /* MenuViewController.swift */,
 				11FB8DC31F8D7A4F000510A8 /* NearbyShopsViewController.swift */,
 				11FB8DCE1F8D956D000510A8 /* ColorDropperViewController.swift */,
+				11FB8DD11F8DAF28000510A8 /* PolishLibraryViewController.swift */,
+				11FB8DD31F8DAF33000510A8 /* TryItOnViewController.swift */,
 			);
 			name = ViewControllers;
 			path = "New Group";
@@ -274,9 +280,11 @@
 				11FB8DC21F8D7154000510A8 /* MenuViewController.swift in Sources */,
 				11FB8DCF1F8D956D000510A8 /* ColorDropperViewController.swift in Sources */,
 				11FB8DCD1F8D7C91000510A8 /* NearbyShopsClient.swift in Sources */,
+				11FB8DD21F8DAF28000510A8 /* PolishLibraryViewController.swift in Sources */,
 				11FB8DAF1F8D6DE8000510A8 /* AppDelegate.swift in Sources */,
 				11FB8DCA1F8D7C68000510A8 /* Shop.swift in Sources */,
 				11FB8DC41F8D7A4F000510A8 /* NearbyShopsViewController.swift in Sources */,
+				11FB8DD41F8DAF33000510A8 /* TryItOnViewController.swift in Sources */,
 				11FB8DC71F8D7C33000510A8 /* ShopCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

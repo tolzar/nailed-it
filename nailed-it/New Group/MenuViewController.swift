@@ -10,10 +10,10 @@ import UIKit
 
 class MenuViewController: UIViewController {
 
-    private var nearbyShopsViewController: UIViewController!
-    private var colorDropperViewController: UIViewController!
-//    private var timelineViewController: UIViewController!
-//    private var accountsViewController: UIViewController!
+    private var nearbyShopsNavController: UIViewController!
+    private var colorDropperNavController: UIViewController!
+    private var polishLibraryNavController: UIViewController!
+    private var tryItOnNavController: UIViewController!
     
     var viewControllers: [UIViewController] = []
     
@@ -24,17 +24,17 @@ class MenuViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        nearbyShopsViewController = storyboard.instantiateViewController(withIdentifier: "NearbyShopsNavigationController")
-        colorDropperViewController = storyboard.instantiateViewController(withIdentifier: "ColorDropperNavigationController")
-//        timelineViewController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
-//        accountsViewController = storyboard.instantiateViewController(withIdentifier: "AccountsNavigationController")
-//
-        viewControllers.append(nearbyShopsViewController)
-        viewControllers.append(colorDropperViewController)
-//        viewControllers.append(timelineViewController)
-//        viewControllers.append(accountsViewController)
-//
-//        hamburgerViewController.contentViewController = viewControllers[2]
+        nearbyShopsNavController = storyboard.instantiateViewController(withIdentifier: "NearbyShopsNavigationController")
+        colorDropperNavController = storyboard.instantiateViewController(withIdentifier: "ColorDropperNavigationController")
+        polishLibraryNavController = storyboard.instantiateViewController(withIdentifier: "PolishLibraryNavigationController")
+        tryItOnNavController = storyboard.instantiateViewController(withIdentifier: "TryItOnNavigationController")
+
+        viewControllers.append(nearbyShopsNavController)
+        viewControllers.append(colorDropperNavController)
+        viewControllers.append(polishLibraryNavController)
+        viewControllers.append(tryItOnNavController)
+
+        hamburgerViewController.contentViewController = viewControllers[2]
     
     }
     
@@ -61,14 +61,14 @@ class MenuViewController: UIViewController {
     @IBAction func onColorDropperSelected(_ sender: Any) {
         hamburgerViewController.contentViewController = viewControllers[1]
     }
-//
-//    @IBAction func onMentionsSelected(_ sender: Any) {
-//        hamburgerViewController.contentViewController = viewControllers[1]
-//
-//    }
-//
-//
-//    @IBAction func onAccountsSelected(_ sender: Any) {
-//        hamburgerViewController.contentViewController = viewControllers[3]
-//    }
+
+    @IBAction func onPolishLibrarySelected(_ sender: Any) {
+        hamburgerViewController.contentViewController = viewControllers[2]
+
+    }
+
+
+    @IBAction func onTryItOnSelected(_ sender: Any) {
+        hamburgerViewController.contentViewController = viewControllers[3]
+    }
 }
