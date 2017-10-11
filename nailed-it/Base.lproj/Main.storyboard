@@ -40,6 +40,9 @@
                                         <state key="normal" title="Color picker">
                                             <color key="titleColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onColorDropperSelected:" destination="EIg-hi-mym" eventType="touchUpInside" id="G6a-l6-ztn"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0r-UN-luG">
                                         <rect key="frame" x="0.0" y="218.5" width="182" height="109.5"/>
@@ -206,6 +209,59 @@
             </objects>
             <point key="canvasLocation" x="1629.5999999999999" y="-646.32683658170924"/>
         </scene>
+        <!--Color Dropper View Controller-->
+        <scene sceneID="uiL-DM-8Uu">
+            <objects>
+                <viewController storyboardIdentifier="ColorDropperViewController" id="Dzi-3K-soY" customClass="ColorDropperViewController" customModule="nailed_it" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="afB-NQ-Gne">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qew-zF-zxY">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbT-8N-8ci" customClass="UIImageView">
+                                <rect key="frame" x="162" y="617" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="2TQ-sX-5kw"/>
+                                    <constraint firstAttribute="height" constant="50" id="oVq-gU-el2"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="target" translatesAutoresizingMaskIntoConstraints="NO" id="D9T-S1-S9Y">
+                                <rect key="frame" x="137" y="315.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="k6j-we-zj2"/>
+                                    <constraint firstAttribute="height" constant="100" id="lGL-hJ-c3Q"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cbT-8N-8ci" firstAttribute="centerX" secondItem="afB-NQ-Gne" secondAttribute="centerX" id="Agc-AU-cKZ"/>
+                            <constraint firstItem="D9T-S1-S9Y" firstAttribute="centerX" secondItem="afB-NQ-Gne" secondAttribute="centerX" id="CNJ-Bt-IkI"/>
+                            <constraint firstItem="qew-zF-zxY" firstAttribute="top" secondItem="K3Y-w0-3af" secondAttribute="top" id="Kbr-Vb-9FV"/>
+                            <constraint firstItem="qew-zF-zxY" firstAttribute="trailing" secondItem="K3Y-w0-3af" secondAttribute="trailing" id="OSL-se-6Eh"/>
+                            <constraint firstItem="qew-zF-zxY" firstAttribute="leading" secondItem="K3Y-w0-3af" secondAttribute="leading" id="OmB-Yi-mEB"/>
+                            <constraint firstAttribute="bottom" secondItem="cbT-8N-8ci" secondAttribute="bottom" id="QxF-5P-nEl"/>
+                            <constraint firstItem="qew-zF-zxY" firstAttribute="bottom" secondItem="K3Y-w0-3af" secondAttribute="bottom" id="UCU-K0-pA1"/>
+                            <constraint firstItem="D9T-S1-S9Y" firstAttribute="centerY" secondItem="qew-zF-zxY" secondAttribute="centerY" id="bqA-U9-12I"/>
+                            <constraint firstItem="D9T-S1-S9Y" firstAttribute="centerX" secondItem="qew-zF-zxY" secondAttribute="centerX" id="kN1-wU-UVk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="K3Y-w0-3af"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="sRp-iK-uGe"/>
+                    <connections>
+                        <outlet property="cameraView" destination="qew-zF-zxY" id="N6T-HJ-z35"/>
+                        <outlet property="processedView" destination="cbT-8N-8ci" id="iwT-wS-rb7"/>
+                        <outlet property="targetImage" destination="D9T-S1-S9Y" id="GfW-Jo-VBH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HWS-bV-v2w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1629.5999999999999" y="37.331334332833585"/>
+        </scene>
         <!--Hamburger View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -260,6 +316,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="-668" y="39"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ebr-iG-Rqy">
@@ -279,5 +336,26 @@
             </objects>
             <point key="canvasLocation" x="834" y="-646"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6Ru-Sm-Vf0">
+            <objects>
+                <navigationController storyboardIdentifier="ColorDropperNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="4S9-sy-qhE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="s0n-wL-tXp">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Dzi-3K-soY" kind="relationship" relationship="rootViewController" id="ZDd-5E-Rhi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="948-SP-CPH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="833" y="38"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="target" width="1000" height="1000"/>
+    </resources>
 </document>

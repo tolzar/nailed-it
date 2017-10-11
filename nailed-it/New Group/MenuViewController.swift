@@ -11,7 +11,7 @@ import UIKit
 class MenuViewController: UIViewController {
 
     private var nearbyShopsViewController: UIViewController!
-//    private var mentionsViewController: UIViewController!
+    private var colorDropperViewController: UIViewController!
 //    private var timelineViewController: UIViewController!
 //    private var accountsViewController: UIViewController!
     
@@ -25,12 +25,12 @@ class MenuViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         nearbyShopsViewController = storyboard.instantiateViewController(withIdentifier: "NearbyShopsNavigationController")
-//        mentionsViewController = storyboard.instantiateViewController(withIdentifier: "MentionsNavigationController")
+        colorDropperViewController = storyboard.instantiateViewController(withIdentifier: "ColorDropperNavigationController")
 //        timelineViewController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
 //        accountsViewController = storyboard.instantiateViewController(withIdentifier: "AccountsNavigationController")
 //
         viewControllers.append(nearbyShopsViewController)
-//        viewControllers.append(mentionsViewController)
+        viewControllers.append(colorDropperViewController)
 //        viewControllers.append(timelineViewController)
 //        viewControllers.append(accountsViewController)
 //
@@ -58,10 +58,9 @@ class MenuViewController: UIViewController {
     }
     
     
-//    @IBAction func onTimelineSelected(_ sender: Any) {
-//        hamburgerViewController.contentViewController = viewControllers[2]
-//
-//    }
+    @IBAction func onColorDropperSelected(_ sender: Any) {
+        hamburgerViewController.contentViewController = viewControllers[1]
+    }
 //
 //    @IBAction func onMentionsSelected(_ sender: Any) {
 //        hamburgerViewController.contentViewController = viewControllers[1]
