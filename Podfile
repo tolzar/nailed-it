@@ -7,6 +7,7 @@ target 'nailed-it' do
 
   # Pods for nailed-it
   pod 'AFNetworking', '~> 2.5'
-  pod 'BDBOAuth1Manager'
-  pod 'TinyCrayon'
+  pod 'BDBOAuth1Manager', '~> 1.6.0'
+  pod 'Parse', '~> 1.15.3'
+  pod 'TinyCrayon', '~> 3.0.0'
 end
