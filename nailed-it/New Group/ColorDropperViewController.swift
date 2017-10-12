@@ -17,9 +17,16 @@ class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSamp
     
     var cameraDevice: AVCaptureDevice?
     var previewLayer: AVCaptureVideoPreviewLayer?
+    var colorPicked = PickerColor()
+    var redValue: UInt8?
+    var greenValue: UInt8?
+    var blueValue: UInt8?
+    var hexValue: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initializeTapGestures()
         
         cameraView.backgroundColor = UIColor.red
         processedView.backgroundColor = UIColor.green
@@ -72,6 +79,17 @@ class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSamp
         captureSession.startRunning()
     }
     
+    func initializeTapGestures() {
+        let targetTap = UITapGestureRecognizer(target: self, action: #selector(onTargetTap(tapGestureRecognizer:)))
+        targetImage.isUserInteractionEnabled = true
+        targetImage.addGestureRecognizer(targetTap)
+        
+        let processedViewTap = UITapGestureRecognizer(target: self, action: #selector(onTargetTap(tapGestureRecognizer:)))
+        processedView.isUserInteractionEnabled = true
+        processedView.addGestureRecognizer(processedViewTap)
+
+    }
+    
     
     func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
@@ -87,17 +105,33 @@ class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSamp
                     
         let index = (((height / 2)) * width + ((width / 2))) * 4
                     
-        let b = byteBuffer[index]
-        let g = byteBuffer[index+1]
-        let r = byteBuffer[index+2]
-                    
-        let color = UIColor(red: CGFloat(Double(r)/255.0), green: CGFloat(Double(g)/255.0), blue: CGFloat(Double(b)/255.0), alpha: 1.0)
+        blueValue = byteBuffer[index]
+        greenValue = byteBuffer[index+1]
+        redValue = byteBuffer[index+2]
+        
+        let color = UIColor(red: CGFloat(Double(redValue!)/255.0), green: CGFloat(Double(greenValue!)/255.0), blue: CGFloat(Double(blueValue!)/255.0), alpha: 1.0)
+
+        hexValue = String(format:"%X", Int(redValue!)) + String(format:"%X", Int(greenValue!)) + String(format:"%X", Int(blueValue!))
         
         DispatchQueue.main.async {
             self.processedView.backgroundColor = color
         }
         
-        
         CVPixelBufferUnlockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
+    }
+    
+    @objc func onTargetTap(tapGestureRecognizer: UITapGestureRecognizer) {
+        colorPicked.blueValue = Int(blueValue!)
+        colorPicked.redValue = Int(redValue!)
+        colorPicked.greenValue = Int(greenValue!)
+        colorPicked.hexValue = hexValue
+        performSegue(withIdentifier: "onColorPickedSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "onColorPickedSegue" {
+            let ecvc = segue.destination as! EditColorViewController
+            ecvc.pickedColor = colorPicked
+        }
     }
 }

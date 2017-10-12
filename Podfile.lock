@@ -23,6 +23,9 @@ PODS:
   - BDBOAuth1Manager (1.6.0):
     - AFNetworking/NSURLConnection (~> 2.6.0)
     - AFNetworking/NSURLSession (~> 2.6.0)
+  - Bolts/Tasks (1.8.4)
+  - Parse (1.15.3):
+    - Bolts/Tasks (~> 1.8)
   - TinyCrayon (3.0.0):
     - TinyCrayon/TCCore (= 3.0.0)
     - TinyCrayon/TCMask (= 3.0.0)
@@ -33,13 +36,16 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
   - BDBOAuth1Manager
+  - Parse
   - TinyCrayon
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   BDBOAuth1Manager: cd5a5872f355ca38180d52ca2dd844f0b0c84797
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Parse: cdc0f1f975ee8be0409e66f21b05df4ae067047c
   TinyCrayon: 2816eae8b9f57ee6d0272ee9cfbe60a86973f136
 
-PODFILE CHECKSUM: 9713e445a3e50becdbd3b8818a8780d9bc5fd610
+PODFILE CHECKSUM: 8d93c3f9cdabd402145204b2d5b55387bddd8739
 
 COCOAPODS: 1.3.1
