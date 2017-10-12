@@ -27,27 +27,30 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
                 print("Successfully retrieved \(colors!.count) scores.")
                 // Do something with the found objects
                 if let colors = colors {
-                    self.colors = colors as! [PickerColor]
+                    self.colors = colors as? [PickerColor]
                     self.collectionView.reloadData()
                 }
             } else {
                 // Log details of the failure
                 print("Error: \(error!) \(error!.localizedDescription)")
             }
+            
+            self.collectionView.dataSource = self
+            self.collectionView.delegate = self
+            
+            let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+            layout?.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+        }
         
-        self.collectionView.dataSource = self
-        self.collectionView.delegate = self
-    }
-
-    func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+        func didReceiveMemoryWarning() {
+            super.didReceiveMemoryWarning()
+            // Dispose of any resources that can be recreated.
+        }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.colors!.count ?? 0
+        return self.colors?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

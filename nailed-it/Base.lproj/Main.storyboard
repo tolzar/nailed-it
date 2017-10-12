@@ -333,11 +333,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VrZ-lV-gGb">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VrZ-lV-gGb">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PJu-A5-4cC">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="3" id="PJu-A5-4cC">
                                     <size key="itemSize" width="105" height="99"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -374,6 +373,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VrZ-lV-gGb" firstAttribute="trailing" secondItem="9vP-dO-LON" secondAttribute="trailing" id="CdV-T7-QMB"/>
+                            <constraint firstItem="VrZ-lV-gGb" firstAttribute="bottom" secondItem="9vP-dO-LON" secondAttribute="bottom" id="JVP-mI-buC"/>
+                            <constraint firstItem="VrZ-lV-gGb" firstAttribute="top" secondItem="Gz6-Op-ghW" secondAttribute="top" id="fdc-H5-7Y2"/>
+                            <constraint firstItem="VrZ-lV-gGb" firstAttribute="leading" secondItem="9vP-dO-LON" secondAttribute="leading" id="sl6-hA-HSF"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="9vP-dO-LON"/>
                     </view>
                     <navigationItem key="navigationItem" id="BoB-Ij-bU5"/>
