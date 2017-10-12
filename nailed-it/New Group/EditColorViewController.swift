@@ -32,7 +32,7 @@ class EditColorViewController: UIViewController {
                 if (success) {
                     print(self.pickedColor)
                 } else {
-                    print(error)
+                    print("Error: \(error!.localizedDescription)")
                 }
             })
         } else {
