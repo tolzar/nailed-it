@@ -14,6 +14,7 @@ class PolishCollectionViewCell: UICollectionViewCell {
         didSet {
             colorView.backgroundColor = pickerColor?.getUIColor()
             colorName.text = pickerColor?.displayName ?? ""
+            print("display name: \(pickerColor?.displayName)")
         }
     }
     

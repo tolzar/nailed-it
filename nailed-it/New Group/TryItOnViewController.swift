@@ -54,12 +54,12 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
             y = (width - height) / 2
         }
         else {
-            height = self.view.frame.width
-            width = height * image.size.width / image.size.height
+            height = self.imageView.frame.height
+            width = self.imageView.frame.width
             x = (height - width) / 2
             y = 0
         }
-        imageView.frame = CGRect(x: x, y: y, width: width, height: height)
+        //imageView.frame = CGRect(x: x, y: y, width: width, height: height)
         
         imageView.image = mask.cutout(image: image, resize: false)
     }
@@ -67,12 +67,13 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     func polishColor(with polishColor: PickerColor?) {
         let templateImage = image.tint(tintColor: polishColor!.getUIColor())
         
-        imageView.image = mask.blend(foregroundImage: templateImage, backgroundImage: image)
+        imageView.image = mask.blend(foregroundImage: templateImage.resizeImage(targetSize: mask.size), backgroundImage: image.resizeImage(targetSize: mask.size))
     }
     
     @IBAction func onSelectColor(_ sender: Any) {
         present(polishLibraryViewController, animated: true)
     }
+    
     
 }
 
@@ -152,6 +153,32 @@ extension UIImage {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image!
+    }
+    
+    func resizeImage(targetSize: CGSize) -> UIImage {
+        let size = self.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        self.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
     }
 }
 
