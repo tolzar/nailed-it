@@ -4,8 +4,8 @@ import TCMask
 
 class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TCMaskViewDelegate, PolishLibraryViewControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var buttonGroup: UIView!
-    
+    @IBOutlet weak var selectColorButton: UIBarButtonItem!
+
     let imagePicker = UIImagePickerController()
     var image: UIImage!
     var initialImage: UIImage!
@@ -18,7 +18,7 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        buttonGroup.isHidden = true
+        selectColorButton.isEnabled = false
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         polishLibraryViewController = storyboard.instantiateViewController(withIdentifier: "PolishLibraryViewController") as! PolishLibraryViewController
@@ -30,8 +30,16 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.present(imagePicker, animated: true, completion: nil)
     }
     
+    
+    @IBAction func onTakePhotoSelected(_ sender: Any) {
+        imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+        imagePicker.delegate = self
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self.image = self.image.resizeImage(targetSize: imageView.frame.size)
         self.initialImage = self.image
         self.imagePicker.dismiss(animated: false, completion: {})
         
@@ -43,7 +51,7 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func tcMaskViewDidComplete(mask: TCMask, image: UIImage) {
         self.mask = mask
-        buttonGroup.isHidden = false
+        selectColorButton.isEnabled = true
         
         // adjust the size of image view to make it fit the image size and put it in the center of screen
         var x:CGFloat, y:CGFloat, width:CGFloat, height:CGFloat
