@@ -9,10 +9,15 @@
 import UIKit
 import Parse
 
+@objc protocol PolishLibraryViewControllerDelegate {
+    @objc optional func polishColor(with polishColor: PickerColor?)
+}
+
 class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var colors: [PickerColor]?
+    weak var delegate: PolishLibraryViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +30,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             if error == nil {
                 // The find succeeded.
                 print("Successfully retrieved \(colors!.count) scores.")
+                print(colors!)
                 // Do something with the found objects
                 if let colors = colors {
                     self.colors = colors as? [PickerColor]
@@ -58,5 +64,12 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         cell.pickerColor = colors?[indexPath.row]
         return cell;
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let color = colors?[indexPath.row] {
+            delegate?.polishColor!(with: color)
+            dismiss(animated: true, completion: nil)
+        }
     }
 }
