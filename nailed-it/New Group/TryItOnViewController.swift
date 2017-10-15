@@ -1,35 +1,158 @@
-//
-//  TryItOnViewController.swift
-//  nailed-it
-//
-//  Created by Lia Zadoyan on 10/10/17.
-//  Copyright © 2017 Lia Zadoyan. All rights reserved.
-//
-
 import UIKit
+import CoreImage
+import TCMask
 
-class TryItOnViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TCMaskViewDelegate, PolishLibraryViewControllerDelegate {
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var buttonGroup: UIView!
+    
+    let imagePicker = UIImagePickerController()
+    var image: UIImage!
+    var initialImage: UIImage!
+    var mask: TCMask!
+    var polishLibraryViewController: PolishLibraryViewController! {
+        didSet {
+            polishLibraryViewController.delegate = self
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        buttonGroup.isHidden = true
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        polishLibraryViewController = storyboard.instantiateViewController(withIdentifier: "PolishLibraryViewController") as! PolishLibraryViewController
     }
-    */
-
+    
+    @IBAction func selectImageButtonTapped(_ sender: Any) {
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePicker.delegate = self
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        self.image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self.initialImage = self.image
+        self.imagePicker.dismiss(animated: false, completion: {})
+        
+        let maskView = TCMaskView(image: self.image)
+        maskView.delegate = self
+        
+        maskView.presentFrom(rootViewController: self, animated: true)
+    }
+    
+    func tcMaskViewDidComplete(mask: TCMask, image: UIImage) {
+        self.mask = mask
+        buttonGroup.isHidden = false
+        
+        // adjust the size of image view to make it fit the image size and put it in the center of screen
+        var x:CGFloat, y:CGFloat, width:CGFloat, height:CGFloat
+        if (image.size.width > image.size.height) {
+            width = self.view.frame.width
+            height = width * image.size.height / image.size.width
+            x = 0
+            y = (width - height) / 2
+        }
+        else {
+            height = self.view.frame.width
+            width = height * image.size.width / image.size.height
+            x = (height - width) / 2
+            y = 0
+        }
+        imageView.frame = CGRect(x: x, y: y, width: width, height: height)
+        
+        imageView.image = mask.cutout(image: image, resize: false)
+    }
+    
+    func polishColor(with polishColor: PickerColor?) {
+        let templateImage = image.tint(tintColor: polishColor!.getUIColor())
+        
+        imageView.image = mask.blend(foregroundImage: templateImage, backgroundImage: image)
+    }
+    
+    @IBAction func onSelectColor(_ sender: Any) {
+        present(polishLibraryViewController, animated: true)
+    }
+    
 }
+
+extension UIImage {
+    // create a UIImage with solid color
+    convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+        let rect = CGRect(origin: .zero, size: size)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        color.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        guard let cgImage = image?.cgImage else { return nil }
+        self.init(cgImage: cgImage)
+    }
+    
+    // colorize image with given tint color
+    // this is similar to Photoshop's "Color" layer blend mode
+    // this is perfect for non-greyscale source images, and images that have both highlights and shadows that should be preserved
+    // white will stay white and black will stay black as the lightness of the image is preserved
+    func tint(tintColor: UIColor) -> UIImage {
+        
+        return modifiedImage { context, rect in
+            // draw black background - workaround to preserve color of partially transparent pixels
+            context.setBlendMode(.normal)
+            UIColor.black.setFill()
+            context.fill(rect)
+            
+            // draw original image
+            context.setBlendMode(.normal)
+            context.draw(self.cgImage!, in: rect)
+            
+            // tint image (loosing alpha) - the luminosity of the original image is preserved
+            context.setBlendMode(.color)
+            tintColor.setFill()
+            context.fill(rect)
+            
+            // mask by alpha values of original image
+            context.setBlendMode(.destinationIn)
+            context.draw(self.cgImage!, in: rect)
+        }
+    }
+    
+    // fills the alpha channel of the source image with the given color
+    // any color information except to the alpha channel will be ignored
+    func fillAlpha(fillColor: UIColor) -> UIImage {
+        
+        return modifiedImage { context, rect in
+            // draw tint color
+            context.setBlendMode(.normal)
+            fillColor.setFill()
+            context.fill(rect)
+            //            context.fillCGContextFillRect(context, rect)
+            
+            // mask by alpha values of original image
+            context.setBlendMode(.destinationIn)
+            context.draw(self.cgImage!, in: rect)
+        }
+    }
+    
+    private func modifiedImage( draw: (CGContext, CGRect) -> ()) -> UIImage {
+        
+        // using scale correctly preserves retina images
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        let context: CGContext! = UIGraphicsGetCurrentContext()
+        assert(context != nil)
+        
+        // correctly rotate image
+        context.translateBy(x: 0, y: size.height)
+        context.scaleBy(x: 1.0, y: -1.0)
+        
+        let rect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
+        
+        draw(context, rect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
+}
+
+
