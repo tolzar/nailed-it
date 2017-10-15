@@ -30,7 +30,7 @@ class EditColorViewController: UIViewController {
         if pickedColor.displayName != nil {
             pickedColor.saveInBackground(block: { (success, error) in
                 if (success) {
-                    print(self.pickedColor)
+                    self.dismiss(animated: true, completion: nil)
                 } else {
                     print("Error: \(error!.localizedDescription)")
                 }

@@ -83,7 +83,7 @@
             </objects>
             <point key="canvasLocation" x="33" y="-644"/>
         </scene>
-        <!--Nearby Shops View Controller-->
+        <!--Nearby Shops-->
         <scene sceneID="1SY-AE-yfn">
             <objects>
                 <viewController storyboardIdentifier="NearbyShopsViewController" id="qCk-aF-bl6" customClass="NearbyShopsViewController" customModule="nailed_it" customModuleProvider="target" sceneMemberID="viewController">
@@ -200,7 +200,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eFy-64-JSP"/>
                     </view>
-                    <navigationItem key="navigationItem" id="281-ac-L1B"/>
+                    <navigationItem key="navigationItem" title="Nearby Shops" id="281-ac-L1B">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="hamburger" style="plain" id="SjL-Yu-2jW">
+                            <color key="tintColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="AZJ-8L-fT0" id="4p2-hE-vEh"/>
                         <outlet property="tableView" destination="SPR-MT-REQ" id="xDV-UR-Equ"/>
@@ -215,7 +219,7 @@
             </objects>
             <point key="canvasLocation" x="1629.5999999999999" y="-646.32683658170924"/>
         </scene>
-        <!--Color Dropper View Controller-->
+        <!--Color Picker-->
         <scene sceneID="uiL-DM-8Uu">
             <objects>
                 <viewController storyboardIdentifier="ColorDropperViewController" id="Dzi-3K-soY" customClass="ColorDropperViewController" customModule="nailed_it" customModuleProvider="target" sceneMemberID="viewController">
@@ -258,7 +262,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K3Y-w0-3af"/>
                     </view>
-                    <navigationItem key="navigationItem" id="sRp-iK-uGe"/>
+                    <navigationItem key="navigationItem" title="Color Picker" id="sRp-iK-uGe"/>
                     <connections>
                         <outlet property="cameraView" destination="qew-zF-zxY" id="N6T-HJ-z35"/>
                         <outlet property="processedView" destination="cbT-8N-8ci" id="iwT-wS-rb7"/>
@@ -270,7 +274,7 @@
             </objects>
             <point key="canvasLocation" x="1629.5999999999999" y="37.331334332833585"/>
         </scene>
-        <!--Edit Color View Controller-->
+        <!--Edit Polish Color-->
         <scene sceneID="NLo-4D-xGc">
             <objects>
                 <viewController id="lGQ-9P-4JV" customClass="EditColorViewController" customModule="nailed_it" customModuleProvider="target" sceneMemberID="viewController">
@@ -297,18 +301,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqG-uf-Og3">
-                                <rect key="frame" x="309" y="79" width="34" height="30"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="esU-LJ-k2q"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Polish Color" id="J9i-e2-lL1">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="EUQ-ye-a1b">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eqG-uf-Og3">
+                                <rect key="frame" x="325" y="7" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="onSaveButton:" destination="lGQ-9P-4JV" eventType="touchUpInside" id="XMD-ev-JXe"/>
                                 </connections>
                             </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="esU-LJ-k2q"/>
-                    </view>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="pickedColorImage" destination="RB6-Iy-chn" id="oZc-I4-tg3"/>
                         <outlet property="pickedColorName" destination="GY6-SR-PEk" id="9Xg-24-PmC"/>
@@ -318,7 +326,7 @@
             </objects>
             <point key="canvasLocation" x="2429.5999999999999" y="45.42728635682159"/>
         </scene>
-        <!--Polish Library View Controller-->
+        <!--Polish Library-->
         <scene sceneID="Vsd-r1-r5M">
             <objects>
                 <viewController storyboardIdentifier="PolishLibraryViewController" id="dND-R0-v5L" customClass="PolishLibraryViewController" customModule="nailed_it" customModuleProvider="target" sceneMemberID="viewController">
@@ -393,7 +401,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9vP-dO-LON"/>
                     </view>
-                    <navigationItem key="navigationItem" id="BoB-Ij-bU5"/>
+                    <navigationItem key="navigationItem" title="Polish Library" id="BoB-Ij-bU5"/>
                     <connections>
                         <outlet property="collectionView" destination="VrZ-lV-gGb" id="z2e-Mh-NCN"/>
                     </connections>
@@ -555,6 +563,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E3z-Ao-ZfL">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.89187222720000003" green="0.97782605889999996" blue="0.92009657619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -573,6 +582,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="s0n-wL-tXp">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.89187222720000003" green="0.97782605889999996" blue="0.92009657619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -591,6 +601,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Euy-Yh-Re4">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.89187222720000003" green="0.97782605889999996" blue="0.92009657619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -609,6 +620,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JOD-sj-cxQ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.89187222720000003" green="0.97782605889999996" blue="0.92009657619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -621,6 +633,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="hamburger" width="50" height="50"/>
         <image name="target" width="1000" height="1000"/>
     </resources>
 </document>

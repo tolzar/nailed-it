@@ -13,6 +13,7 @@ class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITabl
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet weak var hamburgerButton: UIBarButtonItem!
     
     var businesses: [Shop]!
     var filters: [String : Any]!
@@ -191,4 +192,5 @@ class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITabl
             loadData(searchText: "")
         }
     }
+
 }
