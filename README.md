@@ -26,7 +26,7 @@ Nice-to-have user stories:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-
+https://media.giphy.com/media/3ov9jOujFDdFs0jUD6/giphy.gif
 <img src='https://media.giphy.com/media/3ov9jOujFDdFs0jUD6/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
