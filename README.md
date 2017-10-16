@@ -6,19 +6,19 @@ Nailed It is an application to solve your nail polish problems. Have you ever st
 
 Core user stories:
 
-- [ ] User can use a color drop tool to select a color.
-- [ ] User can take a still picture of their hand and apply selected
+- [x] User can use a color drop tool to select a color.
+- [x] User can take a still picture of their hand and apply selected
   nail polish color to nails.
-- [ ] User can scroll through nail polish library and pick a color to
+- [x] User can scroll through nail polish library and pick a color to
   apply to nails.
-- [ ] User can browse nearby nail polish salons based on their current
+- [x] User can browse nearby nail polish salons based on their current
   location
 
 Nice-to-have user stories:
 - [ ] User can see nail polish projected on top of nails in real time
 - [ ] User will see additional suggested colors that are similar to the
   one they selected
-- [ ] User can hit "share" to share the given polish color ontop of
+- [x] User can hit "share" to share the given polish color ontop of
   their nails with their friends!
 - [ ] User can take a picture of a piece of clothing to determine a good
   matching nail color.
@@ -27,7 +27,7 @@ Nice-to-have user stories:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://media.giphy.com/media/3ov9jOujFDdFs0jUD6/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
