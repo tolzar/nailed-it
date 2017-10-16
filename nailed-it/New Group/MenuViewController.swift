@@ -25,9 +25,20 @@ class MenuViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         nearbyShopsNavController = storyboard.instantiateViewController(withIdentifier: "NearbyShopsNavigationController")
+        let nearbyShopsVC = nearbyShopsNavController.childViewControllers[0] as! NearbyShopsViewController
+        nearbyShopsVC.delegate = hamburgerViewController
+        
         colorDropperNavController = storyboard.instantiateViewController(withIdentifier: "ColorDropperNavigationController")
+        let colorDropperVC = colorDropperNavController.childViewControllers[0] as! ColorDropperViewController
+        colorDropperVC.delegate = hamburgerViewController
+        
         polishLibraryNavController = storyboard.instantiateViewController(withIdentifier: "PolishLibraryNavigationController")
+        let polishLibraryVC = polishLibraryNavController.childViewControllers[0] as! PolishLibraryViewController
+        polishLibraryVC.hamburgerDelegate = hamburgerViewController
+        
         tryItOnNavController = storyboard.instantiateViewController(withIdentifier: "TryItOnNavigationController")
+        let tryItOnVC = tryItOnNavController.childViewControllers[0] as! TryItOnViewController
+        tryItOnVC.delegate = hamburgerViewController
 
         viewControllers.append(nearbyShopsNavController)
         viewControllers.append(colorDropperNavController)

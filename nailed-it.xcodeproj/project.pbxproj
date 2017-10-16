@@ -12,6 +12,7 @@
 		0C609A501F8DDEB7005ADDD8 /* PickerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C609A4F1F8DDEB7005ADDD8 /* PickerColor.swift */; };
 		0C609A521F8DDEC5005ADDD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C609A511F8DDEC5005ADDD8 /* User.swift */; };
 		0CE7F3F31F8EEE370069E130 /* EditColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7F3F21F8EEE370069E130 /* EditColorViewController.swift */; };
+		115A31D91F942E510021DE9C /* HamburgerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A31D81F942E510021DE9C /* HamburgerDelegate.swift */; };
 		11FB8DAF1F8D6DE8000510A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DAE1F8D6DE8000510A8 /* AppDelegate.swift */; };
 		11FB8DB11F8D6DE8000510A8 /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DB01F8D6DE8000510A8 /* HamburgerViewController.swift */; };
 		11FB8DB41F8D6DE8000510A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FB8DB21F8D6DE8000510A8 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		0C609A4F1F8DDEB7005ADDD8 /* PickerColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerColor.swift; sourceTree = "<group>"; };
 		0C609A511F8DDEC5005ADDD8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0CE7F3F21F8EEE370069E130 /* EditColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditColorViewController.swift; sourceTree = "<group>"; };
+		115A31D81F942E510021DE9C /* HamburgerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerDelegate.swift; sourceTree = "<group>"; };
 		11FB8DAB1F8D6DE8000510A8 /* nailed-it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nailed-it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FB8DAE1F8D6DE8000510A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FB8DB01F8D6DE8000510A8 /* HamburgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		115A31D71F942E350021DE9C /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				115A31D81F942E510021DE9C /* HamburgerDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		11FB8DA21F8D6DE8000510A8 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +97,7 @@
 		11FB8DAD1F8D6DE8000510A8 /* nailed-it */ = {
 			isa = PBXGroup;
 			children = (
+				115A31D71F942E350021DE9C /* Delegates */,
 				11FB8DCB1F8D7C7B000510A8 /* API */,
 				11FB8DC81F8D7C4D000510A8 /* Models */,
 				11FB8DC51F8D7C1B000510A8 /* Views */,
@@ -307,6 +318,7 @@
 				11FB8DD21F8DAF28000510A8 /* PolishLibraryViewController.swift in Sources */,
 				0C609A501F8DDEB7005ADDD8 /* PickerColor.swift in Sources */,
 				11FB8DAF1F8D6DE8000510A8 /* AppDelegate.swift in Sources */,
+				115A31D91F942E510021DE9C /* HamburgerDelegate.swift in Sources */,
 				11FB8DCA1F8D7C68000510A8 /* Shop.swift in Sources */,
 				0C609A4E1F8DDEAA005ADDD8 /* PolishColor.swift in Sources */,
 				11FB8DC41F8D7A4F000510A8 /* NearbyShopsViewController.swift in Sources */,
@@ -451,7 +463,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CV9LM3C838;
+				DEVELOPMENT_TEAM = C5D5LEK9E8;
 				INFOPLIST_FILE = "nailed-it/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -470,7 +482,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CV9LM3C838;
+				DEVELOPMENT_TEAM = C5D5LEK9E8;
 				INFOPLIST_FILE = "nailed-it/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

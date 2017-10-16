@@ -13,6 +13,9 @@ class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITabl
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet weak var hamburgerButton: UIBarButtonItem!
+    
+    weak var delegate: HamburgerDelegate?
     
     var businesses: [Shop]!
     var filters: [String : Any]!
@@ -190,5 +193,9 @@ class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITabl
             NearbyShopsClient.sharedInstance.setLatitudeAndLongitude(latitude: location.coordinate.latitude.description, longitude: location.coordinate.longitude.description)
             loadData(searchText: "")
         }
+    }
+
+    @IBAction func onHamburgerPressed(_ sender: Any) {
+        delegate?.hamburgerPressed()
     }
 }

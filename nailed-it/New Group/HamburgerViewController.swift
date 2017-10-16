@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HamburgerViewController: UIViewController {
+class HamburgerViewController: UIViewController, HamburgerDelegate {
 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var menuView: UIView!
@@ -87,19 +87,23 @@ class HamburgerViewController: UIViewController {
         } else if sender.state == UIGestureRecognizerState.changed {
             leftMarginConstraint.constant = originalLeftMargin + translation.x
         } else if sender.state == UIGestureRecognizerState.ended {
-            UIView.animate(withDuration: 0.3, animations: {
-                if velocity.x > 0 {
-                    self.leftMarginConstraint.constant = self.view.frame.size.width - 100
-                } else {
-                    self.leftMarginConstraint.constant = 0
-                }
-                self.view.layoutIfNeeded()
-            })
-            
-            
+            animateDrawer(velocity: velocity)
         }
     }
+    
+    func animateDrawer(velocity: CGPoint) {
+        UIView.animate(withDuration: 0.3, animations: {
+            if velocity.x > 0 {
+                self.leftMarginConstraint.constant = self.view.frame.size.width - 100
+            } else {
+                self.leftMarginConstraint.constant = 0
+            }
+            self.view.layoutIfNeeded()
+        })
+    }
 
-
+    func hamburgerPressed() {
+        animateDrawer(velocity: CGPoint(x: 1, y: 1))
+    }
 }
 

@@ -18,6 +18,8 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     
     var colors: [PickerColor]?
     weak var delegate: PolishLibraryViewControllerDelegate?
+    weak var hamburgerDelegate: HamburgerDelegate?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,5 +73,8 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             delegate?.polishColor!(with: color)
             dismiss(animated: true, completion: nil)
         }
+    }
+    @IBAction func onHamurgerPressed(_ sender: Any) {
+        hamburgerDelegate?.hamburgerPressed()
     }
 }

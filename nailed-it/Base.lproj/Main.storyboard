@@ -83,7 +83,7 @@
             </objects>
             <point key="canvasLocation" x="33" y="-644"/>
         </scene>
-        <!--Nearby Shops View Controller-->
+        <!--Nearby Shops-->
         <scene sceneID="1SY-AE-yfn">
             <objects>
                 <viewController storyboardIdentifier="NearbyShopsViewController" id="qCk-aF-bl6" customClass="NearbyShopsViewController" customModule="nailed_it" customModuleProvider="target" sceneMemberID="viewController">
@@ -200,7 +200,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eFy-64-JSP"/>
                     </view>
-                    <navigationItem key="navigationItem" id="281-ac-L1B"/>
+                    <navigationItem key="navigationItem" title="Nearby Shops" id="281-ac-L1B">
+                        <barButtonItem key="leftBarButtonItem" image="hamburger" style="plain" id="SjL-Yu-2jW">
+                            <color key="tintColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="onHamburgerPressed:" destination="qCk-aF-bl6" id="sPf-wu-Na0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="AZJ-8L-fT0" id="4p2-hE-vEh"/>
                         <outlet property="tableView" destination="SPR-MT-REQ" id="xDV-UR-Equ"/>
@@ -215,7 +222,7 @@
             </objects>
             <point key="canvasLocation" x="1629.5999999999999" y="-646.32683658170924"/>
         </scene>
-        <!--Color Dropper View Controller-->
+        <!--Color Picker-->
         <scene sceneID="uiL-DM-8Uu">
             <objects>
                 <viewController storyboardIdentifier="ColorDropperViewController" id="Dzi-3K-soY" customClass="ColorDropperViewController" customModule="nailed_it" customModuleProvider="target" sceneMemberID="viewController">
@@ -258,7 +265,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K3Y-w0-3af"/>
                     </view>
-                    <navigationItem key="navigationItem" id="sRp-iK-uGe"/>
+                    <navigationItem key="navigationItem" title="Color Picker" id="sRp-iK-uGe">
+                        <barButtonItem key="leftBarButtonItem" image="hamburger" id="zNL-wv-D7i">
+                            <color key="tintColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="onHamburgerPressed:" destination="Dzi-3K-soY" id="ZIy-0n-gsk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="qew-zF-zxY" id="N6T-HJ-z35"/>
                         <outlet property="processedView" destination="cbT-8N-8ci" id="iwT-wS-rb7"/>
@@ -270,7 +284,7 @@
             </objects>
             <point key="canvasLocation" x="1629.5999999999999" y="37.331334332833585"/>
         </scene>
-        <!--Edit Color View Controller-->
+        <!--Edit Polish Color-->
         <scene sceneID="NLo-4D-xGc">
             <objects>
                 <viewController id="lGQ-9P-4JV" customClass="EditColorViewController" customModule="nailed_it" customModuleProvider="target" sceneMemberID="viewController">
@@ -297,18 +311,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqG-uf-Og3">
-                                <rect key="frame" x="309" y="79" width="34" height="30"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="esU-LJ-k2q"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Polish Color" id="J9i-e2-lL1">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="EUQ-ye-a1b">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eqG-uf-Og3">
+                                <rect key="frame" x="325" y="7" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="onSaveButton:" destination="lGQ-9P-4JV" eventType="touchUpInside" id="XMD-ev-JXe"/>
                                 </connections>
                             </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="esU-LJ-k2q"/>
-                    </view>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="pickedColorImage" destination="RB6-Iy-chn" id="oZc-I4-tg3"/>
                         <outlet property="pickedColorName" destination="GY6-SR-PEk" id="9Xg-24-PmC"/>
@@ -318,7 +336,7 @@
             </objects>
             <point key="canvasLocation" x="2429.5999999999999" y="45.42728635682159"/>
         </scene>
-        <!--Polish Library View Controller-->
+        <!--Polish Library-->
         <scene sceneID="Vsd-r1-r5M">
             <objects>
                 <viewController storyboardIdentifier="PolishLibraryViewController" id="dND-R0-v5L" customClass="PolishLibraryViewController" customModule="nailed_it" customModuleProvider="target" sceneMemberID="viewController">
@@ -336,34 +354,46 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VrZ-lV-gGb">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="3" id="PJu-A5-4cC">
-                                    <size key="itemSize" width="105" height="99"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="PJu-A5-4cC">
+                                    <size key="itemSize" width="97" height="99"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PolishCollectionViewCell" id="QSy-9v-dLf" customClass="PolishCollectionViewCell" customModule="nailed_it" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="105" height="99"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="117" height="141"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="105" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="117" height="141"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TPq-2F-M1x">
-                                                    <rect key="frame" x="0.0" y="0.0" width="105" height="73"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view contentMode="scaleToFill" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="TPq-2F-M1x">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="UKf-Kc-OEp"/>
+                                                        <constraint firstAttribute="height" constant="120" id="tMj-98-6Ec"/>
+                                                    </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrg-Yy-Qgh">
-                                                    <rect key="frame" x="5" y="73" width="100" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrg-Yy-Qgh">
+                                                    <rect key="frame" x="0.0" y="120" width="120" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="rrg-Yy-Qgh" secondAttribute="bottom" id="5g0-NY-EqM"/>
+                                            <constraint firstItem="TPq-2F-M1x" firstAttribute="top" secondItem="QSy-9v-dLf" secondAttribute="top" id="D2w-D0-CQB"/>
+                                            <constraint firstItem="rrg-Yy-Qgh" firstAttribute="trailing" secondItem="TPq-2F-M1x" secondAttribute="trailing" id="DLu-dY-GT8"/>
+                                            <constraint firstItem="rrg-Yy-Qgh" firstAttribute="top" secondItem="TPq-2F-M1x" secondAttribute="bottom" id="Iix-AF-pr4"/>
+                                            <constraint firstItem="rrg-Yy-Qgh" firstAttribute="leading" secondItem="QSy-9v-dLf" secondAttribute="leading" id="Vff-7t-wdW"/>
+                                            <constraint firstItem="TPq-2F-M1x" firstAttribute="leading" secondItem="QSy-9v-dLf" secondAttribute="leading" id="gJi-a6-8m2"/>
+                                            <constraint firstItem="TPq-2F-M1x" firstAttribute="top" secondItem="QSy-9v-dLf" secondAttribute="top" id="jt5-uC-KMH"/>
+                                        </constraints>
+                                        <size key="customSize" width="117" height="141"/>
                                         <connections>
                                             <outlet property="colorName" destination="rrg-Yy-Qgh" id="3lH-hJ-LzD"/>
                                             <outlet property="colorView" destination="TPq-2F-M1x" id="6Dh-8N-rI5"/>
@@ -381,7 +411,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9vP-dO-LON"/>
                     </view>
-                    <navigationItem key="navigationItem" id="BoB-Ij-bU5"/>
+                    <navigationItem key="navigationItem" title="Polish Library" id="BoB-Ij-bU5">
+                        <barButtonItem key="leftBarButtonItem" image="hamburger" id="mHu-UZ-dOu">
+                            <color key="tintColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="onHamurgerPressed:" destination="dND-R0-v5L" id="KuH-dy-NM6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="VrZ-lV-gGb" id="z2e-Mh-NCN"/>
                     </connections>
@@ -398,50 +435,87 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LtH-LM-dGa">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LtH-LM-dGa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WlX-ak-Cld">
-                                        <rect key="frame" x="39" y="42" width="296" height="291"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WlX-ak-Cld">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.89187222720000003" green="0.97782605889999996" blue="0.92009657619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="WlX-ak-Cld" secondAttribute="bottom" id="KoN-bN-yxN"/>
+                                    <constraint firstAttribute="trailing" secondItem="WlX-ak-Cld" secondAttribute="trailing" id="Pe8-QS-RrK"/>
+                                    <constraint firstItem="WlX-ak-Cld" firstAttribute="leading" secondItem="LtH-LM-dGa" secondAttribute="leading" id="Qqz-1s-NQj"/>
+                                    <constraint firstItem="WlX-ak-Cld" firstAttribute="top" secondItem="LtH-LM-dGa" secondAttribute="top" id="j07-Bf-NmC"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="10m-An-ase">
-                                <rect key="frame" x="0.0" y="383" width="375" height="195"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5Zp-eA-s2t">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q13-vy-4w4">
-                                        <rect key="frame" x="145" y="42" width="84" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Select Color"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylb-yT-vxv">
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="50"/>
+                                        <color key="backgroundColor" red="0.89187222720000003" green="0.97782605889999996" blue="0.92009657619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Photo Library">
+                                            <color key="titleColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
-                                            <action selector="onSelectColor:" destination="JiP-2y-QgQ" eventType="touchUpInside" id="MKN-Xy-MI2"/>
+                                            <action selector="selectImageButtonTapped:" destination="JiP-2y-QgQ" eventType="touchUpInside" id="F0d-J6-Ol5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OuV-P8-c8j">
+                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="50"/>
+                                        <color key="backgroundColor" red="0.89187222720000003" green="0.97782605889999996" blue="0.92009657619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Take a Photo">
+                                            <color key="titleColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onTakePhotoSelected:" destination="JiP-2y-QgQ" eventType="touchUpInside" id="3uU-yq-Mv5"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylb-yT-vxv">
-                                <rect key="frame" x="0.0" y="598" width="375" height="69"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" red="0.92627259019999997" green="0.91727965239999998" blue="0.91727965239999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Select Image"/>
-                                <connections>
-                                    <action selector="selectImageButtonTapped:" destination="JiP-2y-QgQ" eventType="touchUpInside" id="F0d-J6-Ol5"/>
-                                </connections>
-                            </button>
+                                <color key="backgroundColor" red="0.89187222720000003" green="0.97782605889999996" blue="0.92009657619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="PTT-r3-ybR"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="5Zp-eA-s2t" firstAttribute="leading" secondItem="zIY-kp-EFD" secondAttribute="leading" id="5sK-EZ-hlw"/>
+                            <constraint firstItem="LtH-LM-dGa" firstAttribute="centerX" secondItem="xbc-HP-Muc" secondAttribute="centerX" id="Ack-EX-g9p"/>
+                            <constraint firstItem="5Zp-eA-s2t" firstAttribute="bottom" secondItem="zIY-kp-EFD" secondAttribute="bottom" id="JTo-b8-lMi"/>
+                            <constraint firstItem="LtH-LM-dGa" firstAttribute="top" secondItem="xbc-HP-Muc" secondAttribute="top" id="K0H-Z1-mR7"/>
+                            <constraint firstItem="LtH-LM-dGa" firstAttribute="leading" secondItem="xbc-HP-Muc" secondAttribute="leading" id="e83-5Q-FeC"/>
+                            <constraint firstItem="zIY-kp-EFD" firstAttribute="trailing" secondItem="5Zp-eA-s2t" secondAttribute="trailing" id="gIW-qW-bvV"/>
+                            <constraint firstItem="5Zp-eA-s2t" firstAttribute="top" secondItem="LtH-LM-dGa" secondAttribute="bottom" id="xh0-Pn-vc8"/>
+                            <constraint firstAttribute="trailing" secondItem="LtH-LM-dGa" secondAttribute="trailing" id="y32-iW-Pe5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zIY-kp-EFD"/>
                     </view>
-                    <navigationItem key="navigationItem" id="IPO-TK-DGt"/>
+                    <navigationItem key="navigationItem" id="IPO-TK-DGt">
+                        <barButtonItem key="leftBarButtonItem" image="hamburger" id="Um8-0Y-RYK">
+                            <color key="tintColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="onHamburgerPressed:" destination="JiP-2y-QgQ" id="UbE-Ga-f4d"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="RDm-4I-lac">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="q13-vy-4w4">
+                                <rect key="frame" x="275" y="7" width="84" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Select Color"/>
+                                <connections>
+                                    <action selector="onSelectColor:" destination="JiP-2y-QgQ" eventType="touchUpInside" id="MKN-Xy-MI2"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="buttonGroup" destination="10m-An-ase" id="TtZ-8R-NQX"/>
                         <outlet property="imageView" destination="WlX-ak-Cld" id="VCP-FL-zGE"/>
+                        <outlet property="selectColorButton" destination="RDm-4I-lac" id="Zft-Jx-GzJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYp-yp-YQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -512,6 +586,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E3z-Ao-ZfL">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.89187222720000003" green="0.97782605889999996" blue="0.92009657619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -530,6 +605,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="s0n-wL-tXp">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.89187222720000003" green="0.97782605889999996" blue="0.92009657619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -548,6 +624,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Euy-Yh-Re4">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.89187222720000003" green="0.97782605889999996" blue="0.92009657619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -566,6 +643,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JOD-sj-cxQ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.89187222720000003" green="0.97782605889999996" blue="0.92009657619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -578,6 +656,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="hamburger" width="50" height="50"/>
         <image name="target" width="1000" height="1000"/>
     </resources>
 </document>
