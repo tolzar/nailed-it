@@ -10,4 +10,5 @@ target 'nailed-it' do
   pod 'BDBOAuth1Manager', '~> 1.6.0'
   pod 'Parse', '~> 1.15.3'
   pod 'TinyCrayon', '~> 3.0.0'
+  pod 'NotificationBannerSwift'
 end
