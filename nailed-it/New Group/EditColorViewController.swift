@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol EditColorViewControllerDelegate {
+    func onColorSaveSuccess()
+}
+
 class EditColorViewController: UIViewController {
     var pickedColor: PickerColor!
     
     @IBOutlet weak var pickedColorImage: UIView!
     @IBOutlet weak var pickedColorName: UITextField!
+    var delegate: EditColorViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +35,9 @@ class EditColorViewController: UIViewController {
         if pickedColor.displayName != nil {
             pickedColor.saveInBackground(block: { (success, error) in
                 if (success) {
-                    self.dismiss(animated: true, completion: nil)
+                    _ = self.navigationController?.popViewController(animated: true)
+                    self.delegate?.onColorSaveSuccess()
+
                 } else {
                     print("Error: \(error!.localizedDescription)")
                 }
@@ -39,4 +46,5 @@ class EditColorViewController: UIViewController {
             print("Please enter name for color")
         }
     }
+    
 }

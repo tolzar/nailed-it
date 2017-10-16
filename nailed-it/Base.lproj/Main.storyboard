@@ -234,8 +234,15 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1sJ-Dp-KYW" customClass="UIImageView">
+                                <rect key="frame" x="15" y="542" width="345" height="120"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="GY0-tv-skn"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbT-8N-8ci" customClass="UIImageView">
-                                <rect key="frame" x="25" y="567" width="325" height="100"/>
+                                <rect key="frame" x="25" y="552" width="325" height="100"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="oVq-gU-el2"/>
@@ -251,16 +258,20 @@
                         </subviews>
                         <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="K3Y-w0-3af" firstAttribute="trailing" secondItem="1sJ-Dp-KYW" secondAttribute="trailing" constant="15" id="94Y-MF-Z1n"/>
                             <constraint firstItem="cbT-8N-8ci" firstAttribute="centerX" secondItem="afB-NQ-Gne" secondAttribute="centerX" id="Agc-AU-cKZ"/>
                             <constraint firstItem="D9T-S1-S9Y" firstAttribute="centerX" secondItem="afB-NQ-Gne" secondAttribute="centerX" id="CNJ-Bt-IkI"/>
                             <constraint firstItem="qew-zF-zxY" firstAttribute="top" secondItem="K3Y-w0-3af" secondAttribute="top" id="Kbr-Vb-9FV"/>
                             <constraint firstItem="qew-zF-zxY" firstAttribute="trailing" secondItem="K3Y-w0-3af" secondAttribute="trailing" id="OSL-se-6Eh"/>
                             <constraint firstItem="qew-zF-zxY" firstAttribute="leading" secondItem="K3Y-w0-3af" secondAttribute="leading" id="OmB-Yi-mEB"/>
-                            <constraint firstAttribute="bottom" secondItem="cbT-8N-8ci" secondAttribute="bottom" id="QxF-5P-nEl"/>
+                            <constraint firstAttribute="bottom" secondItem="cbT-8N-8ci" secondAttribute="bottom" constant="15" id="QxF-5P-nEl"/>
+                            <constraint firstItem="cbT-8N-8ci" firstAttribute="centerX" secondItem="1sJ-Dp-KYW" secondAttribute="centerX" id="R2i-II-7Ld"/>
                             <constraint firstItem="qew-zF-zxY" firstAttribute="bottom" secondItem="K3Y-w0-3af" secondAttribute="bottom" id="UCU-K0-pA1"/>
                             <constraint firstItem="D9T-S1-S9Y" firstAttribute="centerY" secondItem="qew-zF-zxY" secondAttribute="centerY" id="bqA-U9-12I"/>
+                            <constraint firstItem="cbT-8N-8ci" firstAttribute="centerY" secondItem="1sJ-Dp-KYW" secondAttribute="centerY" id="hje-Uj-8Nq"/>
                             <constraint firstItem="D9T-S1-S9Y" firstAttribute="centerX" secondItem="qew-zF-zxY" secondAttribute="centerX" id="kN1-wU-UVk"/>
                             <constraint firstItem="cbT-8N-8ci" firstAttribute="leading" secondItem="K3Y-w0-3af" secondAttribute="leading" constant="25" id="o6l-cq-huc"/>
+                            <constraint firstItem="1sJ-Dp-KYW" firstAttribute="leading" secondItem="K3Y-w0-3af" secondAttribute="leading" constant="15" id="phx-zO-ylp"/>
                             <constraint firstItem="K3Y-w0-3af" firstAttribute="trailing" secondItem="cbT-8N-8ci" secondAttribute="trailing" constant="25" id="t3p-0n-EJe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K3Y-w0-3af"/>
@@ -276,6 +287,7 @@
                     <connections>
                         <outlet property="cameraView" destination="qew-zF-zxY" id="N6T-HJ-z35"/>
                         <outlet property="processedView" destination="cbT-8N-8ci" id="iwT-wS-rb7"/>
+                        <outlet property="processedViewBorder" destination="1sJ-Dp-KYW" id="ePZ-tf-TS4"/>
                         <outlet property="targetImage" destination="D9T-S1-S9Y" id="GfW-Jo-VBH"/>
                         <segue destination="lGQ-9P-4JV" kind="show" identifier="onColorPickedSegue" id="De5-qt-oxD"/>
                     </connections>
@@ -322,7 +334,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
-                                    <action selector="onSaveButton:" destination="lGQ-9P-4JV" eventType="touchUpInside" id="XMD-ev-JXe"/>
+                                    <action selector="onSaveButton:" destination="lGQ-9P-4JV" eventType="touchUpInside" id="PTy-qB-moJ"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -415,7 +427,7 @@
                         <barButtonItem key="leftBarButtonItem" image="hamburger" id="mHu-UZ-dOu">
                             <color key="tintColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="onHamurgerPressed:" destination="dND-R0-v5L" id="KuH-dy-NM6"/>
+                                <action selector="onHamburgerPressed:" destination="dND-R0-v5L" id="yae-7b-zIR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -24,6 +24,17 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+            
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+            
+        let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        layout?.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         var query = PFQuery(className:"PickerColor")
         query.order(byDescending: "createdAt")
         query.findObjectsInBackground {
@@ -42,19 +53,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
                 // Log details of the failure
                 print("Error: \(error!) \(error!.localizedDescription)")
             }
-            
-            self.collectionView.dataSource = self
-            self.collectionView.delegate = self
-            
-            let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
-            layout?.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
         }
-        
-        func didReceiveMemoryWarning() {
-            super.didReceiveMemoryWarning()
-            // Dispose of any resources that can be recreated.
-        }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -74,7 +73,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             dismiss(animated: true, completion: nil)
         }
     }
-    @IBAction func onHamurgerPressed(_ sender: Any) {
+    @IBAction func onHamburgerPressed(_ sender: Any) {
         hamburgerDelegate?.hamburgerPressed()
     }
 }

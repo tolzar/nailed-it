@@ -8,12 +8,14 @@
 
 import UIKit
 import AVFoundation
+import NotificationBannerSwift
 
-class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, EditColorViewControllerDelegate {
     
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var processedView: UIImageView!
     @IBOutlet weak var targetImage: UIImageView!
+    @IBOutlet weak var processedViewBorder: UIImageView!
     
     var cameraDevice: AVCaptureDevice?
     var previewLayer: AVCaptureVideoPreviewLayer?
@@ -30,9 +32,12 @@ class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSamp
         
         initializeTapGestures()
         
-        cameraView.backgroundColor = UIColor.red
-        processedView.backgroundColor = UIColor.green
+        processedViewBorder.layer.cornerRadius = 10
+        processedViewBorder.clipsToBounds = true
         
+        processedView.layer.cornerRadius = 10
+        processedView.clipsToBounds = true
+
         let captureSession = AVCaptureSession()
         captureSession.sessionPreset = AVCaptureSession.Preset.vga640x480
         
@@ -134,6 +139,7 @@ class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSamp
         if segue.identifier == "onColorPickedSegue" {
             let ecvc = segue.destination as! EditColorViewController
             ecvc.pickedColor = colorPicked
+            ecvc.delegate = self
         }
     }
     
@@ -141,4 +147,11 @@ class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSamp
         delegate?.hamburgerPressed()
     }
     
+    func onColorSaveSuccess() {
+        let banner = NotificationBanner(title: "Color successfully saved!", subtitle: "View it in the Polish Library.", style: .success)
+        banner.onTap = {
+            // we can do stuff here if we want
+        }
+        banner.show()
+    }
 }
