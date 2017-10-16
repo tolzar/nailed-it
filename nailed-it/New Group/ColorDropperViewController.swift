@@ -22,6 +22,8 @@ class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSamp
     var greenValue: UInt8?
     var blueValue: UInt8?
     var hexValue: String?
+    weak var delegate: HamburgerDelegate?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,4 +136,9 @@ class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSamp
             ecvc.pickedColor = colorPicked
         }
     }
+    
+    @IBAction func onHamburgerPressed(_ sender: Any) {
+        delegate?.hamburgerPressed()
+    }
+    
 }

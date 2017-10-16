@@ -5,6 +5,8 @@ import TCMask
 class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TCMaskViewDelegate, PolishLibraryViewControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var selectColorButton: UIBarButtonItem!
+    weak var delegate: HamburgerDelegate?
+
 
     let imagePicker = UIImagePickerController()
     var image: UIImage!
@@ -82,6 +84,9 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         present(polishLibraryViewController, animated: true)
     }
     
+    @IBAction func onHamburgerPressed(_ sender: Any) {
+        delegate?.hamburgerPressed()
+    }
     
 }
 
@@ -188,6 +193,8 @@ extension UIImage {
         
         return newImage!
     }
+    
+    
 }
 
 

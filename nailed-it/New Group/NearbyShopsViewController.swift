@@ -15,6 +15,8 @@ class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet weak var hamburgerButton: UIBarButtonItem!
     
+    weak var delegate: HamburgerDelegate?
+    
     var businesses: [Shop]!
     var filters: [String : Any]!
     
@@ -193,4 +195,7 @@ class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
 
+    @IBAction func onHamburgerPressed(_ sender: Any) {
+        delegate?.hamburgerPressed()
+    }
 }

@@ -201,8 +201,11 @@
                         <viewLayoutGuide key="safeArea" id="eFy-64-JSP"/>
                     </view>
                     <navigationItem key="navigationItem" title="Nearby Shops" id="281-ac-L1B">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="hamburger" style="plain" id="SjL-Yu-2jW">
+                        <barButtonItem key="leftBarButtonItem" image="hamburger" style="plain" id="SjL-Yu-2jW">
                             <color key="tintColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="onHamburgerPressed:" destination="qCk-aF-bl6" id="sPf-wu-Na0"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -262,7 +265,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K3Y-w0-3af"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Color Picker" id="sRp-iK-uGe"/>
+                    <navigationItem key="navigationItem" title="Color Picker" id="sRp-iK-uGe">
+                        <barButtonItem key="leftBarButtonItem" image="hamburger" id="zNL-wv-D7i">
+                            <color key="tintColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="onHamburgerPressed:" destination="Dzi-3K-soY" id="ZIy-0n-gsk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="qew-zF-zxY" id="N6T-HJ-z35"/>
                         <outlet property="processedView" destination="cbT-8N-8ci" id="iwT-wS-rb7"/>
@@ -401,7 +411,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9vP-dO-LON"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Polish Library" id="BoB-Ij-bU5"/>
+                    <navigationItem key="navigationItem" title="Polish Library" id="BoB-Ij-bU5">
+                        <barButtonItem key="leftBarButtonItem" image="hamburger" id="mHu-UZ-dOu">
+                            <color key="tintColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="onHamurgerPressed:" destination="dND-R0-v5L" id="KuH-dy-NM6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="VrZ-lV-gGb" id="z2e-Mh-NCN"/>
                     </connections>
@@ -479,6 +496,12 @@
                         <viewLayoutGuide key="safeArea" id="zIY-kp-EFD"/>
                     </view>
                     <navigationItem key="navigationItem" id="IPO-TK-DGt">
+                        <barButtonItem key="leftBarButtonItem" image="hamburger" id="Um8-0Y-RYK">
+                            <color key="tintColor" red="0.98300868269999997" green="0.66133338210000003" blue="0.64537483449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="onHamburgerPressed:" destination="JiP-2y-QgQ" id="UbE-Ga-f4d"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="RDm-4I-lac">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="q13-vy-4w4">
                                 <rect key="frame" x="275" y="7" width="84" height="30"/>

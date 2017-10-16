@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HamburgerViewController: UIViewController {
+class HamburgerViewController: UIViewController, HamburgerDelegate {
 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var menuView: UIView!
@@ -102,6 +102,8 @@ class HamburgerViewController: UIViewController {
         })
     }
 
-
+    func hamburgerPressed() {
+        animateDrawer(velocity: CGPoint(x: 1, y: 1))
+    }
 }
 
