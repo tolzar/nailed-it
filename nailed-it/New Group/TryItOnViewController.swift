@@ -71,7 +71,7 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         //imageView.frame = CGRect(x: x, y: y, width: width, height: height)
         
-        imageView.image = mask.cutout(image: image, resize: false)
+        imageView.image = mask.blend(foregroundImage: image.fillAlpha(fillColor: UIColor.white.withAlphaComponent(0.6)), backgroundImage: image)
     }
     
     func polishColor(with polishColor: PickerColor?) {
