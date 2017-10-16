@@ -105,5 +105,6 @@ class HamburgerViewController: UIViewController, HamburgerDelegate {
     func hamburgerPressed() {
         animateDrawer(velocity: CGPoint(x: 1, y: 1))
     }
+
 }
 

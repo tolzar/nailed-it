@@ -73,7 +73,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             dismiss(animated: true, completion: nil)
         }
     }
-    @IBAction func onHamurgerPressed(_ sender: Any) {
+    @IBAction func onHamburgerPressed(_ sender: Any) {
         hamburgerDelegate?.hamburgerPressed()
     }
 }
