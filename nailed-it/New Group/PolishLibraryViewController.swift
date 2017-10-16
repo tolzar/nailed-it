@@ -10,21 +10,19 @@ import UIKit
 import Parse
 
 @objc protocol PolishLibraryViewControllerDelegate {
-    @objc optional func polishColor(with polishColor: PickerColor?)
+    @objc optional func polishColor(with polishColor: PolishColor?)
 }
 
 class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var colors: [PickerColor]?
+    var colors: [PolishColor]?
     weak var delegate: PolishLibraryViewControllerDelegate?
     weak var hamburgerDelegate: HamburgerDelegate?
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
             
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
@@ -34,8 +32,9 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
-        var query = PFQuery(className:"PickerColor")
+        var query = PFQuery(className:"PolishColor")
         query.order(byDescending: "createdAt")
         query.findObjectsInBackground {
             (colors: [PFObject]?, error: Error?) -> Void in
@@ -46,7 +45,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
                 print(colors!)
                 // Do something with the found objects
                 if let colors = colors {
-                    self.colors = colors as? [PickerColor]
+                    self.colors = colors as? [PolishColor]
                     self.collectionView.reloadData()
                 }
             } else {
@@ -62,7 +61,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PolishCollectionViewCell", for: indexPath) as! PolishCollectionViewCell
-        cell.pickerColor = colors?[indexPath.row]
+        cell.polishColor = colors?[indexPath.row]
         return cell;
         
     }

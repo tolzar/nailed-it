@@ -13,7 +13,7 @@ protocol EditColorViewControllerDelegate {
 }
 
 class EditColorViewController: UIViewController {
-    var pickedColor: PickerColor!
+    var polishColor: PolishColor!
     
     @IBOutlet weak var pickedColorImage: UIView!
     @IBOutlet weak var pickedColorName: UITextField!
@@ -21,7 +21,7 @@ class EditColorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let uiColor = pickedColor.getUIColor()
+        let uiColor = polishColor.getUIColor()
         pickedColorImage.backgroundColor = uiColor
     }
 
@@ -31,9 +31,10 @@ class EditColorViewController: UIViewController {
     }
 
     @IBAction func onSaveButton(_ sender: Any) {
-        self.pickedColor.displayName = pickedColorName.text
-        if pickedColor.displayName != nil {
-            pickedColor.saveInBackground(block: { (success, error) in
+        self.polishColor.displayName = pickedColorName.text
+        self.polishColor.brand = "My Color"
+        if polishColor.displayName != nil {
+            polishColor.saveInBackground(block: { (success, error) in
                 if (success) {
                     _ = self.navigationController?.popViewController(animated: true)
                     self.delegate?.onColorSaveSuccess()

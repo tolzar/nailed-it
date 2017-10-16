@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C0AB4E41F8F1974006B7B40 /* PolishCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0AB4E31F8F1974006B7B40 /* PolishCollectionViewCell.swift */; };
+		0C0AB4E81F947445006B7B40 /* essie.json in Resources */ = {isa = PBXBuildFile; fileRef = 0C0AB4E71F947445006B7B40 /* essie.json */; };
 		0C609A4E1F8DDEAA005ADDD8 /* PolishColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C609A4D1F8DDEAA005ADDD8 /* PolishColor.swift */; };
 		0C609A501F8DDEB7005ADDD8 /* PickerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C609A4F1F8DDEB7005ADDD8 /* PickerColor.swift */; };
 		0C609A521F8DDEC5005ADDD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C609A511F8DDEC5005ADDD8 /* User.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		0355CD61FDACDBCFDC4944DC /* Pods-nailed-it.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nailed-it.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nailed-it/Pods-nailed-it.debug.xcconfig"; sourceTree = "<group>"; };
 		0C0AB4E31F8F1974006B7B40 /* PolishCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolishCollectionViewCell.swift; sourceTree = "<group>"; };
+		0C0AB4E71F947445006B7B40 /* essie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = essie.json; sourceTree = "<group>"; };
 		0C609A4D1F8DDEAA005ADDD8 /* PolishColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolishColor.swift; sourceTree = "<group>"; };
 		0C609A4F1F8DDEB7005ADDD8 /* PickerColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerColor.swift; sourceTree = "<group>"; };
 		0C609A511F8DDEC5005ADDD8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		11FB8DA21F8D6DE8000510A8 = {
 			isa = PBXGroup;
 			children = (
+				0C0AB4E71F947445006B7B40 /* essie.json */,
 				11FB8DAD1F8D6DE8000510A8 /* nailed-it */,
 				11FB8DAC1F8D6DE8000510A8 /* Products */,
 				FC48267C1E65B354620893FC /* Pods */,
@@ -233,6 +236,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C0AB4E81F947445006B7B40 /* essie.json in Resources */,
 				11FB8DB91F8D6DE8000510A8 /* LaunchScreen.storyboard in Resources */,
 				11FB8DB61F8D6DE8000510A8 /* Assets.xcassets in Resources */,
 				11FB8DB41F8D6DE8000510A8 /* Main.storyboard in Resources */,
@@ -469,7 +473,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C5D5LEK9E8;
+				DEVELOPMENT_TEAM = CV9LM3C838;
 				INFOPLIST_FILE = "nailed-it/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -488,7 +492,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C5D5LEK9E8;
+				DEVELOPMENT_TEAM = CV9LM3C838;
 				INFOPLIST_FILE = "nailed-it/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

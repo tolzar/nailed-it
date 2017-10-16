@@ -10,10 +10,10 @@ import UIKit
 
 class PolishCollectionViewCell: UICollectionViewCell {
     
-    var pickerColor: PickerColor? {
+    var polishColor: PolishColor? {
         didSet {
-            colorView.backgroundColor = pickerColor?.getUIColor()
-            colorName.text = pickerColor?.displayName ?? ""
+            colorView.backgroundColor = polishColor?.getUIColor()
+            colorName.text = polishColor?.displayName ?? ""
         }
     }
     

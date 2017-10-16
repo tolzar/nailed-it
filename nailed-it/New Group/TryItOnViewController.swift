@@ -74,7 +74,7 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         imageView.image = mask.blend(foregroundImage: image.fillAlpha(fillColor: UIColor.white.withAlphaComponent(0.6)), backgroundImage: image)
     }
     
-    func polishColor(with polishColor: PickerColor?) {
+    func polishColor(with polishColor: PolishColor?) {
         let templateImage = image.tint(tintColor: polishColor!.getUIColor())
         
         imageView.image = mask.blend(foregroundImage: templateImage.resizeImage(targetSize: mask.size), backgroundImage: image.resizeImage(targetSize: mask.size))
