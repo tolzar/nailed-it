@@ -78,6 +78,21 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         let templateImage = image.tint(tintColor: polishColor!.getUIColor())
         
         imageView.image = mask.blend(foregroundImage: templateImage.resizeImage(targetSize: mask.size), backgroundImage: image.resizeImage(targetSize: mask.size))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(onImageLongPress)))
+    }
+    
+    @objc func onImageLongPress(sender: UILongPressGestureRecognizer) {
+        let image = sender.view as! UIImageView
+        let imageToShare = [ image.image!, "Image created with Nailed It!" ] as [Any]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
+        
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
     @IBAction func onSelectColor(_ sender: Any) {
