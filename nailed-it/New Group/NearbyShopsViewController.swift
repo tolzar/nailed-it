@@ -40,11 +40,8 @@ class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         
-        searchBar.sizeToFit()
         searchBar.delegate = self
-        
-        navigationItem.titleView = searchBar
-        
+                
         // Ask for Authorisation from the User.
         locationManager = CLLocationManager()
         locationManager.delegate = self
