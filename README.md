@@ -31,6 +31,8 @@ Nice-to-have user stories:
   their nails!
 - [ ] User can take a picture of a piece of clothing to determine a good
   matching nail color.
+- [X] User can select a color from the library, and choose to search for
+  it on Amazon to purchase.
 
 ## Video Walkthrough
 

@@ -93,8 +93,9 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
 //                self.show(tryItOnViewController, sender: self)
             }
             actionSheetController.addAction(tryItOnAction)
-            let findThisColor = UIAlertAction(title: "Find \(color!.displayName!) Online", style: .default) { action -> Void in
-                if color!.brand! != "My Color" {
+            
+            if color!.brand! != "My Color" {
+                let findThisColor = UIAlertAction(title: "Find \(color!.displayName!) Online", style: .default) { action -> Void in
                     let allowedCharacterSet = (CharacterSet(charactersIn: " ").inverted)
                     let escapedBrand = color!.brand!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
                     let escapedName = color!.displayName!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
@@ -102,11 +103,9 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
                     print(searchString)
                     UIApplication.shared.open(URL(string: searchString)!, options: [:], completionHandler: nil)
                 }
-            }
-            if color!.brand! != "My Color" {
                 actionSheetController.addAction(findThisColor)
-            }
 
+            }
             
             // We need to provide a popover sourceView when using it on iPad
             actionSheetController.popoverPresentationController?.sourceView = self.view as UIView
