@@ -7,7 +7,6 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var selectColorButton: UIBarButtonItem!
     weak var delegate: HamburgerDelegate?
 
-
     let imagePicker = UIImagePickerController()
     var image: UIImage!
     var initialImage: UIImage!
@@ -20,10 +19,26 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectColorButton.isEnabled = false
         
+        // Load instance of Polish Library
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         polishLibraryViewController = storyboard.instantiateViewController(withIdentifier: "PolishLibraryViewController") as! PolishLibraryViewController
+        
+        // Get initial image mask data if it exists
+        if let loadedImageData = UserDefaults.standard.object(forKey: "savedImage") as? Data {
+            if let loadedMaskData = UserDefaults.standard.object(forKey: "savedMask") as? [String:Any] {
+                image = UIImage(data: loadedImageData)!
+                mask = TCMask(data: loadedMaskData["data"] as! [UInt8], size: CGSizeFromString(loadedMaskData["size"] as! String))
+                
+                applyImageMask()
+            }
+        } else {
+            selectColorButton.isEnabled = false
+        }
+    }
+    
+    func applyImageMask() {        
+        imageView.image = mask.blend(foregroundImage: image.fillAlpha(fillColor: UIColor.white.withAlphaComponent(0.6)), backgroundImage: image)
     }
     
     @IBAction func selectImageButtonTapped(_ sender: Any) {
@@ -32,11 +47,21 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.present(imagePicker, animated: true, completion: nil)
     }
     
-    
     @IBAction func onTakePhotoSelected(_ sender: Any) {
         imagePicker.sourceType = UIImagePickerControllerSourceType.camera
         imagePicker.delegate = self
         self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func saveImageMaskData() {
+        let defaults = UserDefaults.standard
+        let maskData: [String:Any] = [
+            "data": mask.data,
+            "size": NSStringFromCGSize(mask.size)
+        ]
+        
+        defaults.set(UIImagePNGRepresentation(image), forKey: "savedImage")
+        defaults.set(maskData, forKey: "savedMask")
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -54,8 +79,8 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     func tcMaskViewDidComplete(mask: TCMask, image: UIImage) {
         self.mask = mask
         selectColorButton.isEnabled = true
-        
-        imageView.image = mask.blend(foregroundImage: image.fillAlpha(fillColor: UIColor.white.withAlphaComponent(0.6)), backgroundImage: image)
+        applyImageMask()
+        saveImageMaskData()
     }
     
     func polishColor(with polishColor: PolishColor?) {
