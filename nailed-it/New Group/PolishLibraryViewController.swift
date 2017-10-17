@@ -17,7 +17,6 @@ import SafariServices
 class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIActionSheetDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var color: PolishColor!
     var colors: [PolishColor]?
     weak var delegate: PolishLibraryViewControllerDelegate?
     weak var hamburgerDelegate: HamburgerDelegate?
@@ -97,8 +96,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             
             if color!.brand! != "My Color" {
                 let findThisColor = UIAlertAction(title: "Find \(color!.displayName!) Online", style: .default) { action -> Void in
-                    self.color = color
-                    self.prepareForPolishSearch()
+                    self.prepareForPolishSearch(color: color)
                 }
                 actionSheetController.addAction(findThisColor)
 
@@ -111,10 +109,10 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         }
     }
     
-    func prepareForPolishSearch() {
+    func prepareForPolishSearch(color: PolishColor!) {
         let allowedCharacterSet = (CharacterSet(charactersIn: " ").inverted)
-        let escapedBrand = self.color!.brand!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
-        let escapedName = self.color!.displayName!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
+        let escapedBrand = color!.brand!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
+        let escapedName = color!.displayName!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
         let searchString = "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=" + escapedName! + "+" + escapedBrand!
         print(searchString)
         UIApplication.shared.open(URL(string: searchString)!, options: [:], completionHandler: nil)
