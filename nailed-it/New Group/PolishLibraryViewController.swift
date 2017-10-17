@@ -34,7 +34,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     
     
     override func viewDidAppear(_ animated: Bool) {
-        var query = PFQuery(className:"PolishColor")
+        let query = PFQuery(className:"PolishColor")
         query.order(byDescending: "createdAt")
         query.findObjectsInBackground {
             (colors: [PFObject]?, error: Error?) -> Void in
@@ -73,7 +73,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             delegate.polishColor!(with: color)
             dismiss(animated: true, completion: nil)
         } else {
-            let actionSheetController = UIAlertController(title: "Please select", message: "How you would like to utilize the app?", preferredStyle: .actionSheet)
+            let actionSheetController = UIAlertController(title: "\(color!.displayName!) by \(color!.brand!)", message: nil, preferredStyle: .actionSheet)
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
                 // Just dismiss the action sheet
             }

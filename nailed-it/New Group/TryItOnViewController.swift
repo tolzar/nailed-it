@@ -55,22 +55,6 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.mask = mask
         selectColorButton.isEnabled = true
         
-        // adjust the size of image view to make it fit the image size and put it in the center of screen
-        var x:CGFloat, y:CGFloat, width:CGFloat, height:CGFloat
-        if (image.size.width > image.size.height) {
-            width = self.view.frame.width
-            height = width * image.size.height / image.size.width
-            x = 0
-            y = (width - height) / 2
-        }
-        else {
-            height = self.imageView.frame.height
-            width = self.imageView.frame.width
-            x = (height - width) / 2
-            y = 0
-        }
-        //imageView.frame = CGRect(x: x, y: y, width: width, height: height)
-        
         imageView.image = mask.blend(foregroundImage: image.fillAlpha(fillColor: UIColor.white.withAlphaComponent(0.6)), backgroundImage: image)
     }
     

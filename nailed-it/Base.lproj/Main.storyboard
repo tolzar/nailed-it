@@ -370,11 +370,11 @@
                                     <size key="itemSize" width="117" height="140"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PolishCollectionViewCell" id="QSy-9v-dLf" customClass="PolishCollectionViewCell" customModule="nailed_it" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="117" height="140"/>
+                                        <rect key="frame" x="0.0" y="10" width="117" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="117" height="140"/>
@@ -417,7 +417,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhK-Ux-CsY">
-                                                    <rect key="frame" x="0.0" y="118" width="117" height="22"/>
+                                                    <rect key="frame" x="0.0" y="113" width="117" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="117" id="K9F-fg-Io3"/>
                                                     </constraints>
@@ -428,10 +428,8 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="uhK-Ux-CsY" firstAttribute="top" secondItem="TPq-2F-M1x" secondAttribute="bottom" constant="8" id="620-uf-qqD"/>
-                                            <constraint firstItem="TPq-2F-M1x" firstAttribute="top" secondItem="QSy-9v-dLf" secondAttribute="top" id="D2w-D0-CQB"/>
-                                            <constraint firstItem="uhK-Ux-CsY" firstAttribute="leading" secondItem="QSy-9v-dLf" secondAttribute="leading" id="JHo-Jw-ukI"/>
-                                            <constraint firstAttribute="bottom" secondItem="uhK-Ux-CsY" secondAttribute="bottom" id="QHx-6D-QJk"/>
+                                            <constraint firstItem="uhK-Ux-CsY" firstAttribute="top" secondItem="TPq-2F-M1x" secondAttribute="bottom" constant="3" id="620-uf-qqD"/>
+                                            <constraint firstAttribute="bottom" secondItem="uhK-Ux-CsY" secondAttribute="bottom" constant="5" id="QHx-6D-QJk"/>
                                             <constraint firstItem="TPq-2F-M1x" firstAttribute="centerX" secondItem="QSy-9v-dLf" secondAttribute="centerX" id="TDD-dT-N9V"/>
                                             <constraint firstItem="uhK-Ux-CsY" firstAttribute="leading" secondItem="QSy-9v-dLf" secondAttribute="leading" id="arU-oa-1MO"/>
                                             <constraint firstAttribute="trailing" secondItem="uhK-Ux-CsY" secondAttribute="trailing" id="jDj-a7-VDe"/>
