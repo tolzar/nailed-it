@@ -7,19 +7,28 @@ Nailed It is an application to solve your nail polish problems. Have you ever st
 Core user stories:
 
 - [x] User can use a color drop tool to select a color.
+    - [x] User can edit the color name before saving color to polish library
+    - [x] User can see confirmation that color successfully saved to polish library (green success banner)
 - [x] User can take a still picture of their hand and apply selected
   nail polish color to nails.
+    - [x] selection nail polish area uses "quick" selection to assist
+    - [x] user can keep picking new colors and seeing them applied to same image
+    - [ ] picture of hand ready to apply colors to is saved across app starts so you don't have to reselect your nails if you don't want to
 - [x] User can scroll through nail polish library and pick a color to
   apply to nails.
+    - [x] user can tap on a polish library color to share the color with friends
+    - [ ] user can top on a polish library color to apply to picture of hands in Try It On screen
 - [x] User can browse nearby nail polish salons based on their current
   location
+    - [x] user can view salons in a list
+    - [ ] user can view salons in a map
 
 Nice-to-have user stories:
-- [ ] User can see nail polish projected on top of nails in real time
 - [ ] User will see additional suggested colors that are similar to the
   one they selected
-- [x] User can hit "share" to share the given polish color ontop of
-  their nails with their friends!
+   - [ ] user can see different brands in order of cheaper names to more expensive brands (very useful hehe)
+- [x] User can hit long press on the image of their hand from the Try It On screen to share the given polish color ontop of
+  their nails!
 - [ ] User can take a picture of a piece of clothing to determine a good
   matching nail color.
 
