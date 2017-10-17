@@ -19,7 +19,7 @@ class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSamp
     
     var cameraDevice: AVCaptureDevice?
     var previewLayer: AVCaptureVideoPreviewLayer?
-    var colorPicked = PickerColor()
+    var colorPicked = PolishColor()
     var redValue: UInt8?
     var greenValue: UInt8?
     var blueValue: UInt8?
@@ -118,7 +118,7 @@ class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSamp
         
         let color = UIColor(red: CGFloat(Double(redValue!)/255.0), green: CGFloat(Double(greenValue!)/255.0), blue: CGFloat(Double(blueValue!)/255.0), alpha: 1.0)
 
-        hexValue = String(format:"%X", Int(redValue!)) + String(format:"%X", Int(greenValue!)) + String(format:"%X", Int(blueValue!))
+        hexValue = String(format:"%02X", Int(redValue!)) + String(format:"%02X", Int(greenValue!)) + String(format:"%02X", Int(blueValue!))
         
         DispatchQueue.main.async {
             self.processedView.backgroundColor = color
@@ -128,9 +128,12 @@ class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSamp
     }
     
     @objc func onTargetTap(tapGestureRecognizer: UITapGestureRecognizer) {
-        colorPicked.blueValue = Int(blueValue!)
-        colorPicked.redValue = Int(redValue!)
-        colorPicked.greenValue = Int(greenValue!)
+        let offsetBlue = CGFloat(Int(blueValue!)) / 255
+        let offsetGreen = CGFloat(Int(greenValue!)) / 255
+        let offsetRed = CGFloat(Int(redValue!)) / 255
+        colorPicked.blueValue = offsetBlue
+        colorPicked.redValue = offsetRed
+        colorPicked.greenValue = offsetGreen
         colorPicked.hexValue = hexValue
         performSegue(withIdentifier: "onColorPickedSegue", sender: self)
     }
@@ -138,7 +141,7 @@ class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSamp
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "onColorPickedSegue" {
             let ecvc = segue.destination as! EditColorViewController
-            ecvc.pickedColor = colorPicked
+            ecvc.polishColor = colorPicked
             ecvc.delegate = self
         }
     }
