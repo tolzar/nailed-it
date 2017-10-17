@@ -131,6 +131,7 @@ class ColorDropperViewController: UIViewController, AVCaptureVideoDataOutputSamp
         let offsetBlue = CGFloat(Int(blueValue!)) / 255
         let offsetGreen = CGFloat(Int(greenValue!)) / 255
         let offsetRed = CGFloat(Int(redValue!)) / 255
+        colorPicked = PolishColor()
         colorPicked.blueValue = offsetBlue
         colorPicked.redValue = offsetRed
         colorPicked.greenValue = offsetGreen
