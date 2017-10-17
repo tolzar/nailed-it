@@ -13,7 +13,7 @@ import Parse
     @objc optional func polishColor(with polishColor: PolishColor?)
 }
 
-class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIActionSheetDelegate {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var colors: [PolishColor]?
@@ -62,17 +62,69 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PolishCollectionViewCell", for: indexPath) as! PolishCollectionViewCell
         cell.polishColor = colors?[indexPath.row]
+       
         return cell;
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let color = colors?[indexPath.row] {
-            delegate?.polishColor!(with: color)
+        let color = colors?[indexPath.row]
+        if let delegate = delegate {
+            delegate.polishColor!(with: color)
             dismiss(animated: true, completion: nil)
+        } else {
+            let actionSheetController = UIAlertController(title: "Please select", message: "How you would like to utilize the app?", preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+                // Just dismiss the action sheet
+            }
+            actionSheetController.addAction(cancelAction)
+            let sharePolishColor = UIAlertAction(title: "Share Polish Color", style: .default) { action -> Void in
+                self.showShareOptions(polishColor: color!)
+            }
+            actionSheetController.addAction(sharePolishColor)
+            
+            // Create and add a second option action
+            let tryItOnAction = UIAlertAction(title: "Try It On", style: .default) { action -> Void in
+                //TODO ONCE SAVING MASK IS DONE
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let tryItOnViewController = storyboard.instantiateViewController(withIdentifier: "TryItOnViewController") as! TryItOnViewController
+//                tryItOnViewController.colorBlahBlah = color
+//                self.show(tryItOnViewController, sender: self)
+            }
+            actionSheetController.addAction(tryItOnAction)
+            
+            // We need to provide a popover sourceView when using it on iPad
+            actionSheetController.popoverPresentationController?.sourceView = self.view as UIView
+            
+            // Present the AlertController
+            self.present(actionSheetController, animated: true, completion: nil)
         }
     }
+    
+    func showShareOptions(polishColor: PolishColor) {
+        let image = UIImageView()
+        image.image = UIImage.from(color: polishColor.getUIColor())
+    
+        let imageToShare = [image.image!, "Check out this nail polish color by \(polishColor.brand!). It's called \(polishColor.displayName!).", "\nShared via Nailed It"] as [Any]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
     @IBAction func onHamburgerPressed(_ sender: Any) {
         hamburgerDelegate?.hamburgerPressed()
+    }
+}
+
+extension UIImage {
+    static func from(color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 200, height: 200)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        context!.setFillColor(color.cgColor)
+        context!.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
     }
 }
