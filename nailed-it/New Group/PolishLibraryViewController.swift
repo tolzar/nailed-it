@@ -67,31 +67,6 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         
     }
     
-    @IBAction func onPolishTapped(_ sender: Any) {
-        let actionSheetController = UIAlertController(title: "Please select", message: "How you would like to utilize the app?", preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-            // Just dismiss the action sheet
-        }
-        actionSheetController.addAction(cancelAction)
-        // Create and add first option action
-        let takePictureAction = UIAlertAction(title: "Share Polish Color", style: .default) { action -> Void in
-            
-        }
-        actionSheetController.addAction(takePictureAction)
-        
-        // Create and add a second option action
-        let choosePictureAction = UIAlertAction(title: "Try It On", style: .default) { action -> Void in
-            
-        }
-        actionSheetController.addAction(choosePictureAction)
-        
-        // We need to provide a popover sourceView when using it on iPad
-        actionSheetController.popoverPresentationController?.sourceView = self.view as UIView
-        
-        // Present the AlertController
-        self.present(actionSheetController, animated: true, completion: nil)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let color = colors?[indexPath.row]
         if let delegate = delegate {
@@ -110,7 +85,11 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             
             // Create and add a second option action
             let tryItOnAction = UIAlertAction(title: "Try It On", style: .default) { action -> Void in
-                //TODO
+                //TODO ONCE SAVING MASK IS DONE
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let tryItOnViewController = storyboard.instantiateViewController(withIdentifier: "TryItOnViewController") as! TryItOnViewController
+//                tryItOnViewController.colorBlahBlah = color
+//                self.show(tryItOnViewController, sender: self)
             }
             actionSheetController.addAction(tryItOnAction)
             
