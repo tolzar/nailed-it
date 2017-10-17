@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import SafariServices
 
 @objc protocol PolishLibraryViewControllerDelegate {
     @objc optional func polishColor(with polishColor: PolishColor?)
@@ -93,12 +94,28 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             }
             actionSheetController.addAction(tryItOnAction)
             
+            if color!.brand! != "My Color" {
+                let findThisColor = UIAlertAction(title: "Find \(color!.displayName!) Online", style: .default) { action -> Void in
+                    self.prepareForPolishSearch(color: color)
+                }
+                actionSheetController.addAction(findThisColor)
+
+            }
             // We need to provide a popover sourceView when using it on iPad
             actionSheetController.popoverPresentationController?.sourceView = self.view as UIView
             
             // Present the AlertController
             self.present(actionSheetController, animated: true, completion: nil)
         }
+    }
+    
+    func prepareForPolishSearch(color: PolishColor!) {
+        let allowedCharacterSet = (CharacterSet(charactersIn: " ").inverted)
+        let escapedBrand = color!.brand!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
+        let escapedName = color!.displayName!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
+        let searchString = "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=" + escapedName! + "+" + escapedBrand!
+        print(searchString)
+        UIApplication.shared.open(URL(string: searchString)!, options: [:], completionHandler: nil)
     }
     
     func showShareOptions(polishColor: PolishColor) {
