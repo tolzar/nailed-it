@@ -383,6 +383,7 @@
                                                 <view contentMode="scaleToFill" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="TPq-2F-M1x">
                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="UKf-Kc-OEp"/>
                                                         <constraint firstAttribute="height" constant="120" id="tMj-98-6Ec"/>
