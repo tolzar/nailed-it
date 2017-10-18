@@ -48,13 +48,6 @@ class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITabl
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.distanceFilter = 200
         locationManager.requestWhenInUseAuthorization()
-        
-        
-//        Shop.searchWithTerm(term: "Nail Salon", limit: limit, offset: offset) { (businesses: [Shop]?, error: Error?) in
-//            self.businesses = businesses
-//            self.tableView.reloadData()
-//            self.offset = businesses?.count ?? 0
-//        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,25 +69,9 @@ class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITabl
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let navigationController = segue.destination as! UINavigationController
-//        if let barButton = sender as? UIBarButtonItem {
-//            if barButton.title == "Filters" {
-//                let filtersViewController = navigationController.topViewController as! FiltersViewController
-//
-//                filtersViewController.delegate = self
-//                filtersViewController.categoryToggles = self.categoryToggles
-//                filtersViewController.sortToggles = self.sortToggles
-//                checkDistanceToggles()
-//                filtersViewController.distanceToggles = self.distanceToggles
-//                filtersViewController.dealToggles = self.dealToggles
-//            } else {
-//                let mapViewController = navigationController.topViewController as! MapViewController
-//
-//                mapViewController.businesses = self.businesses
-//            }
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         offset = 0
@@ -194,5 +171,11 @@ class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITabl
 
     @IBAction func onHamburgerPressed(_ sender: Any) {
         delegate?.hamburgerPressed()
+    }
+    
+    @IBAction func onMapSelected(_ sender: Any) {
+        let mapViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        mapViewController.businesses = businesses
+        self.navigationController?.pushViewController(mapViewController, animated: true)
     }
 }
