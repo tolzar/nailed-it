@@ -21,7 +21,7 @@ Core user stories:
 - [x] User can browse nearby nail polish salons based on their current
   location
     - [x] user can view salons in a list
-    - [ ] user can view salons in a map
+    - [x] user can view salons in a map
 
 Nice-to-have user stories:
 - [ ] User will see additional suggested colors that are similar to the

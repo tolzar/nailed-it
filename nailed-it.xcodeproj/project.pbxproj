@@ -12,6 +12,7 @@
 		0C609A501F8DDEB7005ADDD8 /* PickerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C609A4F1F8DDEB7005ADDD8 /* PickerColor.swift */; };
 		0C609A521F8DDEC5005ADDD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C609A511F8DDEC5005ADDD8 /* User.swift */; };
 		0CE7F3F31F8EEE370069E130 /* EditColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7F3F21F8EEE370069E130 /* EditColorViewController.swift */; };
+		112563E01F96DE6600F3D0D3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112563DF1F96DE6600F3D0D3 /* MapViewController.swift */; };
 		115A31D91F942E510021DE9C /* HamburgerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A31D81F942E510021DE9C /* HamburgerDelegate.swift */; };
 		11FB8DAF1F8D6DE8000510A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DAE1F8D6DE8000510A8 /* AppDelegate.swift */; };
 		11FB8DB11F8D6DE8000510A8 /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DB01F8D6DE8000510A8 /* HamburgerViewController.swift */; };
@@ -36,6 +37,7 @@
 		0C609A4F1F8DDEB7005ADDD8 /* PickerColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerColor.swift; sourceTree = "<group>"; };
 		0C609A511F8DDEC5005ADDD8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0CE7F3F21F8EEE370069E130 /* EditColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditColorViewController.swift; sourceTree = "<group>"; };
+		112563DF1F96DE6600F3D0D3 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		115A31D81F942E510021DE9C /* HamburgerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerDelegate.swift; sourceTree = "<group>"; };
 		11FB8DAB1F8D6DE8000510A8 /* nailed-it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nailed-it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FB8DAE1F8D6DE8000510A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				11FB8DD11F8DAF28000510A8 /* PolishLibraryViewController.swift */,
 				11FB8DD31F8DAF33000510A8 /* TryItOnViewController.swift */,
 				0CE7F3F21F8EEE370069E130 /* EditColorViewController.swift */,
+				112563DF1F96DE6600F3D0D3 /* MapViewController.swift */,
 			);
 			name = ViewControllers;
 			path = "New Group";
@@ -330,6 +333,7 @@
 				11FB8DC41F8D7A4F000510A8 /* NearbyShopsViewController.swift in Sources */,
 				11FB8DD41F8DAF33000510A8 /* TryItOnViewController.swift in Sources */,
 				11FB8DC71F8D7C33000510A8 /* ShopCell.swift in Sources */,
+				112563E01F96DE6600F3D0D3 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
