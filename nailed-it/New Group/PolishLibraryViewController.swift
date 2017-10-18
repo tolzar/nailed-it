@@ -215,9 +215,9 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
                     (colors: [PFObject]?, error: Error?) -> Void in
                     if error == nil {
                         for color in colors! {
-                            var selectedBrandColor: PolishColor
-                            selectedBrandColor = (color as? PolishColor)!
-                            selectedBrandPolishes.append(selectedBrandColor)
+                            if let color = color as? PolishColor {
+                                selectedBrandPolishes.append(color)
+                            }
                         }
                         self.colors = selectedBrandPolishes
                         self.collectionView.reloadData()
