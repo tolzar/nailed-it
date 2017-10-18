@@ -31,7 +31,11 @@ class PolishCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var colorName: UILabel!
     @IBOutlet weak var colorBrand: UILabel!
     @IBOutlet weak var whiteView: UIView!
-    
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
     
     
 }
+
