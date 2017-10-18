@@ -11,6 +11,7 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     var image: UIImage!
     var initialImage: UIImage!
     var mask: TCMask!
+    var colorPickedFromLib: PolishColor?
     var polishLibraryViewController: PolishLibraryViewController! {
         didSet {
             polishLibraryViewController.delegate = self
@@ -31,6 +32,10 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
                 mask = TCMask(data: loadedMaskData["data"] as! [UInt8], size: CGSizeFromString(loadedMaskData["size"] as! String))
                 
                 applyImageMask()
+                if let colorPickedFromLib = colorPickedFromLib {
+                    self.navigationItem.leftBarButtonItem = self.navigationItem.backBarButtonItem
+                    polishColor(with: colorPickedFromLib)
+                }
             }
         } else {
             selectColorButton.isEnabled = false

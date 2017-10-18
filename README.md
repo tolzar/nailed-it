@@ -13,11 +13,11 @@ Core user stories:
   nail polish color to nails.
     - [x] selection nail polish area uses "quick" selection to assist
     - [x] user can keep picking new colors and seeing them applied to same image
-    - [ ] picture of hand ready to apply colors to is saved across app starts so you don't have to reselect your nails if you don't want to
+    - [x] picture of hand ready to apply colors to is saved across app starts so you don't have to reselect your nails if you don't want to
 - [x] User can scroll through nail polish library and pick a color to
   apply to nails.
     - [x] user can tap on a polish library color to share the color with friends
-    - [ ] user can top on a polish library color to apply to picture of hands in Try It On screen
+    - [x] user can top on a polish library color to apply to picture of hands in Try It On screen
 - [x] User can browse nearby nail polish salons based on their current
   location
     - [x] user can view salons in a list

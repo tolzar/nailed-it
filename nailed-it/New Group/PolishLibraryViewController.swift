@@ -74,39 +74,43 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             delegate.polishColor!(with: color)
             dismiss(animated: true, completion: nil)
         } else {
-            let actionSheetController = UIAlertController(title: "\(color!.displayName!) by \(color!.brand!)", message: nil, preferredStyle: .actionSheet)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-                // Just dismiss the action sheet
-            }
-            actionSheetController.addAction(cancelAction)
-            let sharePolishColor = UIAlertAction(title: "Share Polish Color", style: .default) { action -> Void in
-                self.showShareOptions(polishColor: color!)
-            }
-            actionSheetController.addAction(sharePolishColor)
-            
-            // Create and add a second option action
-            let tryItOnAction = UIAlertAction(title: "Try It On", style: .default) { action -> Void in
-                //TODO ONCE SAVING MASK IS DONE
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let tryItOnViewController = storyboard.instantiateViewController(withIdentifier: "TryItOnViewController") as! TryItOnViewController
-//                tryItOnViewController.colorBlahBlah = color
-//                self.show(tryItOnViewController, sender: self)
-            }
-            actionSheetController.addAction(tryItOnAction)
-            
-            if color!.brand! != "My Color" {
-                let findThisColor = UIAlertAction(title: "Find \(color!.displayName!) Online", style: .default) { action -> Void in
-                    self.prepareForPolishSearch(color: color)
-                }
-                actionSheetController.addAction(findThisColor)
-
-            }
-            // We need to provide a popover sourceView when using it on iPad
-            actionSheetController.popoverPresentationController?.sourceView = self.view as UIView
-            
-            // Present the AlertController
-            self.present(actionSheetController, animated: true, completion: nil)
+            showActionSheet(color: color)
         }
+    }
+    
+    func showActionSheet(color: PolishColor!) {
+        let actionSheetController = UIAlertController(title: "\(color!.displayName!) by \(color!.brand!)", message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+            // Just dismiss the action sheet
+        }
+        actionSheetController.addAction(cancelAction)
+        
+        let sharePolishColor = UIAlertAction(title: "Share Polish Color", style: .default) { action -> Void in
+            self.showShareOptions(polishColor: color!)
+        }
+        actionSheetController.addAction(sharePolishColor)
+        
+        let tryItOnAction = UIAlertAction(title: "Try It On", style: .default) { action -> Void in
+            self.prepareForTryItOn(color: color)
+        }
+        actionSheetController.addAction(tryItOnAction)
+        
+        if color!.brand! != "My Color" {
+            let findThisColor = UIAlertAction(title: "Find \(color!.displayName!) Online", style: .default) { action -> Void in
+                self.prepareForPolishSearch(color: color)
+            }
+            actionSheetController.addAction(findThisColor)
+            
+        }
+        actionSheetController.popoverPresentationController?.sourceView = self.view as UIView
+        self.present(actionSheetController, animated: true, completion: nil)
+    }
+    
+    func prepareForTryItOn(color: PolishColor!) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tryItOnViewController = storyboard.instantiateViewController(withIdentifier: "TryItOnViewController") as! TryItOnViewController
+        tryItOnViewController.colorPickedFromLib = color
+        self.show(tryItOnViewController, sender: self)
     }
     
     func prepareForPolishSearch(color: PolishColor!) {
