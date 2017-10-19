@@ -12,15 +12,20 @@ class PolishCollectionViewCell: UICollectionViewCell {
     
     var polishColor: PolishColor? {
         didSet {
-            colorView.layer.cornerRadius = colorView.frame.size.height / 2
-            colorView.clipsToBounds = true
             colorView.backgroundColor = polishColor?.getUIColor()
             whiteView.layer.cornerRadius = whiteView.frame.size.height / 2
+            whiteView.clipsToBounds = true
+            
+            colorView.layer.cornerRadius = 20
+            colorView.clipsToBounds = true
+
             whiteView.backgroundColor = UIColor.white
             colorView.layer.borderWidth = 1
             colorView.layer.borderColor = UIColor.gray.cgColor
             whiteView.layer.borderWidth = 1
             whiteView.layer.borderColor = UIColor.gray.cgColor
+            
+            layer.masksToBounds = true
             
             colorName.text = polishColor?.displayName ?? ""
             colorBrand.text = polishColor?.brand ?? ""
