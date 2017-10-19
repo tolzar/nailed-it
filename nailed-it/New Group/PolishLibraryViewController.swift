@@ -60,7 +60,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
 
     func fetchData() {
         let query = PFQuery(className:"PolishColor")
-        query.order(byDescending: "createdAt")
+        query.order(byDescending: "brand")
         query.findObjectsInBackground {
             (colors: [PFObject]?, error: Error?) -> Void in
 
@@ -206,25 +206,25 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
         for row in rows {
             if let row = row as? Int {
                 selectedBrands.append(self.brands[row])
-                let brandQuery = PFQuery(className: "PolishColor")
-                for brand in selectedBrands {
-                    brandQuery.whereKey("brand", equalTo: brand)
-                }
-                brandQuery.order(byDescending: "brand")
-                brandQuery.findObjectsInBackground {
-                    (colors: [PFObject]?, error: Error?) -> Void in
-                    if error == nil {
-                        for color in colors! {
-                            if let color = color as? PolishColor {
-                                selectedBrandPolishes.append(color)
-                            }
-                        }
-                        self.colors = selectedBrandPolishes
-                        self.collectionView.reloadData()
-                    } else {
-                        print("Error: \(error!) \(error!.localizedDescription)")
+            }
+        }
+        let brandQuery = PFQuery(className: "PolishColor")
+        if !selectedBrands.isEmpty {
+            brandQuery.whereKey("brand", containedIn: selectedBrands)
+        }
+        brandQuery.order(byDescending: "brand")
+        brandQuery.findObjectsInBackground {
+            (colors: [PFObject]?, error: Error?) -> Void in
+            if error == nil {
+                for color in colors! {
+                    if let color = color as? PolishColor {
+                        selectedBrandPolishes.append(color)
                     }
                 }
+                self.colors = selectedBrandPolishes
+                self.collectionView.reloadData()
+            } else {
+                print("Error: \(error!) \(error!.localizedDescription)")
             }
         }
     }
