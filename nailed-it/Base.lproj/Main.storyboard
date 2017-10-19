@@ -456,7 +456,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhK-Ux-CsY">
                                                     <rect key="frame" x="0.0" y="113" width="117" height="22"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="117" id="K9F-fg-Io3"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="117" id="K9F-fg-Io3"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                     <nil key="textColor"/>
