@@ -12,4 +12,6 @@ target 'nailed-it' do
   pod 'TinyCrayon', '~> 3.0.0'
   pod 'NotificationBannerSwift'
   pod 'CZPicker'
+  pod 'NVActivityIndicatorView'
+
 end

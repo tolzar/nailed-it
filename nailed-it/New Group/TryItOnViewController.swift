@@ -1,17 +1,22 @@
 import UIKit
 import CoreImage
 import TCMask
+import NVActivityIndicatorView
 
-class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TCMaskViewDelegate, PolishLibraryViewControllerDelegate {
+class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TCMaskViewDelegate, PolishLibraryViewControllerDelegate, NVActivityIndicatorViewable {
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var selectColorButton: UIBarButtonItem!
     weak var delegate: HamburgerDelegate?
-
+    @IBOutlet weak var cameraView: UIView!
+    @IBOutlet weak var selectColorView: UIView!
+    
     let imagePicker = UIImagePickerController()
+    let size = CGSize(width: 30, height: 30)
+    
     var image: UIImage!
     var initialImage: UIImage!
     var mask: TCMask!
     var colorPickedFromLib: PolishColor?
+    var currentPolishColor: PolishColor?
     var polishLibraryViewController: PolishLibraryViewController! {
         didSet {
             polishLibraryViewController.delegate = self
@@ -36,23 +41,31 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
                     self.navigationItem.leftBarButtonItem = self.navigationItem.backBarButtonItem
                     polishColor(with: colorPickedFromLib)
                 }
+                selectColorView.isHidden = false
             }
         } else {
-            selectColorButton.isEnabled = false
+            selectColorView.isHidden = true
         }
+        
+        cameraView.layer.cornerRadius = cameraView.frame.width / 2
+        cameraView.clipsToBounds = true
+        
+        selectColorView.layer.cornerRadius = cameraView.frame.width / 2
+        selectColorView.clipsToBounds = true
     }
     
     func applyImageMask() {        
         imageView.image = mask.blend(foregroundImage: image.fillAlpha(fillColor: UIColor.white.withAlphaComponent(0.6)), backgroundImage: image)
+        stopAnimating()
     }
     
-    @IBAction func selectImageButtonTapped(_ sender: Any) {
+    func selectImageFromLibrary() {
         imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
         imagePicker.delegate = self
         self.present(imagePicker, animated: true, completion: nil)
     }
     
-    @IBAction func onTakePhotoSelected(_ sender: Any) {
+    func takePhotoFromCamera() {
         imagePicker.sourceType = UIImagePickerControllerSourceType.camera
         imagePicker.delegate = self
         self.present(imagePicker, animated: true, completion: nil)
@@ -70,6 +83,7 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        startAnimating(size, message: "Getting your photo ready...", type: NVActivityIndicatorType.ballTrianglePath)
         self.image = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.image = self.image.resizeImage(targetSize: imageView.frame.size)
         self.initialImage = self.image
@@ -82,10 +96,20 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func tcMaskViewDidComplete(mask: TCMask, image: UIImage) {
+        startAnimating(size, message: "Getting your photo ready...", type: NVActivityIndicatorType.ballTrianglePath)
         self.mask = mask
-        selectColorButton.isEnabled = true
+        selectColorView.isHidden = false
         applyImageMask()
         saveImageMaskData()
+    }
+    
+    func tcMaskViewWillPushViewController(mask: TCMask, image: UIImage) -> UIViewController! {
+        stopAnimating()
+        return self
+    }
+    
+    func tcMaskViewDidExit(mask: TCMask, image: UIImage) {
+        stopAnimating()
     }
     
     func polishColor(with polishColor: PolishColor?) {
@@ -97,8 +121,47 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @objc func onImageLongPress(sender: UILongPressGestureRecognizer) {
-        let image = sender.view as! UIImageView
-        let imageToShare = [ image.image!, "Image created with Nailed It!" ] as [Any]
+        prepareForShareImage()
+    }
+    
+    @IBAction func onSelectCamera(_ sender: Any) {
+        
+        let actionSheetController = UIAlertController(title: "Upload new photo?", message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+            // Just dismiss the action sheet
+        }
+        actionSheetController.addAction(cancelAction)
+        
+        let selectFromLibrary = UIAlertAction(title: "Select From Library", style: .default) { action -> Void in
+            self.selectImageFromLibrary()
+        }
+        actionSheetController.addAction(selectFromLibrary)
+        
+        let takeAPicture = UIAlertAction(title: "Use Camera", style: .default) { action -> Void in
+            self.takePhotoFromCamera()
+        }
+        actionSheetController.addAction(takeAPicture)
+        
+        if imageView.image != nil {
+            let shareImage = UIAlertAction(title: "Share This Look", style: .default) { action -> Void in
+                self.prepareForShareImage()
+            }
+            actionSheetController.addAction(shareImage)
+        }
+        
+        actionSheetController.popoverPresentationController?.sourceView = self.view as UIView
+        self.present(actionSheetController, animated: true, completion: nil)
+    }
+    
+    
+    
+    @IBAction func onHamburgerPressed(_ sender: Any) {
+        delegate?.hamburgerPressed()
+    }
+    
+    func prepareForShareImage() {
+        let image = imageView.image
+        let imageToShare = [ image!, "Image created with Nailed It!" ] as [Any]
         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
         
@@ -109,14 +172,9 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.present(activityViewController, animated: true, completion: nil)
     }
     
-    @IBAction func onSelectColor(_ sender: Any) {
+    @IBAction func onSelectManicure(_ sender: Any) {
         present(polishLibraryViewController, animated: true)
     }
-    
-    @IBAction func onHamburgerPressed(_ sender: Any) {
-        delegate?.hamburgerPressed()
-    }
-    
 }
 
 extension UIImage {

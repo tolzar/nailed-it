@@ -10,12 +10,13 @@ import UIKit
 import Parse
 import SafariServices
 import CZPicker
+import NVActivityIndicatorView
 
 @objc protocol PolishLibraryViewControllerDelegate {
     @objc optional func polishColor(with polishColor: PolishColor?)
 }
 
-class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIActionSheetDelegate {
+class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIActionSheetDelegate, NVActivityIndicatorViewable {
     @IBOutlet weak var collectionView: UICollectionView!
 
     var colors: [PolishColor]?
@@ -23,6 +24,8 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     weak var delegate: PolishLibraryViewControllerDelegate?
     weak var hamburgerDelegate: HamburgerDelegate?
     var selectedRows: [Any]!
+    let size = CGSize(width: 30, height: 30)
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +58,16 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        fetchData()
+        fetchData(animate: collectionView.numberOfItems(inSection: 0) == 0)
     }
 
-    func fetchData() {
+    func fetchData(animate: Bool) {
+        if animate {
+            startAnimating(size, message: "Hang tight!\nLoading your polish collection...", type: NVActivityIndicatorType.ballTrianglePath)
+        }
         let query = PFQuery(className:"PolishColor")
         query.order(byDescending: "brand")
+        query.addDescendingOrder("createdAt")
         query.findObjectsInBackground {
             (colors: [PFObject]?, error: Error?) -> Void in
 
@@ -71,11 +78,17 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
                 // Do something with the found objects
                 if let colors = colors {
                     self.colors = colors as? [PolishColor]
-                    self.collectionView.reloadData()
+                    if animate {
+                        UIView.transition(with: self.collectionView, duration: 1.0, options: .transitionFlipFromBottom, animations: { self.collectionView.reloadData() }, completion: nil)
+                    } else {
+                        self.collectionView.reloadData()
+                    }
+                    self.stopAnimating()
                 }
             } else {
                 // Log details of the failure
                 print("Error: \(error!) \(error!.localizedDescription)")
+                self.stopAnimating()
             }
         }
     }
@@ -200,6 +213,7 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
     }
 
     func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [Any]!) {
+        startAnimating(size, message: "Filtering...", type: NVActivityIndicatorType.ballTrianglePath)
         var selectedBrands: [String] = []
         self.selectedRows = rows
         var selectedBrandPolishes: [PolishColor] = []
@@ -213,9 +227,11 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
             brandQuery.whereKey("brand", containedIn: selectedBrands)
         }
         brandQuery.order(byDescending: "brand")
+        brandQuery.addDescendingOrder("createdAt")
         brandQuery.findObjectsInBackground {
             (colors: [PFObject]?, error: Error?) -> Void in
             if error == nil {
+                self.stopAnimating()
                 for color in colors! {
                     if let color = color as? PolishColor {
                         selectedBrandPolishes.append(color)
@@ -224,6 +240,7 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
                 self.colors = selectedBrandPolishes
                 self.collectionView.reloadData()
             } else {
+                self.stopAnimating()
                 print("Error: \(error!) \(error!.localizedDescription)")
             }
         }

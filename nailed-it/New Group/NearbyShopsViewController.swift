@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreLocation
+import NVActivityIndicatorView
 
-class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate, CLLocationManagerDelegate {
+class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate, CLLocationManagerDelegate, NVActivityIndicatorViewable {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
@@ -41,7 +42,7 @@ class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.estimatedRowHeight = 120
         
         searchBar.delegate = self
-                
+        
         // Ask for Authorisation from the User.
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -103,58 +104,28 @@ class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func loadData(searchText: String) {
-        if filters != nil {
-            let categories = filters["categories"] as? [String] ?? nil
-            let sort = filters["sortMode"] as? YelpSortMode ?? nil
-            let distance = filters["distance"] as? Int ?? nil
-            let deals = filters["deals"] as? Bool ?? nil
-            
-            Shop.searchWithTerm(term: "Nail Salon " + searchText, limit: limit, offset: self.offset, sort: sort, categories: categories, deals: deals, distance: distance) { (businesses: [Shop]?, error: Error?) in
-                self.businesses = businesses
-                self.offset = (businesses?.count)!
-                self.tableView.reloadData()
-                self.isMoreDataLoading = false
-            }
-        } else {
-            Shop.searchWithTerm(term: "Nail Salon " + searchText, limit: limit , offset: self.offset, completion: { (businesses: [Shop]?, error: Error?) in
-                self.businesses = businesses
-                self.offset = (businesses?.count)!
-                self.tableView.reloadData()
-                self.isMoreDataLoading = false
-                
-            })
-        }
-        
-        
+        let size = CGSize(width: 30, height: 30)
+        startAnimating(size, message: "Loading nearby shops...", type: NVActivityIndicatorType.ballTrianglePath)
+        Shop.searchWithTerm(term: "Nail Salon " + searchText, limit: limit , offset: self.offset, completion: { (businesses: [Shop]?, error: Error?) in
+            self.businesses = businesses
+            self.offset = (businesses?.count)!
+            self.tableView.reloadData()
+            self.isMoreDataLoading = false
+            self.stopAnimating()
+        })
     }
     
     func loadMoreData(searchText: String) {
-        if filters != nil {
-            let categories = filters["categories"] as? [String] ?? nil
-            let sort = filters["sortMode"] as? YelpSortMode ?? nil
-            let distance = filters["distance"] as? Int ?? nil
-            let deals = filters["deals"] as? Bool ?? nil
-            
-            Shop.searchWithTerm(term: "Nail Salon " + searchText, limit: limit, offset: self.offset, sort: sort, categories: categories, deals: deals, distance: distance) { (businesses: [Shop]?, error: Error?) in
-                for business in businesses! {
-                    self.businesses.append(business)
-                }
-                self.offset = (self.businesses?.count)!
-                self.tableView.reloadData()
-                self.isMoreDataLoading = false
+        Shop.searchWithTerm(term: "Nail Salon " + searchText, limit: limit , offset: self.offset, completion: { (businesses: [Shop]?, error: Error?) in
+            for business in businesses! {
+                self.businesses.append(business)
             }
-        } else {
-            Shop.searchWithTerm(term: "Nail Salon " + searchText, limit: limit , offset: self.offset, completion: { (businesses: [Shop]?, error: Error?) in
-                for business in businesses! {
-                    self.businesses.append(business)
-                }
-                self.offset = (self.businesses?.count)!
-                self.tableView.reloadData()
-                self.isMoreDataLoading = false
-            })
-        }
+            self.offset = (self.businesses?.count)!
+            self.tableView.reloadData()
+            self.isMoreDataLoading = false
+        })
     }
-
+    
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.authorizedWhenInUse {
@@ -168,7 +139,7 @@ class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITabl
             loadData(searchText: "")
         }
     }
-
+    
     @IBAction func onHamburgerPressed(_ sender: Any) {
         delegate?.hamburgerPressed()
     }
