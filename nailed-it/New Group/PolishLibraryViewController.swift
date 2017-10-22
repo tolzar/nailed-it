@@ -21,10 +21,12 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
 
     var colors: [PolishColor]?
     var brands = [String]()
+    var sortingOptions = [String]()
     weak var delegate: PolishLibraryViewControllerDelegate?
     weak var hamburgerDelegate: HamburgerDelegate?
     var selectedRows: [Any]!
     let size = CGSize(width: 30, height: 30)
+    var sortFilter: String = ""
 
 
     override func viewDidLoad() {
@@ -34,6 +36,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         self.collectionView.delegate = self
 
         brands = ["Essie", "My Color", "Butter London"]
+        sortingOptions = ["Price: $ to $$$", "Price: $$$ to $", "Color", "Name"]
 
         let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
@@ -42,21 +45,37 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
 
     @IBAction func onFilter(_ sender: Any) {
         let picker = CZPickerView(headerTitle: "Brands", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
+        setUpPicker(picker: picker!, type: "filter")
+    }
+    
+    @IBAction func onSort(_ sender: Any) {
+        let picker = CZPickerView(headerTitle: "Sort By", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
+        setUpPicker(picker: picker!, type: "sort")
+    }
+    
+    func setUpPicker(picker: CZPickerView, type: String) {
         let greenColor = UIColor(red:0.59, green:0.89, blue:0.70, alpha:1.0)
         let pinkColor = UIColor(red:0.98, green:0.66, blue:0.65, alpha:1.0)
-        picker?.delegate = self
-        picker?.dataSource = self
-        picker?.needFooterView = false
-        picker?.allowMultipleSelection = true
-        picker?.headerBackgroundColor = greenColor
-        picker?.confirmButtonBackgroundColor = greenColor
-        picker?.headerTitleColor = pinkColor
-        picker?.confirmButtonNormalColor = pinkColor
-        picker?.cancelButtonNormalColor = pinkColor
-        picker?.checkmarkColor = pinkColor
-        picker?.show()
+        picker.delegate = self
+        picker.dataSource = self
+        picker.needFooterView = false
+        if type == "sort" {
+            picker.allowMultipleSelection = false
+            self.sortFilter = "sort"
+        } else {
+            picker.allowMultipleSelection = true
+            self.sortFilter = "filter"
+        }
+        picker.headerBackgroundColor = greenColor
+        picker.confirmButtonBackgroundColor = greenColor
+        picker.headerTitleColor = pinkColor
+        picker.confirmButtonNormalColor = pinkColor
+        picker.cancelButtonNormalColor = pinkColor
+        picker.checkmarkColor = pinkColor
+        picker.show()
     }
-
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         fetchData(animate: collectionView.numberOfItems(inSection: 0) == 0)
     }
@@ -167,6 +186,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func prepareForColorComparasion(color: PolishColor!, libraryColors: [PolishColor?]) {
+        startAnimating(size, message: "Sorting by Color...", type: NVActivityIndicatorType.ballTrianglePath)
         for libraryColor in libraryColors {
             let redDistance = color.redValue - (libraryColor?.redValue)!
             let greenDistance = color.greenValue - (libraryColor?.greenValue)!
@@ -179,6 +199,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             let string1 = String(describing: $1.distanceVector)
             return string0 < string1
         }
+        self.stopAnimating()
         self.colors = sortedColors
         self.collectionView.reloadData()
 
@@ -218,55 +239,111 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
     }
 
     func numberOfRows(in pickerView: CZPickerView!) -> Int {
-        return self.brands.count
+        if self.sortFilter == "filter" {
+            return self.brands.count
+        } else {
+            return self.sortingOptions.count
+        }
     }
 
     func numberOfRowsInPickerView(pickerView: CZPickerView!) -> Int {
-        return self.brands.count
+        if self.sortFilter == "filter" {
+            return self.brands.count
+        } else {
+            return self.sortingOptions.count
+        }
     }
 
     func czpickerView(_ pickerView: CZPickerView!, titleForRow row: Int) -> String! {
-        return self.brands[row]
-    }
+        if self.sortFilter == "filter" {
+            return self.brands[row]
+        } else {
+            return self.sortingOptions[row]
+        }
 
-    func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     func czpickerViewDidClickCancelButton(_ pickerView: CZPickerView!) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
+    func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
+        if self.sortFilter == "sort" {
+            if self.sortingOptions[row] == "Price: $ to $$$" {
+                startAnimating(size, message: "Sorting...", type: NVActivityIndicatorType.ballTrianglePath)
+                // Sorting based on brand right now, because it corresponds to price
+                let sortedColors = self.colors?.sorted {
+                    let string0 = String(describing: $0.brand)
+                    let string1 = String(describing: $1.brand)
+                    return string0 > string1
+                }
+                self.stopAnimating()
+                self.colors = sortedColors
+                self.collectionView.reloadData()
+            } else if self.sortingOptions[row] == "Price: $$$ to $" {
+                // Sorting based on brand right now, because it corresponds to price
+                startAnimating(size, message: "Sorting...", type: NVActivityIndicatorType.ballTrianglePath)
+                let sortedColors = self.colors?.sorted {
+                    let string0 = String(describing: $0.brand)
+                    let string1 = String(describing: $1.brand)
+                    return string0 < string1
+                }
+                self.stopAnimating()
+                self.colors = sortedColors
+                self.collectionView.reloadData()
+            } else if self.sortingOptions[row] == "Color" {
+                let compColor = PolishColor()
+                compColor.redValue = 255
+                compColor.blueValue = 255
+                compColor.blueValue = 255
+                prepareForColorComparasion(color: compColor, libraryColors: self.colors!)
+            } else if self.sortingOptions[row] == "Name" {
+                startAnimating(size, message: "Filtering...", type: NVActivityIndicatorType.ballTrianglePath)
+                let sortedColors = self.colors?.sorted {
+                    let string0 = String(describing: $0.displayName)
+                    let string1 = String(describing: $1.displayName)
+                    return string0 < string1
+                }
+                self.stopAnimating()
+                self.colors = sortedColors
+                self.collectionView.reloadData()
+            }
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+    }
 
     func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [Any]!) {
-        startAnimating(size, message: "Filtering...", type: NVActivityIndicatorType.ballTrianglePath)
-        var selectedBrands: [String] = []
-        self.selectedRows = rows
-        var selectedBrandPolishes: [PolishColor] = []
-        for row in rows {
-            if let row = row as? Int {
-                selectedBrands.append(self.brands[row])
-            }
-        }
-        let brandQuery = PFQuery(className: "PolishColor")
-        if !selectedBrands.isEmpty {
-            brandQuery.whereKey("brand", containedIn: selectedBrands)
-        }
-        brandQuery.order(byDescending: "brand")
-        brandQuery.addDescendingOrder("createdAt")
-        brandQuery.findObjectsInBackground {
-            (colors: [PFObject]?, error: Error?) -> Void in
-            if error == nil {
-                self.stopAnimating()
-                for color in colors! {
-                    if let color = color as? PolishColor {
-                        selectedBrandPolishes.append(color)
-                    }
+        if self.sortFilter == "filter" {
+            startAnimating(size, message: "Filtering...", type: NVActivityIndicatorType.ballTrianglePath)
+            var selectedBrands: [String] = []
+            self.selectedRows = rows
+            var selectedBrandPolishes: [PolishColor] = []
+            for row in rows {
+                if let row = row as? Int {
+                    selectedBrands.append(self.brands[row])
                 }
-                self.colors = selectedBrandPolishes
-                self.collectionView.reloadData()
-            } else {
-                self.stopAnimating()
-                print("Error: \(error!) \(error!.localizedDescription)")
+            }
+            let brandQuery = PFQuery(className: "PolishColor")
+            if !selectedBrands.isEmpty {
+                brandQuery.whereKey("brand", containedIn: selectedBrands)
+            }
+            brandQuery.order(byDescending: "brand")
+            brandQuery.addDescendingOrder("createdAt")
+            brandQuery.findObjectsInBackground {
+                (colors: [PFObject]?, error: Error?) -> Void in
+                if error == nil {
+                    self.stopAnimating()
+                    for color in colors! {
+                        if let color = color as? PolishColor {
+                            selectedBrandPolishes.append(color)
+                        }
+                    }
+                    self.colors = selectedBrandPolishes
+                    self.collectionView.reloadData()
+                } else {
+                    self.stopAnimating()
+                    print("Error: \(error!) \(error!.localizedDescription)")
+                }
             }
         }
     }
