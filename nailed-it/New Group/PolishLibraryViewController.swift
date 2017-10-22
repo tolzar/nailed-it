@@ -202,6 +202,9 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         self.stopAnimating()
         self.colors = sortedColors
         self.collectionView.reloadData()
+        self.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
+                                          at: .top,
+                                          animated: true)
 
     }
     
