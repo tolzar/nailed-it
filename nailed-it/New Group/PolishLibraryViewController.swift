@@ -28,6 +28,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     let size = CGSize(width: 30, height: 30)
     var sortFilter: String = ""
     var refresher:UIRefreshControl!
+    var didRefresh: Bool = false
 
 
     override func viewDidLoad() {
@@ -61,6 +62,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     @objc func refreshData() {
         fetchData(animate: true)
         self.refresher.endRefreshing()
+        self.didRefresh = true
     }
     
     func setUpPicker(picker: CZPickerView, type: String) {
@@ -249,7 +251,9 @@ extension UIImage {
 extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     func czpickerViewWillDisplay(_ pickerView: CZPickerView!) {
         if self.sortFilter == "filter" {
-            pickerView.setSelectedRows(self.selectedRows)
+            if self.didRefresh == false {
+                pickerView.setSelectedRows(self.selectedRows)
+            }
         }
     }
 
