@@ -238,7 +238,9 @@ extension UIImage {
 
 extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     func czpickerViewWillDisplay(_ pickerView: CZPickerView!) {
-        pickerView.setSelectedRows(self.selectedRows)
+        if self.sortFilter == "filter" {
+            pickerView.setSelectedRows(self.selectedRows)
+        }
     }
 
     func numberOfRows(in pickerView: CZPickerView!) -> Int {
