@@ -67,6 +67,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         }
         let query = PFQuery(className:"PolishColor")
         query.order(byDescending: "brand")
+        query.addDescendingOrder("createdAt")
         query.findObjectsInBackground {
             (colors: [PFObject]?, error: Error?) -> Void in
 
@@ -226,6 +227,7 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
             brandQuery.whereKey("brand", containedIn: selectedBrands)
         }
         brandQuery.order(byDescending: "brand")
+        brandQuery.addDescendingOrder("createdAt")
         brandQuery.findObjectsInBackground {
             (colors: [PFObject]?, error: Error?) -> Void in
             if error == nil {

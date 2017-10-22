@@ -108,6 +108,10 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         return self
     }
     
+    func tcMaskViewDidExit(mask: TCMask, image: UIImage) {
+        stopAnimating()
+    }
+    
     func polishColor(with polishColor: PolishColor?) {
         let templateImage = image.tint(tintColor: polishColor!.getUIColor())
         
