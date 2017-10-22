@@ -42,8 +42,8 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
 
     @IBAction func onFilter(_ sender: Any) {
         let picker = CZPickerView(headerTitle: "Brands", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
-        let greenColor = UIColor(red:0.80, green:1.00, blue:0.90, alpha:1.0)
-        let pinkColor = UIColor(red:1.00, green:0.80, blue:0.90, alpha:1.0)
+        let greenColor = UIColor(red:0.59, green:0.89, blue:0.70, alpha:1.0)
+        let pinkColor = UIColor(red:0.98, green:0.66, blue:0.65, alpha:1.0)
         picker?.delegate = self
         picker?.dataSource = self
         picker?.needFooterView = false
@@ -131,6 +131,11 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             self.prepareForTryItOn(color: color)
         }
         actionSheetController.addAction(tryItOnAction)
+        
+        let findSimilarColor = UIAlertAction(title: "Find Similar Colors", style: .default) { action -> Void in
+            self.prepareForColorComparasion(color: color, libraryColors: self.colors!)
+        }
+        actionSheetController.addAction(findSimilarColor)
 
         if color!.brand! != "My Color" {
             let findThisColor = UIAlertAction(title: "Find \(color!.displayName!) Online", style: .default) { action -> Void in
@@ -140,7 +145,9 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
 
         }
         actionSheetController.popoverPresentationController?.sourceView = self.view as UIView
-        self.present(actionSheetController, animated: true, completion: nil)
+        self.present(actionSheetController, animated: true, completion: {() -> Void in
+            actionSheetController.view.tintColor = UIColor(red:0.98, green:0.66, blue:0.65, alpha:1.0)
+        })
     }
 
     func prepareForTryItOn(color: PolishColor!) {
@@ -158,7 +165,25 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         print(searchString)
         UIApplication.shared.open(URL(string: searchString)!, options: [:], completionHandler: nil)
     }
+    
+    func prepareForColorComparasion(color: PolishColor!, libraryColors: [PolishColor?]) {
+        for libraryColor in libraryColors {
+            let redDistance = color.redValue - (libraryColor?.redValue)!
+            let greenDistance = color.greenValue - (libraryColor?.greenValue)!
+            let blueDistance = color.blueValue - (libraryColor?.blueValue)!
+            libraryColor?.distanceVector = CGFloat(((redDistance * redDistance) + (greenDistance * greenDistance) + (blueDistance * blueDistance)).squareRoot())
+            
+        }
+        let sortedColors = self.colors?.sorted {
+            let string0 = String(describing: $0.distanceVector)
+            let string1 = String(describing: $1.distanceVector)
+            return string0 < string1
+        }
+        self.colors = sortedColors
+        self.collectionView.reloadData()
 
+    }
+    
     func showShareOptions(polishColor: PolishColor) {
         let image = UIImageView()
         image.image = UIImage.from(color: polishColor.getUIColor())
