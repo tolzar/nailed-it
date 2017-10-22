@@ -27,6 +27,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     var selectedRows: [Any]!
     let size = CGSize(width: 30, height: 30)
     var sortFilter: String = ""
+    var refresher:UIRefreshControl!
 
 
     override func viewDidLoad() {
@@ -40,6 +41,10 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
 
         let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+        
+        self.refresher = UIRefreshControl()
+        self.refresher.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        self.collectionView!.addSubview(refresher)
 
     }
 
@@ -51,6 +56,11 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     @IBAction func onSort(_ sender: Any) {
         let picker = CZPickerView(headerTitle: "Sort By", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
         setUpPicker(picker: picker!, type: "sort")
+    }
+    
+    @objc func refreshData() {
+        fetchData(animate: true)
+        self.refresher.endRefreshing()
     }
     
     func setUpPicker(picker: CZPickerView, type: String) {
