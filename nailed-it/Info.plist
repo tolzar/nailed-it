@@ -26,6 +26,8 @@
 	<string>We use the camera to create custom nail polish colors from real time images</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>To show your location on the map</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We use the photo library to let you upload and save photos of your nail polish looks.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
