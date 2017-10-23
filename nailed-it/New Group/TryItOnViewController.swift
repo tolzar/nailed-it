@@ -53,9 +53,9 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         selectColorView.layer.cornerRadius = cameraView.frame.width / 2
         selectColorView.clipsToBounds = true
     }
-    
-    func applyImageMask() {        
-        imageView.image = mask.blend(foregroundImage: image.fillAlpha(fillColor: UIColor.white.withAlphaComponent(0.6)), backgroundImage: image)
+
+    func applyImageMask() {
+        imageView.image = mask.blend(foregroundImage: image.tint(tintColor: UIColor.white), backgroundImage: image)
         stopAnimating()
     }
     
@@ -113,9 +113,9 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func polishColor(with polishColor: PolishColor?) {
-        let templateImage = image.tint(tintColor: polishColor!.getUIColor())
+        let templateImage = image.tint(tintColor: (polishColor?.getUIColor())!)
         
-        imageView.image = mask.blend(foregroundImage: templateImage.resizeImage(targetSize: mask.size), backgroundImage: image.resizeImage(targetSize: mask.size))
+        imageView.image = mask.blend(foregroundImage: templateImage, backgroundImage: image)
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(onImageLongPress)))
     }
@@ -154,8 +154,6 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
             actionSheetController.view.tintColor = UIColor(red:0.98, green:0.66, blue:0.65, alpha:1.0)
         })
     }
-    
-    
     
     @IBAction func onHamburgerPressed(_ sender: Any) {
         delegate?.hamburgerPressed()
@@ -212,8 +210,8 @@ extension UIImage {
             context.draw(self.cgImage!, in: rect)
             
             // tint image (loosing alpha) - the luminosity of the original image is preserved
-            context.setBlendMode(.color)
-            tintColor.setFill()
+            let alphaColor = tintColor.withAlphaComponent(0.8)
+            alphaColor.setFill()
             context.fill(rect)
             
             // mask by alpha values of original image
@@ -284,8 +282,4 @@ extension UIImage {
         
         return newImage!
     }
-    
-    
 }
-
-
