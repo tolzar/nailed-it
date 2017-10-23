@@ -155,8 +155,6 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         })
     }
     
-    
-    
     @IBAction func onHamburgerPressed(_ sender: Any) {
         delegate?.hamburgerPressed()
     }
@@ -212,7 +210,7 @@ extension UIImage {
             context.draw(self.cgImage!, in: rect)
             
             // tint image (loosing alpha) - the luminosity of the original image is preserved
-            let alphaColor = tintColor.withAlphaComponent(0.5)
+            let alphaColor = tintColor.withAlphaComponent(0.8)
             alphaColor.setFill()
             context.fill(rect)
             
@@ -284,8 +282,4 @@ extension UIImage {
         
         return newImage!
     }
-
-    
 }
-
-
