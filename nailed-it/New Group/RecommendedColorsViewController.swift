@@ -225,10 +225,15 @@ extension RecommendedColorsViewController: CZPickerViewDelegate, CZPickerViewDat
         } else if self.sortingOptions[row] == "Brand" {
             self.selectedRows = [3]
             pickerView.setSelectedRows([3])
-            let sortedColors = self.colors?.sorted {
+            var sortedColors = self.colors?.sorted {
                 let string0 = String(describing: $0.brand)
                 let string1 = String(describing: $1.brand)
                 return string0 < string1
+            }
+            sortedColors = sortedColors?.sorted {
+                let createdAt1 = String(describing: $0.createdAt)
+                let createdAt2 = String(describing: $1.createdAt)
+                return createdAt1 > createdAt2
             }
             self.updateSortedColors(sortedColors: sortedColors!)
         }
