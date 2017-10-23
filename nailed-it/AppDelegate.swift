@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Parse.initialize(
             with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
@@ -23,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = "https://naileditcodepath.herokuapp.com/parse"
             })
         )
-        
+        self.window?.tintColor = UIColor(red:0.98, green:0.66, blue:0.65, alpha:1.0)
         return true
     }
     

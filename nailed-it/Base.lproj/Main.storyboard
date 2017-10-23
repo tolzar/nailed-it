@@ -500,10 +500,10 @@
                                 <action selector="onHamburgerPressed:" destination="dND-R0-v5L" id="yae-7b-zIR"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="Qd8-Jh-uaE">
+                        <barButtonItem key="rightBarButtonItem" title="Sort" id="4nm-Og-419">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="onFilter:" destination="dND-R0-v5L" id="qud-sz-qJq"/>
+                                <action selector="onSort:" destination="dND-R0-v5L" id="A7b-oH-Xkj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -562,7 +562,7 @@
                                         </constraints>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kaf-Ui-rja">
-                                        <rect key="frame" x="-147.5" y="0.0" width="80" height="80"/>
+                                        <rect key="frame" x="-162.5" y="0.0" width="80" height="80"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Rj-UO-hkK">
                                                 <rect key="frame" x="15" y="15" width="50" height="50"/>

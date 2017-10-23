@@ -19,6 +19,7 @@ class PolishColor: PFObject, PFSubclassing {
     @NSManaged var colorFamily: String?
     @NSManaged var polishType: String?
     @NSManaged var favorited: Bool
+    var distanceVector: CGFloat?
     
     
     class func parseClassName() -> String {

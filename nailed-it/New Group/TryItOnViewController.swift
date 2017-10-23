@@ -150,7 +150,9 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         
         actionSheetController.popoverPresentationController?.sourceView = self.view as UIView
-        self.present(actionSheetController, animated: true, completion: nil)
+        self.present(actionSheetController, animated: true, completion: {() -> Void in
+            actionSheetController.view.tintColor = UIColor(red:0.98, green:0.66, blue:0.65, alpha:1.0)
+        })
     }
     
     
@@ -169,7 +171,9 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
         
         // present the view controller
-        self.present(activityViewController, animated: true, completion: nil)
+        self.present(activityViewController, animated: true, completion:  {() -> Void in
+            activityViewController.view.tintColor = UIColor(red:0.98, green:0.66, blue:0.65, alpha:1.0)
+        })
     }
     
     @IBAction func onSelectManicure(_ sender: Any) {
