@@ -263,8 +263,8 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
     }
     
     func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
+        startAnimating(size, message: "Sorting...", type: NVActivityIndicatorType.ballTrianglePath)
             if self.sortingOptions[row] == "Price: $ to $$$" {
-                startAnimating(size, message: "Sorting...", type: NVActivityIndicatorType.ballTrianglePath)
                 // Sorting based on brand right now, because it corresponds to price
                 let sortedColors = self.colors?.sorted {
                     let string0 = String(describing: $0.brand)
@@ -273,8 +273,6 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
                 }
                 self.updateSortedColors(sortedColors: sortedColors!)
             } else if self.sortingOptions[row] == "Price: $$$ to $" {
-                // Sorting based on brand right now, because it corresponds to price
-                startAnimating(size, message: "Sorting...", type: NVActivityIndicatorType.ballTrianglePath)
                 let sortedColors = self.colors?.sorted {
                     let string0 = String(describing: $0.brand)
                     let string1 = String(describing: $1.brand)
@@ -288,7 +286,6 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
                 compColor.blueValue = 255
                 prepareForColorComparasion(color: compColor, libraryColors: self.colors!)
             } else if self.sortingOptions[row] == "Name" {
-                startAnimating(size, message: "Filtering...", type: NVActivityIndicatorType.ballTrianglePath)
                 let sortedColors = self.colors?.sorted {
                     let string0 = String(describing: $0.displayName)
                     let string1 = String(describing: $1.displayName)
