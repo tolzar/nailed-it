@@ -220,6 +220,12 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
 
     }
     
+    func updateSortedColors(sortedColors: [PolishColor]) {
+        self.stopAnimating()
+        self.colors = sortedColors
+        self.collectionView.reloadData()
+    }
+    
     func showShareOptions(polishColor: PolishColor) {
         let image = UIImageView()
         image.image = UIImage.from(color: polishColor.getUIColor())
@@ -296,9 +302,7 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
                     let string1 = String(describing: $1.brand)
                     return string0 > string1
                 }
-                self.stopAnimating()
-                self.colors = sortedColors
-                self.collectionView.reloadData()
+                self.updateSortedColors(sortedColors: sortedColors!)
             } else if self.sortingOptions[row] == "Price: $$$ to $" {
                 // Sorting based on brand right now, because it corresponds to price
                 startAnimating(size, message: "Sorting...", type: NVActivityIndicatorType.ballTrianglePath)
@@ -307,9 +311,7 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
                     let string1 = String(describing: $1.brand)
                     return string0 < string1
                 }
-                self.stopAnimating()
-                self.colors = sortedColors
-                self.collectionView.reloadData()
+                self.updateSortedColors(sortedColors: sortedColors!)
             } else if self.sortingOptions[row] == "Color" {
                 let compColor = PolishColor()
                 compColor.redValue = 255
@@ -323,9 +325,7 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
                     let string1 = String(describing: $1.displayName)
                     return string0 < string1
                 }
-                self.stopAnimating()
-                self.colors = sortedColors
-                self.collectionView.reloadData()
+                self.updateSortedColors(sortedColors: sortedColors!)
             }
             self.navigationController?.setNavigationBarHidden(false, animated: true)
         }
