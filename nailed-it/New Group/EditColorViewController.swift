@@ -28,8 +28,12 @@ class EditColorViewController: UIViewController {
         pickedColorImage.backgroundColor = uiColor
         pickedColorImage.layer.cornerRadius = 60
         pickedColorImage.layer.masksToBounds = true
+        pickedColorImage.layer.borderWidth = 1
+        pickedColorImage.layer.borderColor = UIColor.gray.cgColor
         whiteCircleView.layer.cornerRadius = whiteCircleView.frame.width / 2
         whiteCircleView.layer.masksToBounds = true
+        whiteCircleView.layer.borderWidth = 1
+        whiteCircleView.layer.borderColor = UIColor.gray.cgColor
         
         pickedColorName.becomeFirstResponder()
     }
