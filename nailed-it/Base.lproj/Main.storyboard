@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -685,12 +685,21 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WlX-ak-Cld">
                                         <rect key="frame" x="0.0" y="60" width="375" height="607"/>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We need a photo of your beautiful hand! Use the button below to get started." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sn4-ML-et2">
+                                        <rect key="frame" x="40" y="303" width="295" height="61"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.89187222720000003" green="0.97782605889999996" blue="0.92009657619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="Sn4-ML-et2" firstAttribute="centerY" secondItem="LtH-LM-dGa" secondAttribute="centerY" id="78P-v3-Zk0"/>
                                     <constraint firstAttribute="bottom" secondItem="WlX-ak-Cld" secondAttribute="bottom" id="KoN-bN-yxN"/>
                                     <constraint firstAttribute="trailing" secondItem="WlX-ak-Cld" secondAttribute="trailing" id="Pe8-QS-RrK"/>
                                     <constraint firstItem="WlX-ak-Cld" firstAttribute="leading" secondItem="LtH-LM-dGa" secondAttribute="leading" id="Qqz-1s-NQj"/>
+                                    <constraint firstItem="Sn4-ML-et2" firstAttribute="leading" secondItem="LtH-LM-dGa" secondAttribute="leading" constant="40" id="VIf-TL-mVX"/>
+                                    <constraint firstAttribute="trailing" secondItem="Sn4-ML-et2" secondAttribute="trailing" constant="40" id="e3H-zX-jZp"/>
                                     <constraint firstItem="WlX-ak-Cld" firstAttribute="top" secondItem="LtH-LM-dGa" secondAttribute="top" constant="60" id="yq9-kx-M5x"/>
                                 </constraints>
                             </view>
@@ -766,6 +775,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cameraView" destination="vqr-lp-etl" id="lbO-mw-lyQ"/>
+                        <outlet property="emptyStateText" destination="Sn4-ML-et2" id="YAV-6j-GMY"/>
                         <outlet property="imageView" destination="WlX-ak-Cld" id="VCP-FL-zGE"/>
                         <outlet property="selectColorView" destination="Kaf-Ui-rja" id="QFD-bR-Xdj"/>
                     </connections>

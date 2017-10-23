@@ -8,6 +8,7 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     weak var delegate: HamburgerDelegate?
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var selectColorView: UIView!
+    @IBOutlet weak var emptyStateText: UILabel!
     
     let imagePicker = UIImagePickerController()
     let size = CGSize(width: 30, height: 30)
@@ -42,9 +43,11 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
                     polishColor(with: colorPickedFromLib)
                 }
                 selectColorView.isHidden = false
+                emptyStateText.isHidden = true
             }
         } else {
             selectColorView.isHidden = true
+            emptyStateText.isHidden = false
         }
         
         cameraView.layer.cornerRadius = cameraView.frame.width / 2
@@ -99,6 +102,7 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         startAnimating(size, message: "Getting your photo ready...", type: NVActivityIndicatorType.ballTrianglePath)
         self.mask = mask
         selectColorView.isHidden = false
+        emptyStateText.isHidden = true
         applyImageMask()
         saveImageMaskData()
     }
