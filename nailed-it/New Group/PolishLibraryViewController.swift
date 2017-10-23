@@ -26,7 +26,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     var sortingOptions = [String]()
     weak var delegate: PolishLibraryViewControllerDelegate?
     weak var hamburgerDelegate: HamburgerDelegate?
-    var selectedRows: [Any]!
+    var selectedRows: [Any]! = [4]
     let size = CGSize(width: 30, height: 30)
     var refresher: UIRefreshControl!
 
@@ -37,7 +37,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
 
-        sortingOptions = ["Price: $ to $$$", "Price: $$$ to $", "Color", "Name"]
+        sortingOptions = ["Price: $ to $$$", "Price: $$$ to $", "Color", "Name", "Brand"]
 
         let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
@@ -91,10 +91,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             (colors: [PFObject]?, error: Error?) -> Void in
 
             if error == nil {
-                // The find succeeded.
                 print("Successfully retrieved \(colors!.count) scores.")
-                print(colors!)
-                // Do something with the found objects
                 if let colors = colors {
                     self.colors = colors as? [PolishColor]
                     if animate {
@@ -105,7 +102,6 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
                     self.stopAnimating()
                 }
             } else {
-                // Log details of the failure
                 print("Error: \(error!) \(error!.localizedDescription)")
                 self.stopAnimating()
             }
@@ -158,7 +154,9 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         actionSheetController.addAction(tryItOnAction)
         
         let findSimilarColor = UIAlertAction(title: "Find Similar Colors", style: .default) { action -> Void in
-            self.prepareForColorComparasion(color: color, libraryColors: self.colors!)
+            self.saveDistanceVectors(color: color, libraryColors: self.colors!)
+            self.sortLibraryColors()
+            self.findRecommendedColors(sortedColors: self.colors!)
         }
         actionSheetController.addAction(findSimilarColor)
 
@@ -187,28 +185,32 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         let escapedBrand = color!.brand!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
         let escapedName = color!.displayName!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
         let searchString = "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=" + escapedName! + "+" + escapedBrand!
-        print(searchString)
         UIApplication.shared.open(URL(string: searchString)!, options: [:], completionHandler: nil)
     }
     
-    func prepareForColorComparasion(color: PolishColor!, libraryColors: [PolishColor?]) {
+    func saveDistanceVectors(color: PolishColor!, libraryColors: [PolishColor?]) {
         startAnimating(size, message: "Sorting by Color...", type: NVActivityIndicatorType.ballTrianglePath)
         for libraryColor in libraryColors {
             let redDistance = color.redValue - (libraryColor?.redValue)!
             let greenDistance = color.greenValue - (libraryColor?.greenValue)!
             let blueDistance = color.blueValue - (libraryColor?.blueValue)!
             libraryColor?.distanceVector = CGFloat(((redDistance * redDistance) + (greenDistance * greenDistance) + (blueDistance * blueDistance)).squareRoot())
-            
         }
+    }
+    func sortLibraryColors() {
         let sortedColors = self.colors?.sorted {
             let string0 = String(describing: $0.distanceVector)
             let string1 = String(describing: $1.distanceVector)
             return string0 < string1
         }
-        
+        self.updateSortedColors(sortedColors: sortedColors!)
+        self.stopAnimating()
+    }
+    
+    func findRecommendedColors(sortedColors: [PolishColor]) {
         var sortedAndFiltered = [PolishColor]()
-        for sortedColor in sortedColors! {
-            if abs(sortedColor.distanceVector!) < 0.4 {
+        for sortedColor in sortedColors {
+            if sortedColor.distanceVector! < 0.4 {
                 sortedAndFiltered.append(sortedColor)
             }
         }
@@ -219,13 +221,13 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             let banner = NotificationBanner(title: "Oops! We didn't find any similar colors. Try a different one!", subtitle: nil, style: .info)
             banner.show()
         }
-        self.stopAnimating()
     }
     
     func updateSortedColors(sortedColors: [PolishColor]) {
         self.colors = sortedColors
         self.collectionView.reloadData()
         self.stopAnimating()
+        self.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
     
     func showShareOptions(polishColor: PolishColor) {
@@ -258,6 +260,7 @@ extension UIImage {
 
 extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     func czpickerViewWillDisplay(_ pickerView: CZPickerView!) {
+        pickerView.setSelectedRows(self.selectedRows)
     }
 
     func numberOfRows(in pickerView: CZPickerView!) -> Int {
@@ -280,7 +283,8 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
     func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
         startAnimating(size, message: "Sorting...", type: NVActivityIndicatorType.ballTrianglePath)
             if self.sortingOptions[row] == "Price: $ to $$$" {
-                // Sorting based on brand right now, because it corresponds to price
+                self.selectedRows = [0]
+                pickerView.setSelectedRows([0])
                 let sortedColors = self.colors?.sorted {
                     let string0 = String(describing: $0.brand)
                     let string1 = String(describing: $1.brand)
@@ -288,6 +292,8 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
                 }
                 self.updateSortedColors(sortedColors: sortedColors!)
             } else if self.sortingOptions[row] == "Price: $$$ to $" {
+                self.selectedRows = [1]
+                pickerView.setSelectedRows([1])
                 let sortedColors = self.colors?.sorted {
                     let string0 = String(describing: $0.brand)
                     let string1 = String(describing: $1.brand)
@@ -295,19 +301,34 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
                 }
                 self.updateSortedColors(sortedColors: sortedColors!)
             } else if self.sortingOptions[row] == "Color" {
+                self.selectedRows = [2]
+                pickerView.setSelectedRows([2])
                 let compColor = PolishColor()
                 compColor.redValue = 255
                 compColor.blueValue = 255
                 compColor.blueValue = 255
-                prepareForColorComparasion(color: compColor, libraryColors: self.colors!)
+                saveDistanceVectors(color: compColor, libraryColors: self.colors!)
+                sortLibraryColors()
+                
             } else if self.sortingOptions[row] == "Name" {
+                self.selectedRows = [3]
+                pickerView.setSelectedRows([3])
                 let sortedColors = self.colors?.sorted {
                     let string0 = String(describing: $0.displayName)
                     let string1 = String(describing: $1.displayName)
                     return string0 < string1
                 }
                 self.updateSortedColors(sortedColors: sortedColors!)
-            }
+            }  else if self.sortingOptions[row] == "Brand" {
+                self.selectedRows = [4]
+                pickerView.setSelectedRows([4])
+                let sortedColors = self.colors?.sorted {
+                    let string0 = String(describing: $0.brand)
+                    let string1 = String(describing: $1.brand)
+                    return string0 < string1
+                }
+                self.updateSortedColors(sortedColors: sortedColors!)
+        }
             self.navigationController?.setNavigationBarHidden(false, animated: true)
         }
 
