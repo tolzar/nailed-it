@@ -334,7 +334,7 @@
             </objects>
             <point key="canvasLocation" x="1629.5999999999999" y="37.331334332833585"/>
         </scene>
-        <!--Edit Polish Color-->
+        <!--Pick a Polish Name-->
         <scene sceneID="NLo-4D-xGc">
             <objects>
                 <viewController id="lGQ-9P-4JV" customClass="EditColorViewController" customModule="nailed_it" customModuleProvider="target" sceneMemberID="viewController">
@@ -342,30 +342,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RB6-Iy-chn">
-                                <rect key="frame" x="67" y="219" width="240" height="383"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.92087834727887408" green="0.42705544624477898" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="aUc-2N-51I">
+                                <rect key="frame" x="37.5" y="89" width="300" height="300"/>
+                                <subviews>
+                                    <view alpha="0.94999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wad-Oz-Cou">
+                                        <rect key="frame" x="75" y="75.5" width="150" height="150"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vDT-Dp-DAW">
+                                                <rect key="frame" x="20" y="20" width="110" height="110"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="vDT-Dp-DAW" firstAttribute="leading" secondItem="Wad-Oz-Cou" secondAttribute="leading" constant="20" id="MhP-Zd-9WF"/>
+                                            <constraint firstAttribute="width" constant="150" id="Y4D-pC-Xvp"/>
+                                            <constraint firstAttribute="bottom" secondItem="vDT-Dp-DAW" secondAttribute="bottom" constant="20" id="kYx-o8-CtC"/>
+                                            <constraint firstAttribute="trailing" secondItem="vDT-Dp-DAW" secondAttribute="trailing" constant="20" id="rsU-YD-7UK"/>
+                                            <constraint firstAttribute="height" constant="150" id="u7h-dM-nMi"/>
+                                            <constraint firstItem="vDT-Dp-DAW" firstAttribute="top" secondItem="Wad-Oz-Cou" secondAttribute="top" constant="20" id="xxs-yy-HbI"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.51282709839999996" green="0.87898319960000004" blue="0.65234202149999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="Wad-Oz-Cou" firstAttribute="centerX" secondItem="aUc-2N-51I" secondAttribute="centerX" id="UjN-Lk-YwY"/>
+                                    <constraint firstItem="Wad-Oz-Cou" firstAttribute="centerY" secondItem="aUc-2N-51I" secondAttribute="centerY" id="l0T-Qm-QHV"/>
+                                    <constraint firstAttribute="height" constant="300" id="tAv-KD-5l2"/>
+                                    <constraint firstAttribute="width" constant="300" id="uOW-VB-Oki"/>
+                                </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GY6-SR-PEk">
-                                <rect key="frame" x="67" y="153" width="240" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Polish color name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bu2-n7-XG3">
-                                <rect key="frame" x="67" y="124" width="136" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aUc-2N-51I" firstAttribute="centerX" secondItem="DQw-83-iEh" secondAttribute="centerX" id="YOt-WD-qiG"/>
+                            <constraint firstItem="aUc-2N-51I" firstAttribute="top" secondItem="esU-LJ-k2q" secondAttribute="top" constant="25" id="aEi-kr-fyI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="esU-LJ-k2q"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Polish Color" id="J9i-e2-lL1">
+                    <navigationItem key="navigationItem" title="Pick a Polish Name" id="J9i-e2-lL1">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="EUQ-ye-a1b">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eqG-uf-Og3">
                                 <rect key="frame" x="325" y="7" width="34" height="30"/>
@@ -378,8 +396,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="pickedColorImage" destination="RB6-Iy-chn" id="oZc-I4-tg3"/>
-                        <outlet property="pickedColorName" destination="GY6-SR-PEk" id="9Xg-24-PmC"/>
+                        <outlet property="pickedColorImage" destination="aUc-2N-51I" id="O0p-Pj-S5A"/>
+                        <outlet property="pickedColorName" destination="vDT-Dp-DAW" id="93H-Md-Slt"/>
+                        <outlet property="whiteCircleView" destination="Wad-Oz-Cou" id="JXV-X8-Gie"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gce-d3-1ov" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -699,7 +718,7 @@
                                         </constraints>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kaf-Ui-rja">
-                                        <rect key="frame" x="-147.5" y="0.0" width="80" height="80"/>
+                                        <rect key="frame" x="-162.5" y="0.0" width="80" height="80"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Rj-UO-hkK">
                                                 <rect key="frame" x="15" y="15" width="50" height="50"/>
