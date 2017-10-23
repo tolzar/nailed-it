@@ -49,7 +49,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     
     @IBAction func onSort(_ sender: Any) {
         let picker = CZPickerView(headerTitle: "Sort By", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
-        setUpPicker(picker: picker!, type: "sort")
+        setUpPicker(picker: picker!)
     }
     
     @objc func refreshData() {
@@ -57,7 +57,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         self.refresher.endRefreshing()
     }
     
-    func setUpPicker(picker: CZPickerView, type: String) {
+    func setUpPicker(picker: CZPickerView) {
         let greenColor = UIColor(red:0.59, green:0.89, blue:0.70, alpha:1.0)
         let pinkColor = UIColor(red:0.98, green:0.66, blue:0.65, alpha:1.0)
         let whiteColor = UIColor.white
