@@ -26,7 +26,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     var sortingOptions = [String]()
     weak var delegate: PolishLibraryViewControllerDelegate?
     weak var hamburgerDelegate: HamburgerDelegate?
-    var selectedRows: [Any]!
+    var selectedRows: [Any]! = [4]
     let size = CGSize(width: 30, height: 30)
     var refresher: UIRefreshControl!
 
@@ -254,6 +254,7 @@ extension UIImage {
 
 extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     func czpickerViewWillDisplay(_ pickerView: CZPickerView!) {
+        pickerView.setSelectedRows(self.selectedRows)
     }
 
     func numberOfRows(in pickerView: CZPickerView!) -> Int {
@@ -276,7 +277,8 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
     func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
         startAnimating(size, message: "Sorting...", type: NVActivityIndicatorType.ballTrianglePath)
             if self.sortingOptions[row] == "Price: $ to $$$" {
-                // Sorting based on brand right now, because it corresponds to price
+                self.selectedRows = [0]
+                pickerView.setSelectedRows([0])
                 let sortedColors = self.colors?.sorted {
                     let string0 = String(describing: $0.brand)
                     let string1 = String(describing: $1.brand)
@@ -284,6 +286,8 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
                 }
                 self.updateSortedColors(sortedColors: sortedColors!)
             } else if self.sortingOptions[row] == "Price: $$$ to $" {
+                self.selectedRows = [1]
+                pickerView.setSelectedRows([1])
                 let sortedColors = self.colors?.sorted {
                     let string0 = String(describing: $0.brand)
                     let string1 = String(describing: $1.brand)
@@ -291,12 +295,16 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
                 }
                 self.updateSortedColors(sortedColors: sortedColors!)
             } else if self.sortingOptions[row] == "Color" {
+                self.selectedRows = [2]
+                pickerView.setSelectedRows([2])
                 let compColor = PolishColor()
                 compColor.redValue = 255
                 compColor.blueValue = 255
                 compColor.blueValue = 255
                 prepareForColorComparasion(color: compColor, libraryColors: self.colors!)
             } else if self.sortingOptions[row] == "Name" {
+                self.selectedRows = [3]
+                pickerView.setSelectedRows([3])
                 let sortedColors = self.colors?.sorted {
                     let string0 = String(describing: $0.displayName)
                     let string1 = String(describing: $1.displayName)
@@ -304,6 +312,8 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
                 }
                 self.updateSortedColors(sortedColors: sortedColors!)
             }  else if self.sortingOptions[row] == "Brand" {
+                self.selectedRows = [4]
+                pickerView.setSelectedRows([4])
                 let sortedColors = self.colors?.sorted {
                     let string0 = String(describing: $0.brand)
                     let string1 = String(describing: $1.brand)
