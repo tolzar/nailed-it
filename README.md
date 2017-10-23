@@ -24,9 +24,9 @@ Core user stories:
     - [x] user can view salons in a map
 
 Nice-to-have user stories:
-- [ ] User will see additional suggested colors that are similar to the
+- [x] User will see additional suggested colors that are similar to the
   one they selected
-   - [ ] user can see different brands in order of cheaper names to more expensive brands (very useful hehe)
+   - [x] user can see different brands in order of cheaper names to more expensive brands (very useful hehe)
 - [x] User can hit long press on the image of their hand from the Try It On screen to share the given polish color ontop of
   their nails!
 - [ ] User can take a picture of a piece of clothing to determine a good

@@ -11,41 +11,29 @@ import Parse
 import SafariServices
 import CZPicker
 import NVActivityIndicatorView
-import NotificationBannerSwift
 
-@objc protocol PolishLibraryViewControllerDelegate {
-    @objc optional func polishColor(with polishColor: PolishColor?)
-}
-
-class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIActionSheetDelegate, NVActivityIndicatorViewable {
+class RecommendedColorsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIActionSheetDelegate, NVActivityIndicatorViewable {
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
     var colors: [PolishColor]?
-    var recommendedColors: [PolishColor]?
-    var brands = [String]()
     var sortingOptions = [String]()
-    weak var delegate: PolishLibraryViewControllerDelegate?
-    weak var hamburgerDelegate: HamburgerDelegate?
     var selectedRows: [Any]!
     let size = CGSize(width: 30, height: 30)
     var refresher: UIRefreshControl!
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-
+        
         sortingOptions = ["Price: $ to $$$", "Price: $$$ to $", "Color", "Name"]
-
+        
         let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
         
-        self.refresher = UIRefreshControl()
-        self.refresher.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        self.collectionView!.addSubview(refresher)
-
+        collectionView.reloadData()
     }
     
     @IBAction func onSort(_ sender: Any) {
@@ -55,7 +43,6 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     
     @objc func refreshData() {
         fetchData(animate: true)
-        self.refresher.endRefreshing()
     }
     
     func setUpPicker(picker: CZPickerView) {
@@ -75,11 +62,6 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         picker.show()
     }
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        fetchData(animate: collectionView.numberOfItems(inSection: 0) == 0)
-    }
-
     func fetchData(animate: Bool) {
         if animate {
             startAnimating(size, message: "Hang tight!\nLoading your polish collection...", type: NVActivityIndicatorType.ballTrianglePath)
@@ -89,7 +71,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         query.addDescendingOrder("createdAt")
         query.findObjectsInBackground {
             (colors: [PFObject]?, error: Error?) -> Void in
-
+            
             if error == nil {
                 // The find succeeded.
                 print("Successfully retrieved \(colors!.count) scores.")
@@ -111,77 +93,62 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             }
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.colors?.count ?? 0
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PolishCollectionViewCell", for: indexPath) as! PolishCollectionViewCell
         cell.polishColor = colors?[indexPath.row]
-
+        
         return cell;
-
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let color = colors?[indexPath.row]
-        if let delegate = delegate {
-            delegate.polishColor!(with: color)
-            dismiss(animated: true, completion: nil)
-        } else {
-            showActionSheet(color: color)
-        }
+        
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? RecommendedColorsViewController {
-            vc.colors = self.recommendedColors
-        }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let color = colors?[indexPath.row]
+        showActionSheet(color: color)
     }
-
+    
     func showActionSheet(color: PolishColor!) {
         let actionSheetController = UIAlertController(title: "\(color!.displayName!) by \(color!.brand!)", message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
             // Just dismiss the action sheet
         }
         actionSheetController.addAction(cancelAction)
-
+        
         let sharePolishColor = UIAlertAction(title: "Share Polish Color", style: .default) { action -> Void in
             self.showShareOptions(polishColor: color!)
         }
         actionSheetController.addAction(sharePolishColor)
-
+        
         let tryItOnAction = UIAlertAction(title: "Try It On", style: .default) { action -> Void in
             self.prepareForTryItOn(color: color)
         }
         actionSheetController.addAction(tryItOnAction)
         
-        let findSimilarColor = UIAlertAction(title: "Find Similar Colors", style: .default) { action -> Void in
-            self.prepareForColorComparasion(color: color, libraryColors: self.colors!)
-        }
-        actionSheetController.addAction(findSimilarColor)
-
+        
         if color!.brand! != "My Color" {
             let findThisColor = UIAlertAction(title: "Find \(color!.displayName!) Online", style: .default) { action -> Void in
                 self.prepareForPolishSearch(color: color)
             }
             actionSheetController.addAction(findThisColor)
-
+            
         }
         actionSheetController.popoverPresentationController?.sourceView = self.view as UIView
         self.present(actionSheetController, animated: true, completion: {() -> Void in
             actionSheetController.view.tintColor = UIColor(red:0.98, green:0.66, blue:0.65, alpha:1.0)
         })
     }
-
+    
     func prepareForTryItOn(color: PolishColor!) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tryItOnViewController = storyboard.instantiateViewController(withIdentifier: "TryItOnViewController") as! TryItOnViewController
         tryItOnViewController.colorPickedFromLib = color
         self.show(tryItOnViewController, sender: self)
     }
-
+    
     func prepareForPolishSearch(color: PolishColor!) {
         let allowedCharacterSet = (CharacterSet(charactersIn: " ").inverted)
         let escapedBrand = color!.brand!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
@@ -205,21 +172,13 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             let string1 = String(describing: $1.distanceVector)
             return string0 < string1
         }
-        
-        var sortedAndFiltered = [PolishColor]()
-        for sortedColor in sortedColors! {
-            if abs(sortedColor.distanceVector!) < 0.4 {
-                sortedAndFiltered.append(sortedColor)
-            }
-        }
-        if sortedAndFiltered.count > 1 {
-            self.recommendedColors = sortedAndFiltered
-            performSegue(withIdentifier: "recommendedColorsSegue", sender: self)
-        } else {
-            let banner = NotificationBanner(title: "Oops! We didn't find any similar colors. Try a different one!", subtitle: nil, style: .info)
-            banner.show()
-        }
+        self.colors = sortedColors
+        self.collectionView.reloadData()
+        self.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
+                                         at: .top,
+                                         animated: true)
         self.stopAnimating()
+        
     }
     
     func updateSortedColors(sortedColors: [PolishColor]) {
@@ -231,87 +190,71 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     func showShareOptions(polishColor: PolishColor) {
         let image = UIImageView()
         image.image = UIImage.from(color: polishColor.getUIColor())
-
+        
         let imageToShare = [image.image!, "Check out this nail polish color by \(polishColor.brand!). It's called \(polishColor.displayName!).", "\nShared via Nailed It"] as [Any]
         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
         self.present(activityViewController, animated: true, completion: nil)
     }
-
-    @IBAction func onHamburgerPressed(_ sender: Any) {
-        hamburgerDelegate?.hamburgerPressed()
-    }
 }
 
-extension UIImage {
-    static func from(color: UIColor) -> UIImage {
-        let rect = CGRect(x: 0, y: 0, width: 200, height: 200)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-        context!.setFillColor(color.cgColor)
-        context!.fill(rect)
-        let img = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return img!
-    }
-}
-
-extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSource {
+extension RecommendedColorsViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     func czpickerViewWillDisplay(_ pickerView: CZPickerView!) {
     }
-
+    
     func numberOfRows(in pickerView: CZPickerView!) -> Int {
         return self.sortingOptions.count
     }
-
+    
     func numberOfRowsInPickerView(pickerView: CZPickerView!) -> Int {
         return self.sortingOptions.count
     }
-
+    
     func czpickerView(_ pickerView: CZPickerView!, titleForRow row: Int) -> String! {
         return self.sortingOptions[row]
-
+        
     }
-
+    
     func czpickerViewDidClickCancelButton(_ pickerView: CZPickerView!) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
         startAnimating(size, message: "Sorting...", type: NVActivityIndicatorType.ballTrianglePath)
-            if self.sortingOptions[row] == "Price: $ to $$$" {
-                // Sorting based on brand right now, because it corresponds to price
-                let sortedColors = self.colors?.sorted {
-                    let string0 = String(describing: $0.brand)
-                    let string1 = String(describing: $1.brand)
-                    return string0 > string1
-                }
-                self.updateSortedColors(sortedColors: sortedColors!)
-            } else if self.sortingOptions[row] == "Price: $$$ to $" {
-                let sortedColors = self.colors?.sorted {
-                    let string0 = String(describing: $0.brand)
-                    let string1 = String(describing: $1.brand)
-                    return string0 < string1
-                }
-                self.updateSortedColors(sortedColors: sortedColors!)
-            } else if self.sortingOptions[row] == "Color" {
-                let compColor = PolishColor()
-                compColor.redValue = 255
-                compColor.blueValue = 255
-                compColor.blueValue = 255
-                prepareForColorComparasion(color: compColor, libraryColors: self.colors!)
-            } else if self.sortingOptions[row] == "Name" {
-                let sortedColors = self.colors?.sorted {
-                    let string0 = String(describing: $0.displayName)
-                    let string1 = String(describing: $1.displayName)
-                    return string0 < string1
-                }
-                self.updateSortedColors(sortedColors: sortedColors!)
+        if self.sortingOptions[row] == "Price: $ to $$$" {
+            // Sorting based on brand right now, because it corresponds to price
+            let sortedColors = self.colors?.sorted {
+                let string0 = String(describing: $0.brand)
+                let string1 = String(describing: $1.brand)
+                return string0 > string1
             }
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.updateSortedColors(sortedColors: sortedColors!)
+        } else if self.sortingOptions[row] == "Price: $$$ to $" {
+            let sortedColors = self.colors?.sorted {
+                let string0 = String(describing: $0.brand)
+                let string1 = String(describing: $1.brand)
+                return string0 < string1
+            }
+            self.updateSortedColors(sortedColors: sortedColors!)
+        } else if self.sortingOptions[row] == "Color" {
+            let compColor = PolishColor()
+            compColor.redValue = 255
+            compColor.blueValue = 255
+            compColor.blueValue = 255
+            prepareForColorComparasion(color: compColor, libraryColors: self.colors!)
+        } else if self.sortingOptions[row] == "Name" {
+            let sortedColors = self.colors?.sorted {
+                let string0 = String(describing: $0.displayName)
+                let string1 = String(describing: $1.displayName)
+                return string0 < string1
+            }
+            self.updateSortedColors(sortedColors: sortedColors!)
         }
-
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [Any]!) {
     }
 }
+
 
