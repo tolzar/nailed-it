@@ -91,11 +91,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             (colors: [PFObject]?, error: Error?) -> Void in
 
             if error == nil {
-                // The find succeeded.
                 print("Successfully retrieved \(colors!.count) scores.")
-                print(colors!)
-                print(colors?.count)
-                // Do something with the found objects
                 if let colors = colors {
                     self.colors = colors as? [PolishColor]
                     if animate {
@@ -106,7 +102,6 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
                     self.stopAnimating()
                 }
             } else {
-                // Log details of the failure
                 print("Error: \(error!) \(error!.localizedDescription)")
                 self.stopAnimating()
             }
@@ -188,7 +183,6 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         let escapedBrand = color!.brand!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
         let escapedName = color!.displayName!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
         let searchString = "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=" + escapedName! + "+" + escapedBrand!
-        print(searchString)
         UIApplication.shared.open(URL(string: searchString)!, options: [:], completionHandler: nil)
     }
     

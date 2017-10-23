@@ -73,10 +73,6 @@ class RecommendedColorsViewController: UIViewController, UICollectionViewDelegat
             (colors: [PFObject]?, error: Error?) -> Void in
             
             if error == nil {
-                // The find succeeded.
-                print("Successfully retrieved \(colors!.count) scores.")
-                print(colors!)
-                // Do something with the found objects
                 if let colors = colors {
                     self.colors = colors as? [PolishColor]
                     if animate {
@@ -154,7 +150,6 @@ class RecommendedColorsViewController: UIViewController, UICollectionViewDelegat
         let escapedBrand = color!.brand!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
         let escapedName = color!.displayName!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
         let searchString = "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=" + escapedName! + "+" + escapedBrand!
-        print(searchString)
         UIApplication.shared.open(URL(string: searchString)!, options: [:], completionHandler: nil)
     }
     
