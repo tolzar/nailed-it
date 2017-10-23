@@ -27,6 +27,7 @@
 		11FB8DCF1F8D956D000510A8 /* ColorDropperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DCE1F8D956D000510A8 /* ColorDropperViewController.swift */; };
 		11FB8DD21F8DAF28000510A8 /* PolishLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DD11F8DAF28000510A8 /* PolishLibraryViewController.swift */; };
 		11FB8DD41F8DAF33000510A8 /* TryItOnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DD31F8DAF33000510A8 /* TryItOnViewController.swift */; };
+		11FC6BA11F9D728E00E7301C /* RecommendedColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FC6BA01F9D728E00E7301C /* RecommendedColorsViewController.swift */; };
 		E656DBF215E92FBBC9263D34 /* Pods_nailed_it.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC9EEB78115073D7366075BF /* Pods_nailed_it.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		11FB8DCE1F8D956D000510A8 /* ColorDropperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDropperViewController.swift; sourceTree = "<group>"; };
 		11FB8DD11F8DAF28000510A8 /* PolishLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolishLibraryViewController.swift; sourceTree = "<group>"; };
 		11FB8DD31F8DAF33000510A8 /* TryItOnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryItOnViewController.swift; sourceTree = "<group>"; };
+		11FC6BA01F9D728E00E7301C /* RecommendedColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedColorsViewController.swift; sourceTree = "<group>"; };
 		CC9EEB78115073D7366075BF /* Pods_nailed_it.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nailed_it.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA77F8322423B7EE149D8BC /* Pods-nailed-it.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nailed-it.release.xcconfig"; path = "Pods/Target Support Files/Pods-nailed-it/Pods-nailed-it.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +126,7 @@
 				11FB8DD31F8DAF33000510A8 /* TryItOnViewController.swift */,
 				0CE7F3F21F8EEE370069E130 /* EditColorViewController.swift */,
 				112563DF1F96DE6600F3D0D3 /* MapViewController.swift */,
+				11FC6BA01F9D728E00E7301C /* RecommendedColorsViewController.swift */,
 			);
 			name = ViewControllers;
 			path = "New Group";
@@ -337,6 +340,7 @@
 				11FB8DC41F8D7A4F000510A8 /* NearbyShopsViewController.swift in Sources */,
 				11FB8DD41F8DAF33000510A8 /* TryItOnViewController.swift in Sources */,
 				11FB8DC71F8D7C33000510A8 /* ShopCell.swift in Sources */,
+				11FC6BA11F9D728E00E7301C /* RecommendedColorsViewController.swift in Sources */,
 				112563E01F96DE6600F3D0D3 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,7 +481,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CV9LM3C838;
+				DEVELOPMENT_TEAM = C5D5LEK9E8;
 				INFOPLIST_FILE = "nailed-it/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -496,7 +500,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CV9LM3C838;
+				DEVELOPMENT_TEAM = C5D5LEK9E8;
 				INFOPLIST_FILE = "nailed-it/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
