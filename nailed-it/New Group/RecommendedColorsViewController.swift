@@ -28,7 +28,7 @@ class RecommendedColorsViewController: UIViewController, UICollectionViewDelegat
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
-        sortingOptions = ["Price: $ to $$$", "Price: $$$ to $", "Color", "Name", "Brand"]
+        sortingOptions = ["Price: $ to $$$", "Price: $$$ to $", "Name", "Brand"]
         
         let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
@@ -153,29 +153,6 @@ class RecommendedColorsViewController: UIViewController, UICollectionViewDelegat
         UIApplication.shared.open(URL(string: searchString)!, options: [:], completionHandler: nil)
     }
     
-    func prepareForColorComparasion(color: PolishColor!, libraryColors: [PolishColor?]) {
-        startAnimating(size, message: "Sorting by Color...", type: NVActivityIndicatorType.ballTrianglePath)
-        for libraryColor in libraryColors {
-            let redDistance = color.redValue - (libraryColor?.redValue)!
-            let greenDistance = color.greenValue - (libraryColor?.greenValue)!
-            let blueDistance = color.blueValue - (libraryColor?.blueValue)!
-            libraryColor?.distanceVector = CGFloat(((redDistance * redDistance) + (greenDistance * greenDistance) + (blueDistance * blueDistance)).squareRoot())
-            
-        }
-        let sortedColors = self.colors?.sorted {
-            let string0 = String(describing: $0.distanceVector)
-            let string1 = String(describing: $1.distanceVector)
-            return string0 < string1
-        }
-        self.colors = sortedColors
-        self.collectionView.reloadData()
-        self.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
-                                         at: .top,
-                                         animated: true)
-        self.stopAnimating()
-        
-    }
-    
     func updateSortedColors(sortedColors: [PolishColor]) {
         self.colors = sortedColors
         self.collectionView.reloadData()
@@ -196,6 +173,7 @@ class RecommendedColorsViewController: UIViewController, UICollectionViewDelegat
 
 extension RecommendedColorsViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     func czpickerViewWillDisplay(_ pickerView: CZPickerView!) {
+        pickerView.setSelectedRows(self.selectedRows)
     }
     
     func numberOfRows(in pickerView: CZPickerView!) -> Int {
@@ -218,7 +196,8 @@ extension RecommendedColorsViewController: CZPickerViewDelegate, CZPickerViewDat
     func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
         startAnimating(size, message: "Sorting...", type: NVActivityIndicatorType.ballTrianglePath)
         if self.sortingOptions[row] == "Price: $ to $$$" {
-            // Sorting based on brand right now, because it corresponds to price
+            self.selectedRows = [0]
+            pickerView.setSelectedRows([0])
             let sortedColors = self.colors?.sorted {
                 let string0 = String(describing: $0.brand)
                 let string1 = String(describing: $1.brand)
@@ -226,19 +205,17 @@ extension RecommendedColorsViewController: CZPickerViewDelegate, CZPickerViewDat
             }
             self.updateSortedColors(sortedColors: sortedColors!)
         } else if self.sortingOptions[row] == "Price: $$$ to $" {
+            self.selectedRows = [1]
+            pickerView.setSelectedRows([1])
             let sortedColors = self.colors?.sorted {
                 let string0 = String(describing: $0.brand)
                 let string1 = String(describing: $1.brand)
                 return string0 < string1
             }
             self.updateSortedColors(sortedColors: sortedColors!)
-        } else if self.sortingOptions[row] == "Color" {
-            let compColor = PolishColor()
-            compColor.redValue = 255
-            compColor.blueValue = 255
-            compColor.blueValue = 255
-            prepareForColorComparasion(color: compColor, libraryColors: self.colors!)
         } else if self.sortingOptions[row] == "Name" {
+            self.selectedRows = [2]
+            pickerView.setSelectedRows([2])
             let sortedColors = self.colors?.sorted {
                 let string0 = String(describing: $0.displayName)
                 let string1 = String(describing: $1.displayName)
@@ -246,6 +223,8 @@ extension RecommendedColorsViewController: CZPickerViewDelegate, CZPickerViewDat
             }
             self.updateSortedColors(sortedColors: sortedColors!)
         } else if self.sortingOptions[row] == "Brand" {
+            self.selectedRows = [3]
+            pickerView.setSelectedRows([3])
             let sortedColors = self.colors?.sorted {
                 let string0 = String(describing: $0.brand)
                 let string1 = String(describing: $1.brand)

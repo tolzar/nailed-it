@@ -154,7 +154,9 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         actionSheetController.addAction(tryItOnAction)
         
         let findSimilarColor = UIAlertAction(title: "Find Similar Colors", style: .default) { action -> Void in
-            self.prepareForColorComparasion(color: color, libraryColors: self.colors!, suggestedColor: true)
+            self.saveDistanceVectors(color: color, libraryColors: self.colors!)
+            self.sortLibraryColors()
+            self.findRecommendedColors(sortedColors: self.colors!)
         }
         actionSheetController.addAction(findSimilarColor)
 
@@ -186,40 +188,39 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         UIApplication.shared.open(URL(string: searchString)!, options: [:], completionHandler: nil)
     }
     
-    func prepareForColorComparasion(color: PolishColor!, libraryColors: [PolishColor?], suggestedColor: Bool) {
+    func saveDistanceVectors(color: PolishColor!, libraryColors: [PolishColor?]) {
         startAnimating(size, message: "Sorting by Color...", type: NVActivityIndicatorType.ballTrianglePath)
         for libraryColor in libraryColors {
             let redDistance = color.redValue - (libraryColor?.redValue)!
             let greenDistance = color.greenValue - (libraryColor?.greenValue)!
             let blueDistance = color.blueValue - (libraryColor?.blueValue)!
             libraryColor?.distanceVector = CGFloat(((redDistance * redDistance) + (greenDistance * greenDistance) + (blueDistance * blueDistance)).squareRoot())
-            
         }
+    }
+    func sortLibraryColors() {
         let sortedColors = self.colors?.sorted {
             let string0 = String(describing: $0.distanceVector)
             let string1 = String(describing: $1.distanceVector)
             return string0 < string1
         }
-        
-        if suggestedColor == true {
-            var sortedAndFiltered = [PolishColor]()
-            for sortedColor in sortedColors! {
-                if sortedColor.distanceVector! < 0.4 {
-                    sortedAndFiltered.append(sortedColor)
-                }
-            }
-            if sortedAndFiltered.count > 1 {
-                self.recommendedColors = sortedAndFiltered
-                performSegue(withIdentifier: "recommendedColorsSegue", sender: self)
-            } else {
-                let banner = NotificationBanner(title: "Oops! We didn't find any similar colors. Try a different one!", subtitle: nil, style: .info)
-                banner.show()
-            }
-        } else {
-            self.updateSortedColors(sortedColors: sortedColors!)
-        }
-        
+        self.updateSortedColors(sortedColors: sortedColors!)
         self.stopAnimating()
+    }
+    
+    func findRecommendedColors(sortedColors: [PolishColor]) {
+        var sortedAndFiltered = [PolishColor]()
+        for sortedColor in sortedColors {
+            if sortedColor.distanceVector! < 0.4 {
+                sortedAndFiltered.append(sortedColor)
+            }
+        }
+        if sortedAndFiltered.count > 1 {
+            self.recommendedColors = sortedAndFiltered
+            performSegue(withIdentifier: "recommendedColorsSegue", sender: self)
+        } else {
+            let banner = NotificationBanner(title: "Oops! We didn't find any similar colors. Try a different one!", subtitle: nil, style: .info)
+            banner.show()
+        }
     }
     
     func updateSortedColors(sortedColors: [PolishColor]) {
@@ -306,7 +307,9 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
                 compColor.redValue = 255
                 compColor.blueValue = 255
                 compColor.blueValue = 255
-                prepareForColorComparasion(color: compColor, libraryColors: self.colors!, suggestedColor: false)
+                saveDistanceVectors(color: compColor, libraryColors: self.colors!)
+                sortLibraryColors()
+                
             } else if self.sortingOptions[row] == "Name" {
                 self.selectedRows = [3]
                 pickerView.setSelectedRows([3])
