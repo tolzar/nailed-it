@@ -37,7 +37,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
 
-        sortingOptions = ["Price: $ to $$$", "Price: $$$ to $", "Color", "Name"]
+        sortingOptions = ["Price: $ to $$$", "Price: $$$ to $", "Color", "Name", "Brand"]
 
         let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
@@ -94,6 +94,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
                 // The find succeeded.
                 print("Successfully retrieved \(colors!.count) scores.")
                 print(colors!)
+                print(colors?.count)
                 // Do something with the found objects
                 if let colors = colors {
                     self.colors = colors as? [PolishColor]
@@ -208,7 +209,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         
         var sortedAndFiltered = [PolishColor]()
         for sortedColor in sortedColors! {
-            if abs(sortedColor.distanceVector!) < 0.4 {
+            if sortedColor.distanceVector! < 0.4 {
                 sortedAndFiltered.append(sortedColor)
             }
         }
@@ -226,6 +227,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         self.colors = sortedColors
         self.collectionView.reloadData()
         self.stopAnimating()
+        self.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
     
     func showShareOptions(polishColor: PolishColor) {
@@ -307,7 +309,14 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
                     return string0 < string1
                 }
                 self.updateSortedColors(sortedColors: sortedColors!)
-            }
+            }  else if self.sortingOptions[row] == "Brand" {
+                let sortedColors = self.colors?.sorted {
+                    let string0 = String(describing: $0.brand)
+                    let string1 = String(describing: $1.brand)
+                    return string0 < string1
+                }
+                self.updateSortedColors(sortedColors: sortedColors!)
+        }
             self.navigationController?.setNavigationBarHidden(false, animated: true)
         }
 

@@ -28,7 +28,7 @@ class RecommendedColorsViewController: UIViewController, UICollectionViewDelegat
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
-        sortingOptions = ["Price: $ to $$$", "Price: $$$ to $", "Color", "Name"]
+        sortingOptions = ["Price: $ to $$$", "Price: $$$ to $", "Color", "Name", "Brand"]
         
         let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
@@ -185,6 +185,7 @@ class RecommendedColorsViewController: UIViewController, UICollectionViewDelegat
         self.colors = sortedColors
         self.collectionView.reloadData()
         self.stopAnimating()
+        self.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
     
     func showShareOptions(polishColor: PolishColor) {
@@ -246,6 +247,13 @@ extension RecommendedColorsViewController: CZPickerViewDelegate, CZPickerViewDat
             let sortedColors = self.colors?.sorted {
                 let string0 = String(describing: $0.displayName)
                 let string1 = String(describing: $1.displayName)
+                return string0 < string1
+            }
+            self.updateSortedColors(sortedColors: sortedColors!)
+        } else if self.sortingOptions[row] == "Brand" {
+            let sortedColors = self.colors?.sorted {
+                let string0 = String(describing: $0.brand)
+                let string1 = String(describing: $1.brand)
                 return string0 < string1
             }
             self.updateSortedColors(sortedColors: sortedColors!)
