@@ -198,19 +198,19 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             let string1 = String(describing: $1.distanceVector)
             return string0 < string1
         }
-        self.stopAnimating()
         self.colors = sortedColors
         self.collectionView.reloadData()
         self.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
                                           at: .top,
                                           animated: true)
+        self.stopAnimating()
 
     }
     
     func updateSortedColors(sortedColors: [PolishColor]) {
-        self.stopAnimating()
         self.colors = sortedColors
         self.collectionView.reloadData()
+        self.stopAnimating()
     }
     
     func showShareOptions(polishColor: PolishColor) {
