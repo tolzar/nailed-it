@@ -3,7 +3,7 @@ import CoreImage
 import TCMask
 import NVActivityIndicatorView
 
-class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TCMaskViewDelegate, PolishLibraryViewControllerDelegate, NVActivityIndicatorViewable {
+class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TCMaskViewDelegate, TryItOnLibraryViewControllerDelegate, NVActivityIndicatorViewable {
     @IBOutlet weak var imageView: UIImageView!
     weak var delegate: HamburgerDelegate?
     @IBOutlet weak var cameraView: UIView!
@@ -18,18 +18,11 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     var mask: TCMask!
     var colorPickedFromLib: PolishColor?
     var currentPolishColor: PolishColor?
-    var polishLibraryViewController: PolishLibraryViewController! {
-        didSet {
-            polishLibraryViewController.delegate = self
-        }
-    }
+    var polishLibraryViewController: TryItOnLibraryViewController!
+    var halfModalTransitioningDelegate: HalfModalTransitioningDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Load instance of Polish Library
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        polishLibraryViewController = storyboard.instantiateViewController(withIdentifier: "PolishLibraryViewController") as! PolishLibraryViewController
         
         // Get initial image mask data if it exists
         if let loadedImageData = UserDefaults.standard.object(forKey: "savedImage") as? Data {
@@ -179,7 +172,18 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func onSelectManicure(_ sender: Any) {
-        present(polishLibraryViewController, animated: true)
+        performSegue(withIdentifier: "tryItOnLibSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? TryItOnLibraryNavController {
+            let polishLib = vc.viewControllers[0] as! TryItOnLibraryViewController
+            polishLib.delegate = self
+            self.halfModalTransitioningDelegate = HalfModalTransitioningDelegate(viewController: self, presentingViewController: vc)
+            
+            segue.destination.modalPresentationStyle = .custom
+            segue.destination.transitioningDelegate = self.halfModalTransitioningDelegate
+        }
     }
 }
 

@@ -14,6 +14,12 @@
 		0CE7F3F31F8EEE370069E130 /* EditColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7F3F21F8EEE370069E130 /* EditColorViewController.swift */; };
 		112563E01F96DE6600F3D0D3 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112563DF1F96DE6600F3D0D3 /* MapViewController.swift */; };
 		115A31D91F942E510021DE9C /* HamburgerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A31D81F942E510021DE9C /* HamburgerDelegate.swift */; };
+		118C5C341F9ED3B500B60483 /* HalfModalInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C5C331F9ED3B500B60483 /* HalfModalInteractiveTransition.swift */; };
+		118C5C361F9ED50800B60483 /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C5C351F9ED50800B60483 /* HalfModalPresentationController.swift */; };
+		118C5C381F9ED59F00B60483 /* HalfModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C5C371F9ED59F00B60483 /* HalfModalTransitionAnimator.swift */; };
+		118C5C3B1F9ED5D000B60483 /* HalfModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C5C3A1F9ED5D000B60483 /* HalfModalTransitioningDelegate.swift */; };
+		118C5C3D1F9EDB9D00B60483 /* TryItOnLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C5C3C1F9EDB9D00B60483 /* TryItOnLibraryViewController.swift */; };
+		118C5C3F1F9EE0B600B60483 /* TryItOnLibraryNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C5C3E1F9EE0B600B60483 /* TryItOnLibraryNavController.swift */; };
 		11FB8DAF1F8D6DE8000510A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DAE1F8D6DE8000510A8 /* AppDelegate.swift */; };
 		11FB8DB11F8D6DE8000510A8 /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FB8DB01F8D6DE8000510A8 /* HamburgerViewController.swift */; };
 		11FB8DB41F8D6DE8000510A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FB8DB21F8D6DE8000510A8 /* Main.storyboard */; };
@@ -40,6 +46,12 @@
 		0CE7F3F21F8EEE370069E130 /* EditColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditColorViewController.swift; sourceTree = "<group>"; };
 		112563DF1F96DE6600F3D0D3 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		115A31D81F942E510021DE9C /* HamburgerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerDelegate.swift; sourceTree = "<group>"; };
+		118C5C331F9ED3B500B60483 /* HalfModalInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalInteractiveTransition.swift; sourceTree = "<group>"; };
+		118C5C351F9ED50800B60483 /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
+		118C5C371F9ED59F00B60483 /* HalfModalTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitionAnimator.swift; sourceTree = "<group>"; };
+		118C5C3A1F9ED5D000B60483 /* HalfModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitioningDelegate.swift; sourceTree = "<group>"; };
+		118C5C3C1F9EDB9D00B60483 /* TryItOnLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryItOnLibraryViewController.swift; sourceTree = "<group>"; };
+		118C5C3E1F9EE0B600B60483 /* TryItOnLibraryNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryItOnLibraryNavController.swift; sourceTree = "<group>"; };
 		11FB8DAB1F8D6DE8000510A8 /* nailed-it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nailed-it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FB8DAE1F8D6DE8000510A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FB8DB01F8D6DE8000510A8 /* HamburgerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +92,17 @@
 			path = Delegates;
 			sourceTree = "<group>";
 		};
+		118C5C321F9ED2FF00B60483 /* HalfModalTransitionFiles */ = {
+			isa = PBXGroup;
+			children = (
+				118C5C331F9ED3B500B60483 /* HalfModalInteractiveTransition.swift */,
+				118C5C351F9ED50800B60483 /* HalfModalPresentationController.swift */,
+				118C5C371F9ED59F00B60483 /* HalfModalTransitionAnimator.swift */,
+				118C5C3A1F9ED5D000B60483 /* HalfModalTransitioningDelegate.swift */,
+			);
+			path = HalfModalTransitionFiles;
+			sourceTree = "<group>";
+		};
 		11FB8DA21F8D6DE8000510A8 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +124,7 @@
 		11FB8DAD1F8D6DE8000510A8 /* nailed-it */ = {
 			isa = PBXGroup;
 			children = (
+				118C5C321F9ED2FF00B60483 /* HalfModalTransitionFiles */,
 				115A31D71F942E350021DE9C /* Delegates */,
 				11FB8DCB1F8D7C7B000510A8 /* API */,
 				11FB8DC81F8D7C4D000510A8 /* Models */,
@@ -127,6 +151,8 @@
 				0CE7F3F21F8EEE370069E130 /* EditColorViewController.swift */,
 				112563DF1F96DE6600F3D0D3 /* MapViewController.swift */,
 				11FC6BA01F9D728E00E7301C /* RecommendedColorsViewController.swift */,
+				118C5C3C1F9EDB9D00B60483 /* TryItOnLibraryViewController.swift */,
+				118C5C3E1F9EE0B600B60483 /* TryItOnLibraryNavController.swift */,
 			);
 			name = ViewControllers;
 			path = "New Group";
@@ -325,9 +351,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C0AB4E41F8F1974006B7B40 /* PolishCollectionViewCell.swift in Sources */,
+				118C5C3F1F9EE0B600B60483 /* TryItOnLibraryNavController.swift in Sources */,
 				0CE7F3F31F8EEE370069E130 /* EditColorViewController.swift in Sources */,
 				0C609A521F8DDEC5005ADDD8 /* User.swift in Sources */,
+				118C5C3B1F9ED5D000B60483 /* HalfModalTransitioningDelegate.swift in Sources */,
 				11FB8DB11F8D6DE8000510A8 /* HamburgerViewController.swift in Sources */,
+				118C5C3D1F9EDB9D00B60483 /* TryItOnLibraryViewController.swift in Sources */,
 				11FB8DC21F8D7154000510A8 /* MenuViewController.swift in Sources */,
 				11FB8DCF1F8D956D000510A8 /* ColorDropperViewController.swift in Sources */,
 				11FB8DCD1F8D7C91000510A8 /* NearbyShopsClient.swift in Sources */,
@@ -336,12 +365,15 @@
 				11FB8DAF1F8D6DE8000510A8 /* AppDelegate.swift in Sources */,
 				115A31D91F942E510021DE9C /* HamburgerDelegate.swift in Sources */,
 				11FB8DCA1F8D7C68000510A8 /* Shop.swift in Sources */,
+				118C5C361F9ED50800B60483 /* HalfModalPresentationController.swift in Sources */,
+				118C5C341F9ED3B500B60483 /* HalfModalInteractiveTransition.swift in Sources */,
 				0C609A4E1F8DDEAA005ADDD8 /* PolishColor.swift in Sources */,
 				11FB8DC41F8D7A4F000510A8 /* NearbyShopsViewController.swift in Sources */,
 				11FB8DD41F8DAF33000510A8 /* TryItOnViewController.swift in Sources */,
 				11FB8DC71F8D7C33000510A8 /* ShopCell.swift in Sources */,
 				11FC6BA11F9D728E00E7301C /* RecommendedColorsViewController.swift in Sources */,
 				112563E01F96DE6600F3D0D3 /* MapViewController.swift in Sources */,
+				118C5C381F9ED59F00B60483 /* HalfModalTransitionAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

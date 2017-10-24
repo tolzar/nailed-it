@@ -13,23 +13,17 @@ import CZPicker
 import NVActivityIndicatorView
 import NotificationBannerSwift
 
-@objc protocol PolishLibraryViewControllerDelegate {
-    @objc optional func polishColor(with polishColor: PolishColor?)
-}
-
-class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIActionSheetDelegate, NVActivityIndicatorViewable {
+class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIActionSheetDelegate, NVActivityIndicatorViewable, HalfModalPresentable {
     @IBOutlet weak var collectionView: UICollectionView!
 
     var colors: [PolishColor]?
     var recommendedColors: [PolishColor]?
     var brands = [String]()
     var sortingOptions = [String]()
-    weak var delegate: PolishLibraryViewControllerDelegate?
     weak var hamburgerDelegate: HamburgerDelegate?
     var selectedRows: [Any]! = [4]
     let size = CGSize(width: 30, height: 30)
     var refresher: UIRefreshControl!
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,12 +117,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let color = colors?[indexPath.row]
-        if let delegate = delegate {
-            delegate.polishColor!(with: color)
-            dismiss(animated: true, completion: nil)
-        } else {
-            showActionSheet(color: color)
-        }
+        showActionSheet(color: color)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -243,6 +232,18 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
 
     @IBAction func onHamburgerPressed(_ sender: Any) {
         hamburgerDelegate?.hamburgerPressed()
+    }
+    
+    @IBAction func maximizeButtonTapped(sender: AnyObject) {
+        maximizeToFullScreen()
+    }
+    
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        if let delegate = navigationController?.transitioningDelegate as? HalfModalTransitioningDelegate {
+            delegate.interactiveDismiss = false
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
 }
 
