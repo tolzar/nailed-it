@@ -86,6 +86,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         }
         let query = PFQuery(className:"PolishColor")
         query.order(byDescending: "brand")
+        query.limit = 250
         query.addDescendingOrder("createdAt")
         query.findObjectsInBackground {
             (colors: [PFObject]?, error: Error?) -> Void in
