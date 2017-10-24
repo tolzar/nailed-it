@@ -69,6 +69,7 @@ class RecommendedColorsViewController: UIViewController, UICollectionViewDelegat
         let query = PFQuery(className:"PolishColor")
         query.order(byDescending: "brand")
         query.addDescendingOrder("createdAt")
+        query.limit = 250
         query.findObjectsInBackground {
             (colors: [PFObject]?, error: Error?) -> Void in
             
