@@ -34,11 +34,16 @@ Nice-to-have user stories:
 - [X] User can select a color from the library, and choose to search for
   it on Amazon to purchase.
 
-## Video Walkthrough
+## Gif Walkthrough
 
 Here's a walkthrough of implemented user stories:
+
+Week 1:
 https://media.giphy.com/media/3ov9jOujFDdFs0jUD6/giphy.gif
-<img src='https://media.giphy.com/media/3ov9jOujFDdFs0jUD6/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Week 2:
+https://media.giphy.com/media/xT9Igz7EMGf778wJTq/giphy.gif
+
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
