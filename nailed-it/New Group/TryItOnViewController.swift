@@ -110,11 +110,19 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func polishColor(with polishColor: PolishColor?) {
+        self.currentPolishColor = polishColor
         let templateImage = image.tint(tintColor: (polishColor?.getUIColor())!)
         
         imageView.image = mask.blend(foregroundImage: templateImage, backgroundImage: image)
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(onImageLongPress)))
+        
+        updateCurrentColorView()
+    }
+    
+    func updateCurrentColorView() {
+        // display additional view with color data
+        print(self.currentPolishColor)
     }
     
     @objc func onImageLongPress(sender: UILongPressGestureRecognizer) {
@@ -158,7 +166,7 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func prepareForShareImage() {
         let image = imageView.image
-        let imageToShare = [ image!, "Image created with Nailed It!" ] as [Any]
+        let imageToShare = [ image!, "Check out this nail polish color by \(self.currentPolishColor!.brand!). It's called \(self.currentPolishColor!.displayName!). Share via Nailed It"] as [Any]
         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
         
