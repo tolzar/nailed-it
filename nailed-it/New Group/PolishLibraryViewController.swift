@@ -13,7 +13,8 @@ import CZPicker
 import NVActivityIndicatorView
 import NotificationBannerSwift
 
-class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIActionSheetDelegate, NVActivityIndicatorViewable, HalfModalPresentable {
+class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIActionSheetDelegate, UISearchBarDelegate, NVActivityIndicatorViewable {
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionView: UICollectionView!
 
     var colors: [PolishColor]?
@@ -31,27 +32,28 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
 
+        searchBar.delegate = self
+
         sortingOptions = ["Price: $ to $$$", "Price: $$$ to $", "Color", "Name", "Brand"]
 
         let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
-        
+
         self.refresher = UIRefreshControl()
         self.refresher.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         self.collectionView!.addSubview(refresher)
-
     }
-    
+
     @IBAction func onSort(_ sender: Any) {
         let picker = CZPickerView(headerTitle: "Sort By", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
         setUpPicker(picker: picker!)
     }
-    
+
     @objc func refreshData() {
         fetchData(animate: true)
         self.refresher.endRefreshing()
     }
-    
+
     func setUpPicker(picker: CZPickerView) {
         let greenColor = UIColor(red:0.59, green:0.89, blue:0.70, alpha:1.0)
         let pinkColor = UIColor(red:0.98, green:0.66, blue:0.65, alpha:1.0)
@@ -68,10 +70,58 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         picker.checkmarkColor = pinkColor
         picker.show()
     }
-    
-    
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchData(searchText: self.searchBar.text!, animate: true)
+    }
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        searchData(searchText: searchBar.text!, animate: true)
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         fetchData(animate: collectionView.numberOfItems(inSection: 0) == 0)
+    }
+
+    func searchData(searchText: String, animate: Bool) {
+        if animate {
+            startAnimating(size, message: "Hang tight!\nLoading your polish collection...", type: NVActivityIndicatorType.ballTrianglePath)
+        }
+        var query: PFQuery<PFObject>!
+        let brandQuery = PFQuery(className: "PolishColor")
+        let nameQuery = PFQuery(className: "PolishColor")
+        brandQuery.whereKey("brand", contains: searchText)
+        nameQuery.whereKey("displayName", contains: searchText)
+        query = PFQuery.orQuery(withSubqueries: [brandQuery, nameQuery])
+        query.order(byDescending: "brand")
+        query.limit = 250
+        query.findObjectsInBackground {
+            (colors: [PFObject]?, error: Error?) -> Void in
+
+            if error == nil {
+                print("Successfully retrieved \(colors!.count) scores.")
+                if let colors = colors {
+                    self.colors = colors as? [PolishColor]
+                    if animate {
+                        UIView.transition(with: self.collectionView, duration: 1.0, options: .transitionFlipFromBottom, animations: { self.collectionView.reloadData() }, completion: nil)
+                    } else {
+                        self.collectionView.reloadData()
+                    }
+                    self.stopAnimating()
+                }
+            } else {
+                print("Error: \(error!) \(error!.localizedDescription)")
+                self.stopAnimating()
+            }
+        }
     }
 
     func fetchData(animate: Bool) {
@@ -119,7 +169,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         let color = colors?[indexPath.row]
         showActionSheet(color: color)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? RecommendedColorsViewController {
             vc.colors = self.recommendedColors
@@ -142,7 +192,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             self.prepareForTryItOn(color: color)
         }
         actionSheetController.addAction(tryItOnAction)
-        
+
         let findSimilarColor = UIAlertAction(title: "Find Similar Colors", style: .default) { action -> Void in
             self.startAnimating(self.size, message: "Sorting by Color...", type: NVActivityIndicatorType.ballTrianglePath)
             self.saveDistanceVectors(color: color, libraryColors: self.colors!)
@@ -177,7 +227,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         let searchString = "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=" + escapedName! + "+" + escapedBrand!
         UIApplication.shared.open(URL(string: searchString)!, options: [:], completionHandler: nil)
     }
-    
+
     func saveDistanceVectors(color: PolishColor!, libraryColors: [PolishColor?]) {
         for libraryColor in libraryColors {
             let redDistance = color.redValue - (libraryColor?.redValue)!
@@ -186,7 +236,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             libraryColor?.distanceVector = CGFloat(((redDistance * redDistance) + (greenDistance * greenDistance) + (blueDistance * blueDistance)).squareRoot())
         }
     }
-    
+
     func sortLibraryColors() -> [PolishColor] {
         let sortedColors = self.colors?.sorted {
             let string0 = String(describing: $0.distanceVector)
@@ -195,7 +245,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         }
         return sortedColors!
     }
-    
+
     func findRecommendedColors(sortedColors: [PolishColor]) {
         var sortedAndFiltered = [PolishColor]()
         for sortedColor in sortedColors {
@@ -212,14 +262,14 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         }
         stopAnimating()
     }
-    
+
     func updateSortedColors(sortedColors: [PolishColor]) {
         self.colors = sortedColors
         self.collectionView.reloadData()
         self.stopAnimating()
         self.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
-    
+
     func showShareOptions(polishColor: PolishColor) {
         let image = UIImageView()
         image.image = UIImage.from(color: polishColor.getUIColor())
@@ -232,18 +282,6 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
 
     @IBAction func onHamburgerPressed(_ sender: Any) {
         hamburgerDelegate?.hamburgerPressed()
-    }
-    
-    @IBAction func maximizeButtonTapped(sender: AnyObject) {
-        maximizeToFullScreen()
-    }
-    
-    @IBAction func cancelButtonTapped(sender: AnyObject) {
-        if let delegate = navigationController?.transitioningDelegate as? HalfModalTransitioningDelegate {
-            delegate.interactiveDismiss = false
-        }
-        
-        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -281,7 +319,7 @@ extension PolishLibraryViewController: CZPickerViewDelegate, CZPickerViewDataSou
     func czpickerViewDidClickCancelButton(_ pickerView: CZPickerView!) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
+
     func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
         startAnimating(size, message: "Sorting...", type: NVActivityIndicatorType.ballTrianglePath)
             if self.sortingOptions[row] == "Price: $ to $$$" {
