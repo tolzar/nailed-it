@@ -272,10 +272,17 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     }
 
     func showShareOptions(polishColor: PolishColor) {
-        let image = UIImageView()
-        image.image = UIImage.from(color: polishColor.getUIColor())
-
-        let imageToShare = [image.image!, "Check out this nail polish color by \(polishColor.brand!). It's called \(polishColor.displayName!).", "\nShared via Nailed It"] as [Any]
+        var hex = polishColor.hexValue!
+        if hex.contains("#") {
+            hex = hex.replacingOccurrences(of: "#", with: "")
+        }
+        
+        let allowedCharacterSet = (CharacterSet(charactersIn: " ").inverted)
+        let nameBrandString = polishColor.displayName! + " by " + polishColor.brand!
+        
+        let escapedString = nameBrandString.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
+        
+        let imageToShare = ["https://naileditcodepath.herokuapp.com/colors/\(hex)?name=\(escapedString!)"] as [Any]
         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
         self.present(activityViewController, animated: true, completion: nil)
