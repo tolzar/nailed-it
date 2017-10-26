@@ -46,7 +46,7 @@ class TryItOnLibraryViewController: UIViewController, UICollectionViewDelegate, 
     func fetchData() {
         let query = PFQuery(className:"PolishColor")
         query.order(byDescending: "brand")
-        query.addDescendingOrder("createdAt")
+        query.limit = 250
         query.findObjectsInBackground {
             (colors: [PFObject]?, error: Error?) -> Void in
             
@@ -54,6 +54,7 @@ class TryItOnLibraryViewController: UIViewController, UICollectionViewDelegate, 
                 print("Successfully retrieved \(colors!.count) scores.")
                 if let colors = colors {
                     self.colors = colors as? [PolishColor]
+                    self.sortLibraryByColor(colors: self.colors!)
                     self.collectionView.reloadData()
                 }
             } else {
@@ -61,6 +62,40 @@ class TryItOnLibraryViewController: UIViewController, UICollectionViewDelegate, 
             }
         }
     }
+    
+    func sortLibraryByColor(colors: [PolishColor]) {
+        let zeroColor = PolishColor()
+        zeroColor.redValue = 1.0
+        zeroColor.blueValue = 1.0
+        zeroColor.greenValue = 1.0
+        self.saveDistanceVectors(color: zeroColor, libraryColors: self.colors!)
+        self.updateSortedColors(sortedColors: self.sortLibraryColors())
+    }
+    
+    func sortLibraryColors() -> [PolishColor] {
+        let sortedColors = self.colors?.sorted {
+            let string0 = String(describing: $0.distanceVector)
+            let string1 = String(describing: $1.distanceVector)
+            return string0 < string1
+        }
+        return sortedColors!
+    }
+    
+    func updateSortedColors(sortedColors: [PolishColor]) {
+        self.colors = sortedColors
+        self.collectionView.reloadData()
+        self.collectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+    }
+    
+    func saveDistanceVectors(color: PolishColor!, libraryColors: [PolishColor?]) {
+        for libraryColor in libraryColors {
+            let redDistance = color.redValue - (libraryColor?.redValue)!
+            let greenDistance = color.greenValue - (libraryColor?.greenValue)!
+            let blueDistance = color.blueValue - (libraryColor?.blueValue)!
+            libraryColor?.distanceVector = CGFloat(((redDistance * redDistance) + (greenDistance * greenDistance) + (blueDistance * blueDistance)).squareRoot())
+        }
+    }
+
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.colors?.count ?? 0
