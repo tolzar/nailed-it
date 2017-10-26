@@ -23,7 +23,9 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if colorPickedFromLib != nil {
+            self.navigationItem.leftBarButtonItem = self.navigationItem.backBarButtonItem
+        }
         // Get initial image mask data if it exists
         if let loadedImageData = UserDefaults.standard.object(forKey: "savedImage") as? Data {
             if let loadedMaskData = UserDefaults.standard.object(forKey: "savedMask") as? [String:Any] {
@@ -32,7 +34,6 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
                 
                 applyImageMask()
                 if let colorPickedFromLib = colorPickedFromLib {
-                    self.navigationItem.leftBarButtonItem = self.navigationItem.backBarButtonItem
                     polishColor(with: colorPickedFromLib)
                 }
                 selectColorView.isHidden = false
@@ -42,6 +43,7 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
             selectColorView.isHidden = true
             emptyStateText.isHidden = false
         }
+        
         
         cameraView.layer.cornerRadius = cameraView.frame.width / 2
         cameraView.clipsToBounds = true
