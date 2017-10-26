@@ -22,7 +22,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     var brands = [String]()
     var sortingOptions = [String]()
     weak var hamburgerDelegate: HamburgerDelegate?
-    var selectedRows: [Any]! = [4]
+    var selectedRows: [Any]! = [2]
     let size = CGSize(width: 30, height: 30)
     var refresher: UIRefreshControl!
 
@@ -130,9 +130,8 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             startAnimating(size, message: "Hang tight!\nLoading your polish collection...", type: NVActivityIndicatorType.ballTrianglePath)
         }
         let query = PFQuery(className:"PolishColor")
-        query.order(byDescending: "brand")
+        query.order(byDescending: "hexValue")
         query.limit = 250
-        query.addDescendingOrder("createdAt")
         query.findObjectsInBackground {
             (colors: [PFObject]?, error: Error?) -> Void in
 
@@ -141,9 +140,10 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
                 if let colors = colors {
                     self.colors = colors as? [PolishColor]
                     if animate {
+                        self.sortLibraryByColor(colors: self.colors!)
                         UIView.transition(with: self.collectionView, duration: 1.0, options: .transitionFlipFromBottom, animations: { self.collectionView.reloadData() }, completion: nil)
                     } else {
-                        self.collectionView.reloadData()
+                       self.sortLibraryByColor(colors: self.colors!)
                     }
                     self.stopAnimating()
                 }
@@ -152,6 +152,15 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
                 self.stopAnimating()
             }
         }
+    }
+    
+    func sortLibraryByColor(colors: [PolishColor]) {
+        let zeroColor = PolishColor()
+        zeroColor.redValue = 1.0
+        zeroColor.blueValue = 1.0
+        zeroColor.greenValue = 1.0
+        self.saveDistanceVectors(color: zeroColor, libraryColors: self.colors!)
+        self.updateSortedColors(sortedColors: self.sortLibraryColors())
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
