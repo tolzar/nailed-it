@@ -42,6 +42,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         self.refresher = UIRefreshControl()
         self.refresher.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         self.collectionView!.addSubview(refresher)
+        
     }
 
     @IBAction func onSort(_ sender: Any) {
