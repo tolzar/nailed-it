@@ -166,7 +166,7 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func prepareForShareImage() {
         let image = imageView.image
-        let imageToShare = [ image!, "Check out this nail polish color by \(self.currentPolishColor!.brand!). It's called \(self.currentPolishColor!.displayName!). Share via Nailed It"] as [Any]
+        let imageToShare = [ image!, "Check out this nail polish color by \(self.currentPolishColor!.brand!). It's called \(self.currentPolishColor!.displayName!). Shared via Nailed It"] as [Any]
         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
         
