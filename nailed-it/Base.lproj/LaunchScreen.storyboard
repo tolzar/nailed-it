@@ -4,15 +4,11 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Georgia.ttf">
-            <string>Georgia</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -22,15 +18,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nailed It" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UnI-YL-Nlx">
-                                <rect key="frame" x="41" y="406" width="229" height="77"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="50"/>
-                                <color key="textColor" red="0.39995324611663818" green="0.40002685785293579" blue="0.39994865655899048" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nailed-it-icon" translatesAutoresizingMaskIntoConstraints="NO" id="fCx-YH-vAe">
+                                <rect key="frame" x="100" y="170" width="175" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="XNx-XV-HQ5"/>
+                                    <constraint firstAttribute="width" constant="175" id="e1Q-Gm-hIa"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nailed-it-logo" translatesAutoresizingMaskIntoConstraints="NO" id="cVZ-Qo-s55">
+                                <rect key="frame" x="44" y="377" width="287" height="83"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="83" id="JYM-iY-6oG"/>
+                                    <constraint firstAttribute="width" constant="287" id="gTI-ED-pfp"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.89185959100723267" green="0.97775846719741821" blue="0.92418676614761353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cVZ-Qo-s55" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="8f5-Wj-xDL"/>
+                            <constraint firstItem="cVZ-Qo-s55" firstAttribute="centerX" secondItem="fCx-YH-vAe" secondAttribute="centerX" id="8wL-fI-UDG"/>
+                            <constraint firstItem="fCx-YH-vAe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="pNi-Qz-hlb"/>
+                            <constraint firstItem="cVZ-Qo-s55" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="rxZ-90-w5b"/>
+                            <constraint firstItem="cVZ-Qo-s55" firstAttribute="top" secondItem="fCx-YH-vAe" secondAttribute="bottom" constant="32" id="wzk-oR-WlA"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -39,4 +49,8 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="nailed-it-icon" width="296" height="296"/>
+        <image name="nailed-it-logo" width="800" height="231"/>
+    </resources>
 </document>

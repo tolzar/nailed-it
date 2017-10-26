@@ -55,20 +55,20 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="FmI-ml-eOy">
-                                <rect key="frame" x="25" y="80" width="165" height="437"/>
+                                <rect key="frame" x="16" y="222" width="165" height="345"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="775-2t-nHE">
-                                        <rect key="frame" x="0.0" y="0.0" width="99" height="109.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="99" height="86.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="30"/>
                                         <state key="normal" title="Try It On">
-                                            <color key="titleColor" red="0.9790118337" green="0.66128790380000002" blue="0.64958029989999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.98039215686274506" green="0.66274509803921566" blue="0.65098039215686276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="onTryItOnSelected:" destination="EIg-hi-mym" eventType="touchUpInside" id="e34-jR-OKI"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jlm-O7-h9m">
-                                        <rect key="frame" x="0.0" y="109.5" width="145" height="109"/>
+                                        <rect key="frame" x="0.0" y="86.5" width="145" height="86"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="30"/>
                                         <state key="normal" title="Color Picker">
                                             <color key="titleColor" red="0.9790118337" green="0.66128790380000002" blue="0.64958029989999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -78,7 +78,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0r-UN-luG">
-                                        <rect key="frame" x="0.0" y="218.5" width="164" height="109.5"/>
+                                        <rect key="frame" x="0.0" y="172.5" width="164" height="86.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="30"/>
                                         <state key="normal" title="Polish Library">
                                             <color key="titleColor" red="0.9790118337" green="0.66128790380000002" blue="0.64958029989999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -88,7 +88,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0h-Ot-301">
-                                        <rect key="frame" x="0.0" y="328" width="165" height="109"/>
+                                        <rect key="frame" x="0.0" y="259" width="165" height="86"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="30"/>
                                         <state key="normal" title="Nearby Shops">
                                             <color key="titleColor" red="0.97901183366775513" green="0.66128790378570557" blue="0.64958029985427856" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
