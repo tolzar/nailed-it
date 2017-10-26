@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,6 +27,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9p-Jk-AYK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nailed-it-logo" translatesAutoresizingMaskIntoConstraints="NO" id="apk-EJ-eJ6">
+                                        <rect key="frame" x="70" y="147" width="125" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="SOk-29-NhZ"/>
+                                            <constraint firstAttribute="width" constant="125" id="Ybo-fF-MtB"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nailed-it-icon" translatesAutoresizingMaskIntoConstraints="NO" id="kld-OR-seG">
+                                        <rect key="frame" x="83" y="40" width="99" height="99"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="99" id="Jn2-uT-60q"/>
+                                            <constraint firstAttribute="width" constant="99" id="z5d-sd-irB"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="apk-EJ-eJ6" firstAttribute="leading" secondItem="M9p-Jk-AYK" secondAttribute="leading" constant="70" id="2gg-K8-Nkc"/>
+                                    <constraint firstAttribute="bottom" secondItem="apk-EJ-eJ6" secondAttribute="bottom" constant="18" id="8GD-m3-aaz"/>
+                                    <constraint firstAttribute="height" constant="200" id="Amc-M2-nvB"/>
+                                    <constraint firstItem="apk-EJ-eJ6" firstAttribute="centerX" secondItem="kld-OR-seG" secondAttribute="centerX" id="CwG-TE-Fxi"/>
+                                    <constraint firstItem="apk-EJ-eJ6" firstAttribute="top" secondItem="kld-OR-seG" secondAttribute="bottom" constant="8" id="Xzx-RW-CY1"/>
+                                </constraints>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="FmI-ml-eOy">
                                 <rect key="frame" x="25" y="80" width="165" height="437"/>
                                 <subviews>
@@ -73,18 +100,21 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.96793490648269653" green="0.99260038137435913" blue="0.97598010301589966" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="FmI-ml-eOy" firstAttribute="top" secondItem="ILz-MZ-Oqn" secondAttribute="top" constant="60" id="SZd-hf-ygI"/>
-                            <constraint firstItem="ILz-MZ-Oqn" firstAttribute="bottom" secondItem="FmI-ml-eOy" secondAttribute="bottom" constant="150" id="cCE-pJ-pGD"/>
-                            <constraint firstItem="FmI-ml-eOy" firstAttribute="leading" secondItem="ILz-MZ-Oqn" secondAttribute="leading" constant="25" id="fKM-Nb-c4R"/>
+                            <constraint firstItem="M9p-Jk-AYK" firstAttribute="leading" secondItem="ILz-MZ-Oqn" secondAttribute="leading" id="7vT-Wa-as7"/>
+                            <constraint firstItem="ILz-MZ-Oqn" firstAttribute="bottom" secondItem="FmI-ml-eOy" secondAttribute="bottom" constant="100" id="cCE-pJ-pGD"/>
+                            <constraint firstItem="FmI-ml-eOy" firstAttribute="leading" secondItem="ILz-MZ-Oqn" secondAttribute="leading" constant="16" id="fKM-Nb-c4R"/>
+                            <constraint firstItem="FmI-ml-eOy" firstAttribute="top" secondItem="M9p-Jk-AYK" secondAttribute="bottom" constant="22" id="mLM-pa-dBz"/>
+                            <constraint firstItem="M9p-Jk-AYK" firstAttribute="top" secondItem="l6L-YF-UZz" secondAttribute="top" id="rN5-lQ-s3n"/>
+                            <constraint firstItem="M9p-Jk-AYK" firstAttribute="trailing" secondItem="ILz-MZ-Oqn" secondAttribute="trailing" id="rrl-Yb-VGi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ILz-MZ-Oqn"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tXL-wB-m9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="33" y="-644"/>
+            <point key="canvasLocation" x="32.799999999999997" y="-644.52773613193403"/>
         </scene>
         <!--Nearby Shops-->
         <scene sceneID="1SY-AE-yfn">
@@ -1139,6 +1169,8 @@
         <image name="hamburger" width="24" height="24"/>
         <image name="icons8-Camera Filled-100" width="50" height="50"/>
         <image name="icons8-Manicure Filled_50" width="50" height="50"/>
+        <image name="nailed-it-icon" width="296" height="296"/>
+        <image name="nailed-it-logo" width="800" height="231"/>
         <image name="target" width="1000" height="1000"/>
     </resources>
 </document>
