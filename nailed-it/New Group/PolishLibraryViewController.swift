@@ -18,6 +18,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet weak var collectionView: UICollectionView!
 
     var colors: [PolishColor]?
+    var allColors: [PolishColor]?
     var recommendedColors: [PolishColor]?
     var brands = [String]()
     var sortingOptions = [String]()
@@ -85,7 +86,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         searchBar.showsCancelButton = false
         searchBar.text = ""
         searchBar.resignFirstResponder()
-        searchData(searchText: searchBar.text!, animate: true)
+        fetchData(animate: false)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -139,6 +140,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
                 print("Successfully retrieved \(colors!.count) scores.")
                 if let colors = colors {
                     self.colors = colors as? [PolishColor]
+                    self.allColors = colors as? [PolishColor]
                     if animate {
                         self.sortLibraryByColor(colors: self.colors!)
                         UIView.transition(with: self.collectionView, duration: 1.0, options: .transitionFlipFromBottom, animations: { self.collectionView.reloadData() }, completion: nil)
@@ -205,7 +207,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
 
         let findSimilarColor = UIAlertAction(title: "Find Similar Colors", style: .default) { action -> Void in
             self.startAnimating(self.size, message: "Sorting by Color...", type: NVActivityIndicatorType.ballTrianglePath)
-            self.saveDistanceVectors(color: color, libraryColors: self.colors!)
+            self.saveDistanceVectors(color: color, libraryColors: self.allColors!)
             self.findRecommendedColors(sortedColors: self.sortLibraryColors())
         }
         actionSheetController.addAction(findSimilarColor)
@@ -248,7 +250,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     }
 
     func sortLibraryColors() -> [PolishColor] {
-        let sortedColors = self.colors?.sorted {
+        let sortedColors = self.allColors?.sorted {
             let string0 = String(describing: $0.distanceVector)
             let string1 = String(describing: $1.distanceVector)
             return string0 < string1
