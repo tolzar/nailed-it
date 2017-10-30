@@ -57,19 +57,19 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     }
 
     func setUpPicker(picker: CZPickerView) {
-        let greenColor = UIColor(red:0.59, green:0.89, blue:0.70, alpha:1.0)
-        let pinkColor = UIColor(red:0.98, green:0.66, blue:0.65, alpha:1.0)
+        let brownColor = UIColor(red:(164/255), green:(148/255), blue:(147/255), alpha:1.0)
+        let greenColor = UIColor(red:(242/255), green:(248/255), blue:(244/255), alpha:1.0)
         let whiteColor = UIColor.white
         picker.delegate = self
         picker.dataSource = self
         picker.needFooterView = false
         picker.allowMultipleSelection = false
         picker.headerBackgroundColor = greenColor
-        picker.confirmButtonBackgroundColor = greenColor
-        picker.headerTitleColor = whiteColor
+        picker.confirmButtonBackgroundColor = brownColor
+        picker.headerTitleColor = brownColor
         picker.confirmButtonNormalColor = whiteColor
         picker.cancelButtonNormalColor = whiteColor
-        picker.checkmarkColor = pinkColor
+        picker.checkmarkColor = brownColor
         picker.show()
     }
 
