@@ -90,7 +90,9 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        fetchData(animate: collectionView.numberOfItems(inSection: 0) == 0)
+        if self.searchBar.text == "" {
+            fetchData(animate: collectionView.numberOfItems(inSection: 0) == 0)
+        }
     }
 
     func searchData(searchText: String, animate: Bool) {
