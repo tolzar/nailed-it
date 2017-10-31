@@ -233,7 +233,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
     }
 
     func prepareForPolishSearch(color: PolishColor!) {
-        let allowedCharacterSet = (CharacterSet(charactersIn: " ").inverted)
+        let allowedCharacterSet = (CharacterSet(charactersIn: " &").inverted)
         let escapedBrand = color!.brand!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
         let escapedName = color!.displayName!.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
         let searchString = "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=" + escapedName! + "+" + escapedBrand!
