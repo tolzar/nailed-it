@@ -28,6 +28,8 @@ class RecommendedColorsViewController: UIViewController, UICollectionViewDelegat
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
+        self.collectionView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
+        
         sortingOptions = ["Price: $ to $$$", "Price: $$$ to $", "Name", "Brand"]
         
         let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout

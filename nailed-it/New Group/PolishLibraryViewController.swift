@@ -32,6 +32,8 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
 
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        
+        self.collectionView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
 
         searchBar.delegate = self
 
