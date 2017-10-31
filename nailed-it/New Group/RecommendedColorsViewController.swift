@@ -167,7 +167,7 @@ class RecommendedColorsViewController: UIViewController, UICollectionViewDelegat
             hex = hex.replacingOccurrences(of: "#", with: "")
         }
         
-        let allowedCharacterSet = (CharacterSet(charactersIn: " ").inverted)
+        let allowedCharacterSet = (CharacterSet(charactersIn: " &").inverted)
         let nameBrandString = polishColor.displayName! + " by " + polishColor.brand!
         
         let escapedString = nameBrandString.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)

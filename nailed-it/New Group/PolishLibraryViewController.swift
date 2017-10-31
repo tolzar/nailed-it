@@ -44,6 +44,10 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         self.refresher.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         self.collectionView!.addSubview(refresher)
         
+        if self.searchBar.text == "" {
+            fetchData(animate: collectionView.numberOfItems(inSection: 0) == 0)
+        }
+        
     }
 
     @IBAction func onSort(_ sender: Any) {
@@ -87,12 +91,6 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         searchBar.text = ""
         searchBar.resignFirstResponder()
         fetchData(animate: false)
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        if self.searchBar.text == "" {
-            fetchData(animate: collectionView.numberOfItems(inSection: 0) == 0)
-        }
     }
 
     func searchData(searchText: String, animate: Bool) {
@@ -290,7 +288,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
             hex = hex.replacingOccurrences(of: "#", with: "")
         }
         
-        let allowedCharacterSet = (CharacterSet(charactersIn: " ").inverted)
+        let allowedCharacterSet = (CharacterSet(charactersIn: " &").inverted)
         let nameBrandString = polishColor.displayName! + " by " + polishColor.brand!
         
         let escapedString = nameBrandString.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet)
