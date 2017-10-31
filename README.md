@@ -44,6 +44,9 @@ https://media.giphy.com/media/3ov9jOujFDdFs0jUD6/giphy.gif
 Week 2:
 https://media.giphy.com/media/xT9Igz7EMGf778wJTq/giphy.gif
 
+Week 3:
+https://media.giphy.com/media/26gQt3i682N9Fqyvm/giphy.gif
+
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
