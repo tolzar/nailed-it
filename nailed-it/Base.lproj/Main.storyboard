@@ -764,14 +764,40 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wqk-12-PeB">
+                                        <rect key="frame" x="8" y="72" width="359" height="35"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAB-wV-Ihm">
+                                                <rect key="frame" x="0.0" y="0.5" width="359" height="35"/>
+                                                <color key="backgroundColor" red="0.64464092250000005" green="0.58023238180000003" blue="0.57543796300000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="Ugp-Fq-3Yg"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="pAB-wV-Ihm" firstAttribute="leading" secondItem="Wqk-12-PeB" secondAttribute="leading" id="I8E-wF-cIW"/>
+                                            <constraint firstAttribute="trailing" secondItem="pAB-wV-Ihm" secondAttribute="trailing" id="OTm-Kx-zCB"/>
+                                            <constraint firstItem="pAB-wV-Ihm" firstAttribute="centerX" secondItem="Wqk-12-PeB" secondAttribute="centerX" id="W3F-68-GHw"/>
+                                            <constraint firstAttribute="height" constant="35" id="f0p-LJ-dVa"/>
+                                            <constraint firstItem="pAB-wV-Ihm" firstAttribute="centerY" secondItem="Wqk-12-PeB" secondAttribute="centerY" id="sTh-UC-Lc3"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.89187222720000003" green="0.97782605889999996" blue="0.92009657619999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="Wqk-12-PeB" firstAttribute="leading" secondItem="LtH-LM-dGa" secondAttribute="leading" constant="8" id="2fc-sg-Emb"/>
                                     <constraint firstItem="Sn4-ML-et2" firstAttribute="centerY" secondItem="LtH-LM-dGa" secondAttribute="centerY" id="78P-v3-Zk0"/>
                                     <constraint firstAttribute="bottom" secondItem="WlX-ak-Cld" secondAttribute="bottom" id="KoN-bN-yxN"/>
                                     <constraint firstAttribute="trailing" secondItem="WlX-ak-Cld" secondAttribute="trailing" id="Pe8-QS-RrK"/>
                                     <constraint firstItem="WlX-ak-Cld" firstAttribute="leading" secondItem="LtH-LM-dGa" secondAttribute="leading" id="Qqz-1s-NQj"/>
                                     <constraint firstItem="Sn4-ML-et2" firstAttribute="leading" secondItem="LtH-LM-dGa" secondAttribute="leading" constant="40" id="VIf-TL-mVX"/>
+                                    <constraint firstItem="Wqk-12-PeB" firstAttribute="top" secondItem="LtH-LM-dGa" secondAttribute="top" constant="72" id="bPJ-5u-oKU"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wqk-12-PeB" secondAttribute="trailing" constant="8" id="cUx-1O-wAC"/>
                                     <constraint firstAttribute="trailing" secondItem="Sn4-ML-et2" secondAttribute="trailing" constant="40" id="e3H-zX-jZp"/>
                                     <constraint firstItem="WlX-ak-Cld" firstAttribute="top" secondItem="LtH-LM-dGa" secondAttribute="top" constant="60" id="yq9-kx-M5x"/>
                                 </constraints>
@@ -850,6 +876,8 @@
                         <outlet property="cameraView" destination="vqr-lp-etl" id="lbO-mw-lyQ"/>
                         <outlet property="emptyStateText" destination="Sn4-ML-et2" id="YAV-6j-GMY"/>
                         <outlet property="imageView" destination="WlX-ak-Cld" id="VCP-FL-zGE"/>
+                        <outlet property="polishNameContainer" destination="Wqk-12-PeB" id="cN7-sg-wnS"/>
+                        <outlet property="polishNameLabel" destination="pAB-wV-Ihm" id="c0B-Fo-59u"/>
                         <outlet property="selectColorView" destination="Kaf-Ui-rja" id="QFD-bR-Xdj"/>
                         <segue destination="Fps-mz-Lfr" kind="presentation" identifier="tryItOnLibSegue" id="TKT-3x-0k4"/>
                     </connections>

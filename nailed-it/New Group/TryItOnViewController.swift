@@ -9,6 +9,8 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var selectColorView: UIView!
     @IBOutlet weak var emptyStateText: UILabel!
+    @IBOutlet weak var polishNameContainer: UIView!
+    @IBOutlet weak var polishNameLabel: UILabel!
     
     let imagePicker = UIImagePickerController()
     let size = CGSize(width: 30, height: 30)
@@ -113,6 +115,13 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func polishColor(with polishColor: PolishColor?) {
         self.currentPolishColor = polishColor
+        self.polishNameContainer.layer.cornerRadius = 10
+        self.polishNameLabel.layer.cornerRadius = 10
+        self.polishNameLabel.clipsToBounds = true
+        self.polishNameContainer.clipsToBounds = true
+        self.polishNameLabel.text = "\(self.currentPolishColor!.displayName!) by \(self.currentPolishColor!.brand!)"
+        self.polishNameContainer.isHidden = false
+        
         let templateImage = image.tint(tintColor: (polishColor?.getUIColor())!)
         
         imageView.image = mask.blend(foregroundImage: templateImage, backgroundImage: image)
