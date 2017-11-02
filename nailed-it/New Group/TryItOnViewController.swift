@@ -132,6 +132,7 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func onSelectCamera(_ sender: Any) {
+        self.polishNameContainer.isHidden = true
         
         let actionSheetController = UIAlertController(title: "Upload new photo?", message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
