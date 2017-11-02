@@ -63,12 +63,14 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
         imagePicker.delegate = self
         self.present(imagePicker, animated: true, completion: nil)
+        self.polishNameContainer.isHidden = true
     }
     
     func takePhotoFromCamera() {
         imagePicker.sourceType = UIImagePickerControllerSourceType.camera
         imagePicker.delegate = self
         self.present(imagePicker, animated: true, completion: nil)
+        self.polishNameContainer.isHidden = true
     }
     
     func saveImageMaskData() {
