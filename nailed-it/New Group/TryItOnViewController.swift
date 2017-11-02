@@ -63,14 +63,12 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
         imagePicker.delegate = self
         self.present(imagePicker, animated: true, completion: nil)
-        self.polishNameContainer.isHidden = true
     }
     
     func takePhotoFromCamera() {
         imagePicker.sourceType = UIImagePickerControllerSourceType.camera
         imagePicker.delegate = self
         self.present(imagePicker, animated: true, completion: nil)
-        self.polishNameContainer.isHidden = true
     }
     
     func saveImageMaskData() {
@@ -85,6 +83,7 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        self.polishNameContainer.isHidden = true
         startAnimating(size, message: "Getting your photo ready...", type: NVActivityIndicatorType.ballTrianglePath)
         self.image = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.image = self.image.resizeImage(targetSize: imageView.frame.size)
