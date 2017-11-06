@@ -83,6 +83,7 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        self.polishNameContainer.isHidden = true
         startAnimating(size, message: "Getting your photo ready...", type: NVActivityIndicatorType.ballTrianglePath)
         self.image = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.image = self.image.resizeImage(targetSize: imageView.frame.size)
