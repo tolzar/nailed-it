@@ -35,11 +35,11 @@ PODS:
   - Parse (1.15.3):
     - Bolts/Tasks (~> 1.8)
   - SnapKit (4.0.0)
-  - TinyCrayon (3.0.0):
-    - TinyCrayon/TCCore (= 3.0.0)
-    - TinyCrayon/TCMask (= 3.0.0)
-  - TinyCrayon/TCCore (3.0.0)
-  - TinyCrayon/TCMask (3.0.0):
+  - TinyCrayon (3.1.0):
+    - TinyCrayon/TCCore (= 3.1.0)
+    - TinyCrayon/TCMask (= 3.1.0)
+  - TinyCrayon/TCCore (3.1.0)
+  - TinyCrayon/TCMask (3.1.0):
     - TinyCrayon/TCCore
 
 DEPENDENCIES:
@@ -49,7 +49,7 @@ DEPENDENCIES:
   - NotificationBannerSwift
   - NVActivityIndicatorView
   - Parse (~> 1.15.3)
-  - TinyCrayon (~> 3.0.0)
+  - TinyCrayon (~> 3.1.0)
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -61,8 +61,8 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: 54c9b93b6f25a4f467512680c0c90c09a1095cf2
   Parse: cdc0f1f975ee8be0409e66f21b05df4ae067047c
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  TinyCrayon: 2816eae8b9f57ee6d0272ee9cfbe60a86973f136
+  TinyCrayon: 62312cd7e8dc432ee7f2774b1ddc675a87055b68
 
-PODFILE CHECKSUM: 9ff6da965f9fc9047c31f2ecf1a8a44ec41413b2
+PODFILE CHECKSUM: fdebd6959f3a4766e05d998a15ca27fa81108c19
 
 COCOAPODS: 1.3.1
