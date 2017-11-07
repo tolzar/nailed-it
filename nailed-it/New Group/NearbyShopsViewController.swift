@@ -149,4 +149,8 @@ class NearbyShopsViewController: UIViewController, UITableViewDataSource, UITabl
         mapViewController.businesses = businesses
         self.navigationController?.pushViewController(mapViewController, animated: true)
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        dismiss(animated: false, completion: nil)
+    }
 }
