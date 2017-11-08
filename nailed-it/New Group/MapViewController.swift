@@ -15,6 +15,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     var locationManager : CLLocationManager!
     var businesses: [Shop]!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,5 +75,34 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             }
         }
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if #available(iOS 11.0, *) {
+            guard let annotation = annotation as? MKPointAnnotation else { return nil }
+            
+            let identifier = "marker"
+            var view: MKMarkerAnnotationView
+            
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+                as? MKMarkerAnnotationView {
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+            } else {
+                view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view.canShowCallout = false
+                view.markerTintColor = UIColor(red:0.98, green:0.66, blue:0.65, alpha:1.0)
+            }
+            view.subtitleVisibility = MKFeatureVisibility.hidden
+            view.animatesWhenAdded = true
+            return view
+        } else {
+            let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin-annotation")
+            
+            annotationView.animatesDrop = true
+            annotationView.canShowCallout = true
+            return nil
+        }
+    }
+
     
 }
