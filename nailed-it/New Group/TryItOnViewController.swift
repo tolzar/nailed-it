@@ -128,13 +128,6 @@ class TryItOnViewController: UIViewController, UIImagePickerControllerDelegate, 
         imageView.image = mask.blend(foregroundImage: templateImage, backgroundImage: image)
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(onImageLongPress)))
-        
-        updateCurrentColorView()
-    }
-    
-    func updateCurrentColorView() {
-        // display additional view with color data
-        print(self.currentPolishColor)
     }
     
     @objc func onImageLongPress(sender: UILongPressGestureRecognizer) {
