@@ -36,6 +36,7 @@ class PolishLibraryViewController: UIViewController, UICollectionViewDelegate, U
         self.collectionView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
 
         searchBar.delegate = self
+        self.view.addSubview(searchBar)
 
         sortingOptions = ["Price: $ to $$$", "Price: $$$ to $", "Color", "Name", "Brand"]
 
