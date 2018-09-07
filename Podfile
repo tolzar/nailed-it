@@ -9,7 +9,7 @@ target 'nailed-it' do
   pod 'AFNetworking', '~> 2.5'
   pod 'BDBOAuth1Manager', '~> 1.6.0'
   pod 'Parse', '~> 1.15.3'
-  pod 'TinyCrayon', '~> 3.1.0'
+  pod 'TinyCrayon'
   pod 'NotificationBannerSwift'
   pod 'CZPicker'
   pod 'NVActivityIndicatorView'
